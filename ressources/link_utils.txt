@@ -1,0 +1,26 @@
+
+// SHELL / BASH \\
+
+
+https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf - PDF tres complet sur le shell en anglais
+
+https://aosabook.org/en/v1/bash.html - document explicatif on how bash parsing work
+
+https://putaindecode.io/articles/maitriser-les-redirections-shell/ - Description TODO
+
+https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html - Definition shell commande language
+
+https://youtu.be/ubt-UjcQUYg?si=T9Hh5y7F2ZI7m0s5 - video good ++ sur le parsing en arbre et explication d'un shell en general d'un gars du mit.
+
+
+// GITHUB / MEDIUM \\
+
+https://github.com/iciamyplant/Minishell/blob/master/README.md - Amy plant readme de minishell
+
+https://m4nnb3ll.medium.com/minishell-building-a-mini-bash-a-42-project-b55a10598218 - tuto medium bit poussé sur minishell 42 qui donne de bonnes ressources et une vision globale du projet
+
+https://medium.com/@simonzerisenay/embark-on-a-shell-tastic-adventure-with-minishell-69a59758e84f - Description TODO
+
+// TRI TODO \\
+
+https://brennan.io/2015/01/16/write-a-shell-in-c/ -  un tuto trés connus d'un gars qui fait son  propre shell et explique sa démarche, named LSH, english only.
