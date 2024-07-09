@@ -48,7 +48,7 @@ NO_COLOR = \033[m
 all:	$(NAME)
 
 $(NAME):	$(OBJS) $(OBJS_MAIN)
-	@$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -o $@ $(OBJS) $(OBJS_MAIN)
+	@$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -o $@ $(OBJS) $(OBJS_MAIN) -lreadline
 	@printf "$(COLOR_BLUE)minishell compilation done: [✓]$(NO_COLOR)\n"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
