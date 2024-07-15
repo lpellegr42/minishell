@@ -13,11 +13,21 @@
 #include <sys/types.h>
 #include <time.h>
 
+
 typedef struct s_env
 {
-	char	*id;
+	char	*key;
 	char	*val;
 	int		set;
 }	t_env;
 
+typedef struct s_data
+{
+	t_env	*env;
+}	t_data;
+
+/* *********************************ENV.C************************************ */
+void	ft_copy_env(t_env *env, char	**envp);
+
+/* ************************************************************************** */
 #endif

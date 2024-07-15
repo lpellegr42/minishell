@@ -6,7 +6,7 @@
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 NAME = minishell
 
@@ -14,7 +14,7 @@ NAME = minishell
 #                                   FILES                                      #
 # **************************************************************************** #
 
-MAIN	=	main.c
+MAIN	=	main.c env.c
 
 SRC		= 	utils_libft.c
 

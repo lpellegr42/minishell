@@ -1,17 +1,6 @@
 
 #include "minishell.h"
 
-// int	main(void)
-// {
-// 	char	*line;
-
-// 	while (1)
-// 	{
-// 		line = readline("Enter a line : ");
-// 		printf("line : %s\n", line);
-// 	}
-// }
-
 void	ft_prompt_loop()
 {
 	char	*home;
@@ -31,8 +20,8 @@ void	ft_prompt_loop()
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argv;
-	(void)envp;
-	// t_env	env;
+	// (void)envp;
+	t_data	data;
 
 	if (argc != 1)
 	{
@@ -40,7 +29,8 @@ int	main(int argc, char **argv, char **envp)
 		printf("Try : ./minishell\n");
 		return (1);
 	}
-	// ft_copy_env(env, envp);
+	data.env = NULL;
+	ft_copy_env(data.env, envp);
 	ft_prompt_loop();
 }
 
