@@ -16,7 +16,7 @@ NAME = minishell
 
 MAIN	=	main.c env.c
 
-SRC		= 	utils_libft.c
+SRC		= 	utils_libft.c utils_lst.c
 
 # **************************************************************************** #
 #                                   PATH                                       #

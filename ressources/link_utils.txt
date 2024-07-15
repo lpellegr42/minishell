@@ -26,3 +26,6 @@ https://medium.com/@simonzerisenay/embark-on-a-shell-tastic-adventure-with-minis
 https://brennan.io/2015/01/16/write-a-shell-in-c/ -  un tuto trés connus d'un gars qui fait son  propre shell et explique sa démarche, named LSH, english only.
 
 https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY - playlist youtube sur les process unix tres bien faite, traire de l'exec des fork et de plein de fct utiles de amniere simple et straightforward, pleeeeeinnns de vidéos de 10mn.
+
+https://www.youtube.com/watch?v=ubt-UjcQUYg&t=84s&ab_channel=hhp3 - tuto youtube shell en arbre binaire
+

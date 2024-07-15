@@ -20,8 +20,6 @@ void	ft_prompt_loop()
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argv;
-	// (void)envp;
-	t_data	data;
 
 	if (argc != 1)
 	{
@@ -29,8 +27,9 @@ int	main(int argc, char **argv, char **envp)
 		printf("Try : ./minishell\n");
 		return (1);
 	}
-	data.env = NULL;
-	ft_copy_env(data.env, envp);
+	t_env	*env;
+	env = NULL;
+	env = ft_copy_env(env, envp);
 	ft_prompt_loop();
 }
 
