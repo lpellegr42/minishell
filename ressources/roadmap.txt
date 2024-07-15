@@ -1,4 +1,11 @@
 TODO : 
 
-- Modif makefile pour avoir différents dossiers de source.
+
 - 
+
+
+// Livane specific roadmap
+
+// Léo specific roadmap
+
+- Modif makefile pour avoir différents dossiers de source.
