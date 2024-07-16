@@ -12,6 +12,7 @@ void	ft_prompt_loop(t_env *env)
 		prompt = ft_strjoin("Minishell : ", home);
 		prompt = ft_strjoin(prompt, "$ ");
 		line = readline(prompt);
+		init_parsing(line);
 		ft_builtins(line, env);
 	}
 }
