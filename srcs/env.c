@@ -73,12 +73,8 @@ t_env	*ft_copy_env(t_env *env, char **envp)
 	
 	i = 0;
 	while (envp[i])
-	 	printf("%s\n", envp[i++]);
-	i = 0;
-	while (envp[i])
 	{	
 		env = ft_append_node(env, envp[i]);
-		// printf("%s=%s\n", env->key, env->val);
 		env = env->next;
 		i++;
 	}
