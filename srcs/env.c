@@ -18,29 +18,33 @@ char	*ft_key_copy(t_env *env, char *envp)
 	return (env->key);
 }
 
-// char	*ft_val_copy(t_env env, char *envp)
-// {
-// 	int	i;
+char	*ft_val_copy(t_env *env, char *envp)
+{
+	int	i;
+	int	j;
 
-// 	i = 0;
-// 	while (envp[i] && envp[i] != '\n')
-// 		i++;
-// 	if (envp[i] == '\n')
-// 		i++;
-// 	env.val = malloc(sizeof(char) * ft_len(envp, i));
-// 	i = 0;
-// 	while (envp[i] && envp[i] != '\n')
-// 	{
-// 		env.val[i] = envp[i];
-// 		i++;
-// 	}
-// 	if (envp[i] == '\n')
-// 	{
-// 		env.val[i] = envp[i];
-// 		i++;
-// 	}
-// 	return (env.val);
-// }
+	i = 0;
+	while (envp[i] && envp[i] != '=')
+		i++;
+	if (envp[i] == '=')
+		i++;
+	env->val = malloc(sizeof(char) * ft_len(envp, i));
+	j = 0;
+	while (envp[i] && envp[i] != '\n')
+	{
+		env->val[j] = envp[i];
+		i++;
+		j++;
+	}
+	if (envp[i] == '\n')
+	{
+		env->val[j] = envp[i];
+		i++;
+		j++;
+	}
+	env->val[j] = '\0';
+	return (env->val);
+}
 
 t_env	*ft_append_node(t_env *env, char *envp)
 {
@@ -52,7 +56,7 @@ t_env	*ft_append_node(t_env *env, char *envp)
 		return (NULL);
 	new->next = NULL;
 	new->key = ft_key_copy(new, envp);
-	// new->val = ft_val_copy(new, envp);
+	new->val = ft_val_copy(new, envp);
 	new->set = 1;
 	if (!env)
 		env = new;
@@ -74,7 +78,7 @@ t_env	*ft_copy_env(t_env *env, char **envp)
 	while (envp[i])
 	{	
 		env = ft_append_node(env, envp[i]);
-		printf("key : %s\n", env->key);
+		// printf("%s=%s\n", env->key, env->val);
 		env = env->next;
 		i++;
 	}
