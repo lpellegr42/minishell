@@ -1,7 +1,6 @@
-
 #include "minishell.h"
 
-void	ft_prompt_loop()
+void	ft_prompt_loop(t_env *env)
 {
 	char	*home;
 	char	*line;
@@ -11,26 +10,26 @@ void	ft_prompt_loop()
 	{
 		home = getenv("PWD");
 		prompt = ft_strjoin("Minishell : ", home);
-		prompt = ft_strjoin(prompt, "\n");
+		prompt = ft_strjoin(prompt, "$ ");
 		line = readline(prompt);
-		printf("line : %s\n", line);
+		ft_builtins(line, env);
 	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	(void)argv;
+	t_env	*env;
 
+	(void)argv;
 	if (argc != 1)
 	{
 		printf("Error : Invalid arguments.\n");
 		printf("Try : ./minishell\n");
 		return (1);
 	}
-	t_env	*env;
 	env = NULL;
 	env = ft_copy_env(env, envp);
-	ft_prompt_loop();
+	ft_prompt_loop(env);
 }
 
 // int	main(int argc, char **argv, char **envp)

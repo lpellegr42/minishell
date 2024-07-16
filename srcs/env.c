@@ -67,16 +67,18 @@ t_env	*ft_append_node(t_env *env, char *envp)
 	}
 	return (env);
 }
+
 t_env	*ft_copy_env(t_env *env, char **envp)
 {
-	int	i;
-	
+	int		i;
+	t_env	*temp;
+
+	temp = env;
 	i = 0;
 	while (envp[i])
-	{	
-		env = ft_append_node(env, envp[i]);
-		env = env->next;
+	{
+		temp = ft_append_node(temp, envp[i]);
 		i++;
 	}
-	return (env);
+	return (temp);
 }

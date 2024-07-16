@@ -14,7 +14,7 @@ NAME = minishell
 #                                   FILES                                      #
 # **************************************************************************** #
 
-MAIN	=	main.c env.c
+MAIN	=	main.c env.c builtins.c
 
 SRC		= 	utils_libft.c utils_lst.c
 
