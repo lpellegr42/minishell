@@ -63,6 +63,6 @@ char	*ft_strjoin(char *s1, char *s2);
 t_env	*ft_last_node(t_env	*lst);
 
 // Parsing part
-void	parsing(char *str);
+t_data	*parsing(char *str);
 
 #endif

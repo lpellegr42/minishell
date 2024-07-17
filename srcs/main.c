@@ -6,6 +6,7 @@ void	ft_prompt_loop(t_env *env)
 	char	*line;
 	char	*prompt;
 	t_data	*data;
+	t_data	*data;
 
 	while (1)
 	{
