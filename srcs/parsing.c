@@ -4,7 +4,7 @@
 // {	
 // }
 
-void	init_parsing(char *str)
+void	parsing(char *str)
 {
 	(void)str;
 }

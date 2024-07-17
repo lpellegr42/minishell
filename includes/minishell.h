@@ -19,6 +19,7 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+// Parsing struct
 typedef struct s_parsing
 {
 	char *cmd;
@@ -26,14 +27,16 @@ typedef struct s_parsing
 
 typedef enum s_tokentype
 {
-	EXEC,
+	EXEC, //try to create needed token, don't hesitate to comment your ideas.
 	BUILTIN,
 	PIPE,
 	HERE_DOC,
 	IN_REDIR,
 	OUT_REDIR,
-	DEFAULT,
+	DEFAULT_CMD,
 }	t_tokentype; //not sure bout the right token to put, will see further.
+// End parsing struct.
+
 
 // typedef struct s_data
 // {
@@ -54,7 +57,8 @@ char	*ft_strjoin(char *s1, char *s2);
 
 /* ******************************UTILS_LST.C********************************* */
 t_env	*ft_last_node(t_env	*lst);
-#endif
 
 // Parsing part
-void	init_parsing(char *str);
+void	parsing(char *str);
+
+#endif
