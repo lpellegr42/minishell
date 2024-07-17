@@ -4,7 +4,7 @@ GROUP TODO :
 - Important TODO, parler de comment les fork et les pipe (permettant la communication entre processus, et donc différentes partie de notre prompt) va fonctionner 
 	dans les grandes lignes, le parsing doit refleter cela et l'exec doit aussi, basique pour le projet mais important.
 
-- 
+- Creer la fonction
 
 
 // Livane specific roadmap
@@ -14,4 +14,7 @@ GROUP TODO :
 
 - Modif makefile pour avoir différents dossiers de source.
 
+- Creer la struct et test avec des pipe simple. Malloc accordingly and test.
+
+-
 //

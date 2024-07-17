@@ -11,6 +11,9 @@
 # include <sys/types.h>
 # include <time.h>
 
+/* Struct & enum */
+
+
 typedef struct s_env
 {
 	char			*key;
@@ -19,29 +22,36 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-// Parsing struct
+
+typedef struct s_data
+{
+	char		*cmd;	//env
+	char		**argument; //const ? NULL
+	int			fd_out;
+	int			fd_in;
+	int			flag_out; //simple ou double redir; > ou >>
+	char 		*here_doc;
+	t_data		*next;
+} 	t_data; //preparer en * simple pour l'exec.
+
+
+// - Parsing struct
 typedef struct s_parsing
 {
 	char *cmd;
-}	s_parsing;
+	struct s_parsing	*part1;
+	struct s_parsing	*part2;
+}	t_parsing;
 
-typedef enum s_tokentype
-{
-	EXEC, //try to create needed token, don't hesitate to comment your ideas.
-	BUILTIN,
-	PIPE,
-	HERE_DOC,
-	IN_REDIR,
-	OUT_REDIR,
-	DEFAULT_CMD,
-}	t_tokentype; //not sure bout the right token to put, will see further.
-// End parsing struct.
+// - End parsing struct.
 
 
 // typedef struct s_data
 // {
 // 	t_env	*env;
 // }	t_data;
+
+/* Functions */
 
 /* *********************************ENV.C************************************ */
 t_env	*ft_copy_env(t_env *env, char	**envp);
