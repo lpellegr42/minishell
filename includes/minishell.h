@@ -26,13 +26,13 @@ typedef struct s_env
 typedef struct s_data
 {
 	char		*cmd;	//env
-	char		**argument; //const ? NULL
+	char		**arg; //const ? NULL
 	int			fd_out;
 	int			fd_in;
 	int			flag_out; //simple ou double redir; > ou >>
 	char 		*here_doc;
 	t_data		*next;
-} 	t_data; //preparer en * simple pour l'exec.
+} 	t_data; // fill en * simple pour l'exec.
 
 
 // - Parsing struct
