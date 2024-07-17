@@ -19,7 +19,7 @@ void	parsing(char *str)
 
 t_parsing	*create_(char *data)
 {
-
+ testtest
 }
 
 void	free_tree(t_parsing *node)
