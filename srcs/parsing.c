@@ -2,7 +2,7 @@
 
 void	receive_line(char *str)
 {
-
+	
 }
 
 
@@ -17,7 +17,7 @@ void	parsing(char *str)
 	//split pimp qui garde plus de choses
 }
 
-t_parsing	*create_(char *data)
+t_parsing	*create_node(char *data)
 {
 
 }

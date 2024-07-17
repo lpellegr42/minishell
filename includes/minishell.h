@@ -22,20 +22,19 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-
+// - Parsing struct
 typedef struct s_data
 {
-	char		*cmd;	//env
-	char		**arg; //const ? NULL
+	char		*cmd;	//mettre le path env
+	char		**arg; //const ? NULL -> premier argument est le nom du programme.
 	int			fd_out;
 	int			fd_in;
 	int			flag_out; //simple ou double redir; > ou >>
-	char 		*here_doc;
+	char 		*here_doc; // change for int fd
 	t_data		*next;
 } 	t_data; // fill en * simple pour l'exec.
 
 
-// - Parsing struct
 typedef struct s_parsing
 {
 	char *cmd;
