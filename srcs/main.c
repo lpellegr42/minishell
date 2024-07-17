@@ -5,6 +5,7 @@ void	ft_prompt_loop(t_env *env)
 	char	*home;
 	char	*line;
 	char	*prompt;
+	t_data	*data;
 
 	while (1)
 	{
@@ -12,8 +13,8 @@ void	ft_prompt_loop(t_env *env)
 		prompt = ft_strjoin("Minishell : ", home);
 		prompt = ft_strjoin(prompt, "$ ");
 		line = readline(prompt);
-		parsing(line); //the parsing will return command table that you can une in the exec. TODO
-		ft_builtins(line, env);
+		data = parsing(line); //the parsing will return command table that you can une in the exec. TODO
+		ft_builtins(data, env);
 	}
 }
 

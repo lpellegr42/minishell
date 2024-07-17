@@ -45,12 +45,6 @@ typedef struct s_parsing
 
 // - End parsing struct.
 
-
-// typedef struct s_data
-// {
-// 	t_env	*env;
-// }	t_data;
-
 /* Functions */
 
 /* *********************************ENV.C************************************ */

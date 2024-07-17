@@ -15,8 +15,8 @@ void	ft_env(t_env *env)
 
 // }
 
-void	ft_builtins(char *str, t_env *env)
+void	ft_builtins(t_data *data, t_env *env)
 {
-	if (ft_strncmp(str, "env", 3) == 0)
+	if (ft_strncmp(data->cmd, "env", 3) == 0)
 		ft_env(env);
 }
