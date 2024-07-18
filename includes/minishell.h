@@ -20,8 +20,8 @@ typedef struct s_env
 
 typedef struct s_data
 {
-	char		*cmd;	//env
-	char		**arg; //const ? NULL
+	char		*cmd;	//mettre le path env
+	char		**arg; //const ? NULL -> premier argument est le nom du programme.
 	int			fd_out;
 	int			fd_in;
 	int			flag_out; //simple ou double redir; > ou >>
