@@ -16,7 +16,8 @@ NAME = minishell
 
 MAIN	=	main.c
 
-SRC		= 	env.c builtins.c parsing.c utils_libft.c utils_lst.c
+SRC		= 	copy_env.c utils_libft.c utils_libft2.c utils_lst.c \
+		builtins.c env.c export.c unset.c
 
 # **************************************************************************** #
 #                                   PATH                                       #
