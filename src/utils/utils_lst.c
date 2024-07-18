@@ -15,4 +15,5 @@ void	ft_swap(t_env **lst)
 	(*lst)->next = temp->next;
 	temp->next = *lst;
 	*lst = temp;
+	printf("swap\n");
 }

@@ -46,7 +46,7 @@ t_env	*ft_copy_env(t_env *env, char **envp);
 
 /* ******************************BUILTINS.C********************************** */
 void	ft_builtins(char *line, t_data *data, t_env *env);
-void	ft_export(char *line, t_data *data, t_env *env);
+void	ft_export(char *line, t_data *data, t_env **env);
 void	ft_env(t_env *env);
 void	ft_unset(char *line, t_data *data, t_env *env);
 

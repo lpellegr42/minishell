@@ -1,35 +1,48 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
-t_env *ft_sort_env(t_env *env)
+void	ft_print_list(char *str, t_env *lst)
 {
-	t_env	*tmp;
+	while (lst)
+	{
+		printf("%s, %s\n", str, lst->key);
+		lst = lst->next;
+	}
+}
+
+t_env *ft_sort_env(t_env **env)
+{
+	t_env *tmp;
 	int 	i;
 	
-	tmp = env;
+	tmp = *env;
 	i = 0;
-	while (tmp)
+	while (*env)
 	{
-		while (tmp && tmp->next && tmp->key[i] == tmp->next->key[i])
+		if (*env && (*env)->next && (*env)->key[i] == (*env)->next->key[i])
 			i++;
-		if (tmp && tmp->next && tmp->key[i] > tmp->next->key[i])
+		else if (*env && (*env)->next && (*env)->key[i] > (*env)->next->key[i])
 		{
-			ft_swap(&tmp);
+			// ft_print_list("1 : env", (*env));
+			// ft_print_list("1 : (*env)", (*env));
+			ft_swap(env);
 			if (i != 0)
 				i = 0;
-			tmp = env;
+			// tmp = *env;
+			// ft_print_list("2 : env", tmp);
+			// ft_print_list("2 : tmp", tmp);
 		}
 		else
 		{
 			if (i != 0)
 				i = 0;
-			tmp = tmp->next;
+			*env = (*env)->next;
 		}
 	}
-	return (env);
+	return (tmp);
 }
 
-void	ft_export(char *line, t_data *data, t_env *env)
+void	ft_export(char *line, t_data *data, t_env **env)
 {
 	t_env	*env_sorted;
 	(void)line;
