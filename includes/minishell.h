@@ -43,7 +43,7 @@ typedef enum s_tokentype
 	DEFAULT
 }			t_tokentype;
 
-typedef struct s_parsing
+typedef struct s_cmdtree
 {
 	int	type; //default, need to define clearly which type i need.
 	char *str; //initial_str
@@ -51,7 +51,7 @@ typedef struct s_parsing
 	int fd; //in case of pipe and redir -> keep only the last fd open
 	struct s_parsing	*part1; //left
 	struct s_parsing	*part2; //right
-}	t_parsing;
+}	t_cmdtree;
 
 // End parsing struct.
 
@@ -61,14 +61,36 @@ typedef struct s_parsing
 t_env	*ft_copy_env(t_env *env, char **envp);
 
 /* ******************************BUILTINS.C********************************** */
-//		Parsing part
+void	ft_builtins(char *line, t_data *data, t_env *env);
+void	ft_export(char *line, t_data *data, t_env *env);
+void	ft_env(t_env *env);
+void	ft_unset(char *line, t_data *data, t_env *env);
 
-// parsing/init_parsing.c
+/* *****************************UTILS_LIBFT.C******************************** */
+int		ft_strlen(char *str);
+int		ft_len(char *str, int i);
+int		ft_strncmp(char *s1, char *s2, int n);
+int		ft_atoi(char *str);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_itoa(int n);
+char	*ft_strdup(char *s);
+
+/* ******************************UTILS_LST.C********************************* */
+t_env	*ft_last_node(t_env	*lst);
+void	ft_swap(t_env **lst);
+
+//		Parsing
+
+// 	parsing/init_parsing.c
+
+void	free_node(t_cmdtree *node);
+void	free_tree(t_cmdtree *node);
+t_cmdtree	*init_node(char *str, int len);
 
 //	parsing/parsing_utils.c
 
 char	*ft_strchr(char *s, int c);
-char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_substr(char *s, unsigned inst start, size_t len);
 char	*ft_strdup(char *s);
 
 #endif
