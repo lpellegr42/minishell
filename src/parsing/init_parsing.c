@@ -1,22 +1,6 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
-t_parsing	*parse_pipe(t_parsing *parsing_tree, char *str)
-{
-	char	*part1;
-	char	*part2;
-	char	*first_pipe_pos;
-	/* put in conditional structure recursively. */
-	/* strchr to found the first occurence of a pipe if there is one in the string */
-	/* create two subtring of that and put them in the two part of my binary tree. */
-
-	first_pipe_pos = ft_strchr(str, '|'); //faire fct, first pipe
-	part1 = ft_substr(str, 0, );
-	part2 = ft_substr();
-	//Allocates and fill part1 and 2.
-	return (parsing_tree);
-}
-
 t_parsing	*parsing(char *str)
 {
 	t_parsing	*parsing_tree; //double pointer or not ? i want to keep the first node adress.
@@ -28,6 +12,8 @@ t_parsing	*parsing(char *str)
 	return (parsing_tree);
 }
 
+
+// free a simple node
 void	free_node(t_parsing *node)
 {
 	free(node->type);
@@ -37,6 +23,7 @@ void	free_node(t_parsing *node)
 	// have i to free part 1 and 2 cause i do it recursively above ?
 }
 
+//free a complete binary tree recursively
 void	free_tree(t_parsing *node)
 {
 	if (!node)
@@ -46,6 +33,8 @@ void	free_tree(t_parsing *node)
 	free_tree(node->part2);
 	free_node(node); // same
 }
+
+// create a new node with default value.
 t_parsing	*init_node(char *str, int len)
 {
 	t_parsing	*new_node;

@@ -61,26 +61,14 @@ typedef struct s_parsing
 t_env	*ft_copy_env(t_env *env, char **envp);
 
 /* ******************************BUILTINS.C********************************** */
-void	ft_builtins(char *line, t_data *data, t_env *env);
-void	ft_export(char *line, t_data *data, t_env *env);
-void	ft_env(t_env *env);
-void	ft_unset(char *line, t_data *data, t_env *env);
+//		Parsing part
 
-/* *****************************UTILS_LIBFT.C******************************** */
-int		ft_strlen(char *str);
-int		ft_len(char *str, int i);
-int		ft_strncmp(char *s1, char *s2, int n);
-int		ft_atoi(char *str);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_itoa(int n);
+// parsing/init_parsing.c
+
+//	parsing/parsing_utils.c
+
+char	*ft_strchr(char *s, int c);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*ft_strdup(char *s);
-
-/* ******************************UTILS_LST.C********************************* */
-t_env	*ft_last_node(t_env	*lst);
-void	ft_swap(t_env **lst);
-
-// Parsing part
-
-
 
 #endif

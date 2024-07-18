@@ -12,9 +12,8 @@ GROUP TODO :
 
 // Léo specific roadmap
 
-- Modif makefile pour avoir différents dossiers de source.
+- Create a simple between quote verif.
+- code a minishell adapted split
+- 
 
-- Creer la struct et test avec des pipe simple. Malloc accordingly and test.
-
--
 //
