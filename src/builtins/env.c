@@ -1,4 +1,5 @@
-#include "minishell.h"
+//#include "minishell.h"
+#include "../../includes/minishell.h"
 
 void	ft_env(t_env *env)
 {

@@ -1,4 +1,5 @@
-#include "../includes/minishell.h"
+//#include "minishell.h"
+#include "../../includes/minishell.h"
 
 char	*ft_key_copy(t_env *env, char *envp)
 {

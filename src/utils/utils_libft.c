@@ -1,4 +1,5 @@
-#include "../includes/minishell.h"
+//#include "minishell.h"
+#include "../../includes/minishell.h"
 
 int	ft_len(char *str, int i)
 {

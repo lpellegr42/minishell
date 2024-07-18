@@ -1,72 +1,32 @@
-#***************** LIVSAUZE AND LPELLEGR MINISHELL'S MAKEFILE *****************#
-
-# **************************************************************************** #
-#                                   CONFIG                                     #
-# **************************************************************************** #
-
-CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror -g
-
 NAME = minishell
+DIR_SRC = src/
+DIR_OBJ = obj/
+CC = cc 
+CFLAGS = -Wall -Wextra -Werror -ggdb
+LDFLAGS = -lreadline
+RM = rm -f
 
-# **************************************************************************** #
-#                                   FILES                                      #
-# **************************************************************************** #
+SRCS =  $(wildcard $(DIR_SRC)*.c) \
+		$(wildcard $(DIR_SRC)/builtins/*.c) \
+		$(wildcard $(DIR_SRC)/env/*.c) \
+		$(wildcard $(DIR_SRC)/parsing/*.c) \
+		$(wildcard $(DIR_SRC)/utils/*.c) \
 
-MAIN	=	main.c
+OBJS = $(SRCS:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 
-SRC		= 	copy_env.c utils_libft.c utils_libft2.c utils_lst.c \
-		builtins.c env.c export.c unset.c
+all: $(NAME)
 
-# **************************************************************************** #
-#                                   PATH                                       #
-# **************************************************************************** #
-
-SRC_DIR		= srcs/
-OBJ_DIR		= objs/
-INCLUDE_DIR	= ./includes/
-
-SRCS		= $(addprefix $(SRC_DIR), $(SRC))
-OBJ			= $(SRC:.c=.o)
-OBJS		= $(addprefix $(OBJ_DIR), $(OBJ))
-
-OBJ_MAIN  	= $(MAIN:.c=.o)
-OBJS_MAIN	= $(addprefix $(OBJ_DIR), $(OBJ_MAIN))
-
-# **************************************************************************** #
-#                                   COLOR RULES                                #
-# **************************************************************************** #
-
-COLOR_BLUE = \033[0;34m
-COLOR_GREEN = \033[0;32m
-NO_COLOR = \033[m
-
-# **************************************************************************** #
-#                                   RULES                                      #
-# **************************************************************************** #
-
-all:	$(NAME)
-
-$(NAME):	$(OBJS) $(OBJS_MAIN)
-	@$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -o $@ $(OBJS) $(OBJS_MAIN) -lreadline
-	@printf "$(COLOR_BLUE)minishell compilation done: [✓]$(NO_COLOR)\n"
-
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@mkdir -p $(OBJ_DIR)
-	@${CC} ${CFLAGS} -c $< -o $@ -I $(INCLUDE_DIR)
-
-$(OBJ_DIR)%.o: $(MAIN)
+$(DIR_OBJ)%.o: $(DIR_SRC)%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-clean: 
-	@rm -rf $(OBJ_DIR)
-	@printf "$(COLOR_GREEN)clean: [✓]$(NO_COLOR)\n"
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS)
+
+clean:
+	rm -rf $(DIR_OBJ)
 
 fclean: clean
-	@rm -rf $(NAME) $(NAME_BONUS)
-	@printf "$(COLOR_GREEN)fclean: [✓]$(NO_COLOR)\n"
+	$(RM) $(NAME)
 
 re: fclean all
-
-.PHONY: all bonus clean fclean re

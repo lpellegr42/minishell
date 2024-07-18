@@ -42,7 +42,7 @@ typedef struct s_parsing
 /* Functions */
 
 /* *********************************ENV.C************************************ */
-t_env	*ft_copy_env(t_env *env, char	**envp);
+t_env	*ft_copy_env(t_env *env, char **envp);
 
 /* ******************************BUILTINS.C********************************** */
 void	ft_builtins(char *line, t_data *data, t_env *env);
@@ -62,7 +62,8 @@ char	*ft_strdup(char *s);
 /* ******************************UTILS_LST.C********************************* */
 t_env	*ft_last_node(t_env	*lst);
 void	ft_swap(t_env **lst);
+
 // Parsing part
-t_data	*parsing(char *str);
+//t_data	*parsing(char *str);
 
 #endif

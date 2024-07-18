@@ -1,11 +1,10 @@
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	ft_prompt_loop(t_env *env)
 {
 	char	*home;
 	char	*line;
 	char	*prompt;
-	t_data	*data;
 	t_data	*data;
 
 	data = NULL;
