@@ -16,6 +16,7 @@ t_cmdtree	*parse_pipe(t_cmdtree *node)
 		node->type = PIPE;
 		node->part1 = init_node(my_substr(node->str, 0, pipe_pos - 1));
 		node->part2 = init_node(my_substr(node->str, pipe_pos + 1, my_strlen(node->str) - pipe_pos)); //+1 ou -1 sur strlen		parse_pipe(node->part2);
+		parse_pipe(node->part2);
 		return(node);
 		//next_parsing_step
 	}

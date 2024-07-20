@@ -36,12 +36,36 @@ void	print_node(t_cmdtree *node)
 	//print arg to add.
 
 }
-void	print_tree(t_cmdtree *node)
+// void	print_tree(t_cmdtree *node)
+// {
+// 	if (!node)
+// 		return ;
+// 	printf("PART1 of the tree: \n");
+// 	print_tree(node->part1);
+// 	print_node(node);
+// 	printf("PART1 of the tree: \n");
+// 	print_tree(node->part2);
+// }
+
+
+void print_tree(t_cmdtree *node, const char *side) 
 {
-	if (!node)
-		return ;
-	print_tree(node->part1);
-	print_node(node); //data to change - create another function.
-	print_tree(node->part2);
-	print_node(node); // same
+    if (!node)
+        return;
+    
+    // Print the current part of the tree
+    if (side)
+        printf("[%s] ", side);
+    printf("Node Type: %s, Value: %s\n", enum_to_str(node->type), node->str ? node->str : "NULL");
+
+    // Traverse left subtree
+    print_tree(node->part1, "Left");
+
+    // Print the current node
+    if (side)
+        printf("[%s] ", side);
+    printf("Node Type: %s, Value: %s\n", enum_to_str(node->type), node->str ? node->str : "NULL");
+
+    // Traverse right subtree
+    print_tree(node->part2, "Right");
 }
