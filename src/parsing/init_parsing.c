@@ -1,6 +1,8 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+/*
+
 t_cmdtree	*parsing(char *str)
 {
 	t_cmdtree	*node; //double pointer or not ? i want to keep the first node adress.
@@ -50,3 +52,5 @@ t_cmdtree	*init_node(char *str, int len)
 	new_node->part2 = NULL;
 	return (new_node);
 }
+
+*/

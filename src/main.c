@@ -15,6 +15,7 @@ void	ft_prompt_loop(t_env *env)
 		prompt = ft_strjoin(prompt, "$ ");
 		line = readline(prompt);
 		// data = parsing(line); //the parsing will return command table that you can une in the exec. TODO
+		test_parsing(line);
 		ft_builtins(line, data, env);
 	}
 }

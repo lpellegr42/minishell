@@ -12,8 +12,8 @@ GROUP TODO :
 
 // Léo specific roadmap
 
-- Create a simple between quote verif.
-- code a minishell adapted split
+- Create a simple between quote verif. done
+- code a minishell adapted split - !!
 - 
 
 //

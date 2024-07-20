@@ -4,6 +4,7 @@
 # include <stdlib.h> //Basic lib
 # include <unistd.h>
 # include <stdio.h>
+# include <stddef.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h> //Usefull lib
@@ -58,15 +59,18 @@ typedef struct s_cmdtree
 /* Functions */
 
 /* *********************************ENV.C************************************ */
+
 t_env	*ft_copy_env(t_env *env, char **envp);
 
 /* ******************************BUILTINS.C********************************** */
+
 void	ft_builtins(char *line, t_data *data, t_env *env);
 void	ft_export(char *line, t_data *data, t_env *env);
 void	ft_env(t_env *env);
 void	ft_unset(char *line, t_data *data, t_env *env);
 
 /* *****************************UTILS_LIBFT.C******************************** */
+
 int		ft_strlen(char *str);
 int		ft_len(char *str, int i);
 int		ft_strncmp(char *s1, char *s2, int n);
@@ -76,6 +80,7 @@ char	*ft_itoa(int n);
 char	*ft_strdup(char *s);
 
 /* ******************************UTILS_LST.C********************************* */
+
 t_env	*ft_last_node(t_env	*lst);
 void	ft_swap(t_env **lst);
 
@@ -89,8 +94,20 @@ t_cmdtree	*init_node(char *str, int len);
 
 //	parsing/parsing_utils.c
 
-char	*ft_strchr(char *s, int c);
-char	*ft_substr(char *s, unsigned inst start, size_t len);
-char	*ft_strdup(char *s);
+char	*my_strchr(const char *s, int c);
+char	*my_substr(char const *s, unsigned int start, size_t len);
+char	*my_strdup(const char *s);
+size_t	my_strlen(const char *s);
+
+
+//	parsing/pipe_parsing.c
+
+void	split_on_pipe(char *str);
+int		first_pipe_pos(char *str);
+
+//	temp
+
+char	**ft_split(char const *s, char sep);
+void	test_parsing(char *line);
 
 #endif
