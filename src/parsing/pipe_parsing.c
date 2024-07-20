@@ -14,8 +14,8 @@ t_cmdtree	*parse_pipe(t_cmdtree *node)
 	else //tester dans cas ou str[0] est un pipe -> segfault i think
 	{
 		node->type = PIPE;
-		node->part1 = init_node(my_substr(node->str, 0, pipe_pos - 1));
-		node->part2 = init_node(my_substr(node->str, pipe_pos + 1, my_strlen(node->str) - pipe_pos)); //+1 ou -1 sur strlen		parse_pipe(node->part2);
+		node->part1 = init_node(my_substr(node->str, 0, pipe_pos));
+		node->part2 = init_node(my_substr(node->str, pipe_pos + 1, my_strlen(node->str) - pipe_pos - 1)); //+1 ou -1 sur strlen		parse_pipe(node->part2);
 		parse_pipe(node->part2);
 		return(node);
 		//next_parsing_step
@@ -23,7 +23,9 @@ t_cmdtree	*parse_pipe(t_cmdtree *node)
 }
 
 /* 
-	Return the first pipe found in the given string, return -1 if none is found.
+ * @brief blabla
+ * @param str blabla - 1 @param par parametre
+ * @return 	Return the first pipe found in the given string, return -1 if none is found.
 */
 int	search_pipe(char *str)
 {

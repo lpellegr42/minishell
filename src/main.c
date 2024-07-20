@@ -19,7 +19,7 @@ void	ft_prompt_loop(t_env *env)
 		line = readline(prompt);
 		node = parsing(line); //the parsing will return command table that you can une in the exec. TODO
 		//test_parsing(line);
-		print_tree(node, "Root");
+		print_tree(node);
 		//ft_builtins(line, data, env);
 	}
 }

@@ -2,7 +2,7 @@
 #include "../../includes/minishell.h"
 
 /*
-The strchr() function returns a pointer to the first occurrence of the character c in the string s.
+ * The strchr() function returns a pointer to the first occurrence of the character c in the string s.
 */
 char	*my_strchr(const char *s, int c)
 {
@@ -23,8 +23,8 @@ char	*my_strchr(const char *s, int c)
 }
 
 /*
-Returns a substring from the string ’s’.
-The substring begins at index ’start’ and is of maximum size ’len’.
+ * Returns a substring from the string ’s’.
+ * The substring begins at index ’start’ and is of maximum size ’len’.
 */
 char	*my_substr(char const *s, unsigned int start, size_t len)
 {
@@ -50,8 +50,8 @@ char	*my_substr(char const *s, unsigned int start, size_t len)
 }
 
 /*     
-	The strdup() function returns a pointer to a new string which is a duplicate of the string s.
-	Memory for the new string is obtained with malloc(3), and can be freed with free(3).
+ *	The strdup() function returns a pointer to a new string which is a duplicate of the string s.
+ *	Memory for the new string is obtained with malloc(3), and can be freed with free(3).
 */
 char	*my_strdup(const char *s)
 {

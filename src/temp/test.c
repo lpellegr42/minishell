@@ -7,8 +7,11 @@
 
 	// PRINT PART
 
-//print a complete binary tree recursively
 
+/*
+ * @brief Convert the defined enum into their respective name for testing purpose.
+ * @return Return the corresponding string.
+*/
 char* enum_to_str(int spec_enum)
 {
 	if (spec_enum ==  EXEC)
@@ -26,46 +29,15 @@ char* enum_to_str(int spec_enum)
 	else
 		return("Error");
 }
-
-void	print_node(t_cmdtree *node)
+/*
+ * @brief Print a abstract syntax tree recursively.
+*/
+void	print_tree(t_cmdtree *root_node)
 {
-	if (node->type)
-		printf("%s\n", enum_to_str(node->type));
-	if (node->str)
-		printf("%s\n", node->str);
-	//print arg to add.
-
+	if (!node)
+		return ;
+	printf("\n\n/// NEW NODE ///\ntype:	%s\nstr:	$%s$\n", enum_to_str(node->type), node->str);
+	print_tree(node->part1);
+	print_tree(node->part2);
 }
-// void	print_tree(t_cmdtree *node)
-// {
-// 	if (!node)
-// 		return ;
-// 	printf("PART1 of the tree: \n");
-// 	print_tree(node->part1);
-// 	print_node(node);
-// 	printf("PART1 of the tree: \n");
-// 	print_tree(node->part2);
-// }
 
-
-void print_tree(t_cmdtree *node, const char *side) 
-{
-    if (!node)
-        return;
-    
-    // Print the current part of the tree
-    if (side)
-        printf("[%s] ", side);
-    printf("Node Type: %s, Value: %s\n", enum_to_str(node->type), node->str ? node->str : "NULL");
-
-    // Traverse left subtree
-    print_tree(node->part1, "Left");
-
-    // Print the current node
-    if (side)
-        printf("[%s] ", side);
-    printf("Node Type: %s, Value: %s\n", enum_to_str(node->type), node->str ? node->str : "NULL");
-
-    // Traverse right subtree
-    print_tree(node->part2, "Right");
-}

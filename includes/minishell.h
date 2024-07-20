@@ -113,7 +113,7 @@ char	**ft_split(char const *s, char sep);
 
 char* enum_to_str(int spec_enum); //can be removed from .h for now
 //void	print_node(t_cmdtree *node); //can be removed from .h for now
-// void	print_tree(t_cmdtree *node)
-void print_tree(t_cmdtree *node, const char *side);
+void	print_tree(t_cmdtree *node);
+//void print_tree(t_cmdtree *node, const char *side);
 
 #endif

@@ -31,6 +31,7 @@ t_cmdtree	*init_node(char *str)
 	new_node->part2 = NULL;
 	return (new_node);
 }
+
 // FREE FUNCT - NOT IN USED ATM
 
 // // free a simple node
