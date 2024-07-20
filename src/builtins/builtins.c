@@ -8,5 +8,5 @@ void	ft_builtins(char *line, t_data *data, t_env *env)
 	else if (ft_strncmp(line, "unset test", 11) == 0)
 		ft_unset("test", data, env);
 	else if(ft_strncmp(line, "export", 11) == 0)
-		ft_export("export", data, &env);
+		ft_export("export", data, env);
 }

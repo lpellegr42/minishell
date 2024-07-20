@@ -12,10 +12,11 @@
 
 typedef struct s_env
 {
-	char			*key;
-	char			*val;
-	int				set;
-	struct s_env	*next;
+	char			*key; // name of the variable (ex : USER, PATH, SHLVL...)
+	char			*val; // value of the variable
+	int				set; // flag to set or unset the variable (for unset)
+	int				pos; // final position in ascii order (for export)
+	struct s_env	*next; // pointer to the next node
 }	t_env;
 
 typedef struct s_data
@@ -46,7 +47,7 @@ t_env	*ft_copy_env(t_env *env, char **envp);
 
 /* ******************************BUILTINS.C********************************** */
 void	ft_builtins(char *line, t_data *data, t_env *env);
-void	ft_export(char *line, t_data *data, t_env **env);
+void	ft_export(char *line, t_data *data, t_env *env);
 void	ft_env(t_env *env);
 void	ft_unset(char *line, t_data *data, t_env *env);
 
