@@ -52,7 +52,7 @@ void	ft_export(char *line, t_data *data, t_env *env)
 	i = 0;
 	while (tmp)
 	{
-		if (tmp->pos == i)
+		if (tmp->pos == i && !(ft_strncmp(tmp->key, "_", 1) == 0))
 		{
 			if (tmp->set == 1)
 				printf("declare -x %s=\"%s\"\n", tmp->key, tmp->val);
@@ -61,7 +61,8 @@ void	ft_export(char *line, t_data *data, t_env *env)
 			i++;
 			tmp = env;
 		}
-		tmp = tmp->next;	
+		else
+			tmp = tmp->next;	
 	}
 }
 
