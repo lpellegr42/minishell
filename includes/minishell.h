@@ -21,13 +21,13 @@ typedef struct s_env
 
 // Parsing struct
 
-typedef struct s_data //what i give to liv
+typedef struct s_data //what i give to liv - s_data t_data
 {
 	char		*cmd;	//mettre le path env - get ma fonction pipex qui permet de creer un path from funct
-	char		**arg; //const ? premier argument est le nom du programme, dernier est NULL
+	char		**arg; //const ? premier argument est le nom du programme ds cas de EXECVE, dernier est NULL
 	int			fd_out; //fd_out et in same thing
 	int			fd_in;
-	int			flag_out; //simple ou double redir; > ou >> O_CREATE or O_APPEND
+	int			flag_out; //simple ou double redir; > O_CREATE ou >> O_APPEND
 	char 		*here_doc; //change for int fd
 	struct s_data		*next;
 } 	t_data; //fill en * simple (ptr simple) pour l'exec.
@@ -50,8 +50,8 @@ typedef struct s_cmdtree
 	char *str; //initial_str
 	char **arg; //command_args
 	int fd; //in case of pipe and redir -> keep only the last fd open
-	struct s_parsing	*part1; //left
-	struct s_parsing	*part2; //right
+	struct s_cmdtree	*part1; //left
+	struct s_cmdtree	*part2; //right
 }	t_cmdtree;
 
 // End parsing struct.
@@ -84,13 +84,14 @@ char	*ft_strdup(char *s);
 t_env	*ft_last_node(t_env	*lst);
 void	ft_swap(t_env **lst);
 
-//		Parsing
+	//		Parsing
 
 // 	parsing/init_parsing.c
 
-void	free_node(t_cmdtree *node);
-void	free_tree(t_cmdtree *node);
-t_cmdtree	*init_node(char *str, int len);
+t_cmdtree	*parsing(char *line);
+t_cmdtree	*init_node(char *str);
+// void	free_node(t_cmdtree *node);
+// void	free_tree(t_cmdtree *node);
 
 //	parsing/parsing_utils.c
 
@@ -102,12 +103,16 @@ size_t	my_strlen(const char *s);
 
 //	parsing/pipe_parsing.c
 
-void	split_on_pipe(char *str);
-int		first_pipe_pos(char *str);
+t_cmdtree	*parse_pipe(t_cmdtree *node);
+int	search_pipe(char *str);
 
-//	temp
+//	temp/test.c
 
 char	**ft_split(char const *s, char sep);
-void	test_parsing(char *line);
+//void	test_parsing(char *line);
+
+char* enum_to_str(int spec_enum); //can be removed from .h for now
+void	print_node(t_cmdtree *node); //can be removed from .h for now
+void	print_tree(t_cmdtree *node);
 
 #endif
