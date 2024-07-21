@@ -51,13 +51,12 @@ void	ft_print_export(t_env *env)
 			tmp = tmp->next;	
 	}
 }
-void	ft_export(char *line, t_data *data, t_env *env)
+void	ft_export(t_data *data, t_env *env)
 {
-	(void)line;
-	(void)data;
-
 	ft_set_pos(env);
-	// if (!data->arg[1])
-	if (ft_strncmp(line, "export", 6) == 0)
+	// if (!data->arg)
+	// {
+	if (ft_strncmp(data->cmd, "export", 6) == 0)
 		ft_print_export(env);
+	// }
 }
