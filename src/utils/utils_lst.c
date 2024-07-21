@@ -7,13 +7,12 @@ t_env	*ft_last_node(t_env	*lst)
 		lst = lst->next;
 	return (lst);
 }
-void	ft_swap(t_env **lst)
-{
-	t_env	*temp;
 
-	temp = (*lst)->next;
-	(*lst)->next = temp->next;
-	temp->next = *lst;
-	*lst = temp;
-	printf("swap\n");
+void	ft_print_list(char *str, t_env *lst)
+{
+	while (lst)
+	{
+		printf("%s, %s\n", str, lst->key);
+		lst = lst->next;
+	}
 }
