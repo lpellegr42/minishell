@@ -63,12 +63,16 @@ char	*ft_strdup(char *s);
 /* ******************************UTILS_LST.C********************************* */
 t_env	*ft_last_node(t_env	*lst);
 void	ft_print_list(char *str, t_env *lst);
-
+void	reset(void);
+void	blue(void);
+void	green(void);
 // 	temp
 
 // temp/ft_split.c
 
 char	**ft_split(char const *s, char sep);
+void	ft_print_data(t_data *lst)
+;
 
 // temp/temp_arg.c
 

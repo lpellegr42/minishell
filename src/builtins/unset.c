@@ -8,20 +8,18 @@ void	ft_unset(t_data *data, t_env *env)
 	
 	tmp = env;
 	i = 0;
+	if (!data->arg)
+		return ;
 	while (data->arg[i])
 	{
+		tmp = env;
 		while (tmp)
 		{
-			if (ft_strncmp(tmp->key, data->arg[0], ft_strlen(data->arg[0])) == 0)
+			if (ft_strncmp(tmp->key, data->arg[i], ft_strlen(data->arg[i])) == 0)
 			{
 				tmp->val = NULL;
 				tmp->set = 0;
 			}
-			// if (ft_strncmp(tmp->key, line, ft_strlen(line)) == 0)
-			// {
-			// 	tmp->val = NULL;
-			// 	tmp->set = 0;
-			// }
 			tmp = tmp->next;
 		}
 		i++;

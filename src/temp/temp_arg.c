@@ -50,10 +50,10 @@ t_data	*parse_args(char *line, t_data *data)
 
 			}
 			data->arg[j][k] = '\0';
-			//printf("arg : %s\n", data->arg[j]);
 			i++;
 			j++;
 		}
+		data->arg[j] = NULL;
 	}
 	else
 	{

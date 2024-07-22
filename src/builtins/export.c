@@ -1,6 +1,18 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+void	ft_reset_pos(t_env *env)
+{
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp)
+	{
+		tmp->pos = 0;
+		tmp = tmp->next;
+	}
+}
+
 void	ft_set_pos(t_env *env)
 {
 	t_env	*tmp;
@@ -29,6 +41,29 @@ void	ft_set_pos(t_env *env)
 		tmp = tmp->next;
 	}
 }
+
+// void	ft_append_env(t_env *env, char *str)
+// {
+
+// }
+
+void	ft_parse_export(t_env *env, char *str)
+{
+	// t_env	*tmp;
+	(void)env;
+	int i = 0;
+	char	**pars;
+
+	pars = ft_split(str, '=');
+	while (pars[i])
+	{
+		printf("test : %s\n", pars[i]);
+		i++;
+	}
+	// tmp = env;
+
+}
+
 void	ft_print_export(t_env *env)
 {
 	t_env	*tmp;
@@ -53,10 +88,20 @@ void	ft_print_export(t_env *env)
 }
 void	ft_export(t_data *data, t_env *env)
 {
+	int	i;
+
+	i = 0;
+	ft_reset_pos(env);
 	ft_set_pos(env);
-	// if (!data->arg)
-	// {
-	if (ft_strncmp(data->cmd, "export", 6) == 0)
-		ft_print_export(env);
-	// }
+	if (!data->arg)
+			ft_print_export(env);
+	else
+	{
+		while (data->arg[i])
+		{
+			ft_parse_export(env, data->arg[i]);
+			i++;
+			// ft_append_env(env, arg[i]);
+		}
+	}
 }

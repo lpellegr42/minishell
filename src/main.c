@@ -29,9 +29,11 @@ void	ft_prompt_loop(t_env *env)
 		home = getenv("PWD");
 		prompt = ft_strjoin("Minishell : ", home);
 		prompt = ft_strjoin(prompt, "$ ");
+		blue();
 		line = readline(prompt);
+		reset();
+		add_history(line);
 		data = parse_args(line, data);
-		// ft_print_data(data);
 		//data = parsing(line); //the parsing will return command table that you can une in the exec. TODO
 		ft_builtins(data, env);
 	}
@@ -53,7 +55,3 @@ int	main(int argc, char **argv, char **envp)
 	env = ft_copy_env(env, envp);
 	ft_prompt_loop(env);
 }
-
-// int	main(int argc, char **argv, char **envp)
-// {
-// }
