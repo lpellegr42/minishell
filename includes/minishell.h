@@ -5,6 +5,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stddef.h>
+# include <string.h> //string.h for strdup testing purpose
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h> //Usefull lib
@@ -84,14 +85,15 @@ char	*ft_strdup(char *s);
 t_env	*ft_last_node(t_env	*lst);
 void	ft_swap(t_env **lst);
 
-	//		Parsing
+
+//								Parsing
 
 // 	parsing/init_parsing.c
 
 t_cmdtree	*parsing(char *line);
 t_cmdtree	*init_node(char *str);
-// void	free_node(t_cmdtree *node);
-// void	free_tree(t_cmdtree *node);
+//void	free_node(t_cmdtree *node); //Not needed in header file
+void	free_tree(t_cmdtree *node);
 
 //	parsing/parsing_utils.c
 
@@ -100,20 +102,21 @@ char	*my_substr(char const *s, unsigned int start, size_t len);
 char	*my_strdup(const char *s);
 size_t	my_strlen(const char *s);
 
-
 //	parsing/pipe_parsing.c
 
 t_cmdtree	*parse_pipe(t_cmdtree *node);
 int	search_pipe(char *str);
 
+//	parsing/quote_parsing.c
+
+int	unclosed_quotes_check(char *str);
+
+	// Temp
+
 //	temp/test.c
 
+char* enum_to_str(int spec_enum); //can be removed from .h for now
+void	print_tree(t_cmdtree *node);
 char	**ft_split(char const *s, char sep);
 //void	test_parsing(char *line);
-
-char* enum_to_str(int spec_enum); //can be removed from .h for now
-//void	print_node(t_cmdtree *node); //can be removed from .h for now
-void	print_tree(t_cmdtree *node);
-//void print_tree(t_cmdtree *node, const char *side);
-
 #endif

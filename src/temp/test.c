@@ -1,10 +1,5 @@
 #include "../../includes/minishell.h"
 
-// void test_parsing(char *line)
-// {
-// 	split_on_pipe(line);
-// }
-
 	// PRINT PART
 
 
@@ -29,10 +24,11 @@ char* enum_to_str(int spec_enum)
 	else
 		return("Error");
 }
+
 /*
  * @brief Print a abstract syntax tree recursively.
 */
-void	print_tree(t_cmdtree *root_node)
+void	print_tree(t_cmdtree *node)
 {
 	if (!node)
 		return ;
@@ -40,4 +36,3 @@ void	print_tree(t_cmdtree *root_node)
 	print_tree(node->part1);
 	print_tree(node->part2);
 }
-

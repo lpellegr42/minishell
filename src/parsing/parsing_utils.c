@@ -49,29 +49,27 @@ char	*my_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
+
 /*     
  *	The strdup() function returns a pointer to a new string which is a duplicate of the string s.
  *	Memory for the new string is obtained with malloc(3), and can be freed with free(3).
 */
 char	*my_strdup(const char *s)
 {
-	char	*dest;
-	int		len;
 	int		i;
+	char	*dest;
 
 	i = 0;
-	len = 0;
-	while (s[len])
-		len++;
-	dest = (char *)malloc(sizeof(char) * (len + 1));
+
+	dest = (char *)malloc(sizeof(char) * (my_strlen(s) + 1));
 	if (dest == NULL)
 		return (NULL);
-	while (*(s + i) != '\0')
+	while (s[i])
 	{
-		*(dest + i) = *(s + i);
+		dest[i] = s[i];
 		i++;
 	}
-	*(dest + i) = '\0'; //maybe free s before return.
+	dest[i] = '\0';
 	return (dest);
 }
 

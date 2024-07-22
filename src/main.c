@@ -5,8 +5,6 @@ void	ft_prompt_loop(t_env *env)
 	char	*home;
 	char	*line;
 	char	*prompt;
-	//t_data	*data;
-	//data = NULL;
 	(void)env;
 	t_cmdtree	*node;
 
@@ -17,10 +15,15 @@ void	ft_prompt_loop(t_env *env)
 		prompt = ft_strjoin("Minishell : ", home);
 		prompt = ft_strjoin(prompt, "$ ");
 		line = readline(prompt);
-		node = parsing(line); //the parsing will return command table that you can une in the exec. TODO
-		//test_parsing(line);
-		print_tree(node);
+		//data = parse_args(line);
+		//node = parsing(line); //the parsing will return command table that you can use in the exec. TODO
+		printf("quote return: %d\n", unclosed_quotes_check(line));
 		//ft_builtins(line, data, env);
+		if (strncmp("exit", line, 4) == 0)
+		{
+			free_tree(node);
+			exit(EXIT_SUCCESS);
+		}
 	}
 }
 
