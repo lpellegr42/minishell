@@ -2,7 +2,6 @@
 
 	// PRINT PART
 
-
 /*
  * @brief Convert the defined enum into their respective name for testing purpose.
  * @return Return the corresponding string.
@@ -35,4 +34,18 @@ void	print_tree(t_cmdtree *node)
 	printf("\n\n/// NEW NODE ///\ntype:	%s\nstr:	$%s$\n", enum_to_str(node->type), node->str);
 	print_tree(node->part1);
 	print_tree(node->part2);
+}
+
+/* Free a char** completely. */
+void free_tab(char **tab)
+{
+	int i;
+
+	i = 0;
+	while(tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }

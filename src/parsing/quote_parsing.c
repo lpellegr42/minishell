@@ -1,54 +1,54 @@
-
 #include "../../includes/minishell.h"
 
-/*
-	faire une fonction qui compte single quote nombre de single quote
-	si nbr de single quote % 2 == 0 alors ok
-	pareil pour double quotes.
-*/
-
-/*
- * @brief Check if there is unclosed quote in the given string.
- * @return -1 if there's unclosed quote
-*/
-int unclosed_quotes_check(char *str)
+int	is_between_quote(char *str, int pos, int verif_flag)
 {
-	int i;
-	int single_quote;
-	int double_quote;
+	int	i;
+	//verif_flag = 0; //verif single_quote
+	//verif_flag = 1;
+	int *s_quote;
+	int *d_quote;
+
+	*s_quote = 0;
+	*d_quote = 0;
 
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '\'')
 		{
-			single_quote++;
-		}
-		else if(str[i] == '\"')
-		{
-			double_quote++;
+			//*s_quote = !(*s_quote);
+			is_in_quote(str, i, *s_quote, *d_quote);
 		}
 		i++;
 	}
-	if ((single_quote % 2 != 0) || (double_quote % 2 != 0))
-		return (-1);
-	// add a return to check which quote are in it.
-	else
-		return (0);
+
 }
 
-// int quote_cheker(char *str, int i)
-// {
-// 	int simple_quote;
-// 	int double_quote;
+void is_in_quote(char *str, int i, int *s_quote, int *d_quote)
+{
+	if ((i = 0 || str[i - 1] != '\\') && *s_quote == 0 && *d_quote == 0)
+		*s_quote = 1;
+	if ()
+	
+}
 
-// 	simple_quote = 0;
-// 	double_quote = 0;
+// So compare:
 
+// echo ""hello""    # just prints hello
+// echo "\"hello\""  # prints "hello", because the escaped
+//                   # quotes are part of the string
+// echo "$PATH"      # prints the value of the PATH variable
+// echo "\$PATH"     # prints $PATH
+// echo ""'$PATH'""  # prints $PATH, because it's in
+//                   # single-quotes (with zero-lenght
+//                   # double-quoted sections on each side
 
-// 	/* une boucle decremente pour chercher des quotes tant que i > 0 */
+// Also, single- and double-quotes have no special meaning within the other type of quote. So:
 
-// 	/* une boucle incremente pour chercher quote tant str[i] != \0 */
-
-
-// }
+// echo "'hello'"    # prints 'hello', because the single-quotes
+//                   # are just ordinary characters in a
+//                   # double-quoted string
+// echo '"hello"'    # similarly, prints "hello"
+// echo "'$PATH'"    # prints the PATH variable with
+//                   # single-quotes around it (because
+//                   # $variable expands in double-quotes)

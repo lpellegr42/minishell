@@ -11,7 +11,7 @@ t_cmdtree	*parse_pipe(t_cmdtree *node)
 		// next_parsing_step
 		return (NULL); //secu for now
 	}
-	else //tester dans cas ou str[0] est un pipe -> segfault i think
+	else //tester dans cas ou str[0] est un pipe -> segfault i think -> gerer ce cas
 	{
 		node->type = PIPE;
 		node->part1 = init_node(my_substr(node->str, 0, pipe_pos));
@@ -34,7 +34,7 @@ int	search_pipe(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '|') //add between quote verif.
+		if (str[i] == '|' && str[i - 1] != '\\' /* && !quote_verif */ ) //add between quote verif.
 			return (i);
 		i++;
 	}

@@ -17,12 +17,13 @@ void	ft_prompt_loop(t_env *env)
 		line = readline(prompt);
 		//data = parse_args(line);
 		//node = parsing(line); //the parsing will return command table that you can use in the exec. TODO
+		
 		printf("quote return: %d\n", unclosed_quotes_check(line));
 		//ft_builtins(line, data, env);
 		if (strncmp("exit", line, 4) == 0)
 		{
-			free_tree(node);
-			exit(EXIT_SUCCESS);
+			//free_tree(node);
+			//exit(EXIT_SUCCESS);
 		}
 	}
 }

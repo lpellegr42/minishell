@@ -37,7 +37,7 @@ typedef struct s_data //what i give to liv - s_data t_data
 
 typedef enum s_tokentype
 {
-	EXEC,
+	EXEC, //useless
 	PIPE,
 	IN_REDIR,
 	OUT_REDIR,
@@ -115,8 +115,9 @@ int	unclosed_quotes_check(char *str);
 
 //	temp/test.c
 
-char* enum_to_str(int spec_enum); //can be removed from .h for now
+char* 	enum_to_str(int spec_enum); //can be removed from .h for now
 void	print_tree(t_cmdtree *node);
 char	**ft_split(char const *s, char sep);
 //void	test_parsing(char *line);
+
 #endif
