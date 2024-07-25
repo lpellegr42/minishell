@@ -42,28 +42,54 @@ void	ft_set_pos(t_env *env)
 	}
 }
 
-// void	ft_append_env(t_env *env, char *str)
-// {
+t_env	*ft_append_env(t_env *env, char **str)
+{
+	t_env	*new;
+	t_env	*last;
 
-// }
+	// ft_reset_pos(env);
+	new = malloc(sizeof(t_env));
+	if (!new)
+		return (NULL);
+	new->next = NULL;
+	new->key = ft_strdup(str[0]);
+	if (str[1])
+	{
+		new->val = ft_strdup(str[1]);
+		new->set = 1;
+	}
+	else
+	{
+		new->val = NULL;
+		new->set = 2;
+	}
+	new->pos = 0;
+	last = ft_last_node(env);
+	last->next = new;
+	return (env);
+}
 
 void	ft_parse_export(t_env *env, char *str)
 {
-	// t_env	*tmp;
-	(void)env;
-	int i = 0;
+	t_env	*tmp;
+	// (void)env;
+	// int i = 0;
 	char	**pars;
 
-	pars = ft_split(str, '=');
-	while (pars[i])
+	pars = ft_split_export(str, '=');
+	tmp = env;
+	while (tmp)
 	{
-		printf("test : %s\n", pars[i]);
-		i++;
+		if (ft_strncmp(tmp->key, pars[0], ft_strlen(pars[0])) == 0)
+		{
+			tmp->val = ft_strdup(pars[1]);
+			break ;
+		}
+		tmp = tmp->next;
 	}
-	// tmp = env;
-
+	if (!tmp)
+		tmp = ft_append_env(env, pars);
 }
-
 void	ft_print_export(t_env *env)
 {
 	t_env	*tmp;
