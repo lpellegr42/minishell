@@ -26,7 +26,7 @@ void	ft_set_pos(t_env *env)
 		current = env;
 		if (ft_strncmp(current->key, tmp->key, ft_strlen(current->key)) == 0)
 				current = current->next;
-		while (current)
+		while (current && !(ft_strncmp(current->key, "_", 1) == 0))
 		{
 			while (current->key[i] == tmp->key[i])
 				i++;
@@ -83,6 +83,7 @@ void	ft_parse_export(t_env *env, char *str)
 		if (ft_strncmp(tmp->key, pars[0], ft_strlen(pars[0])) == 0)
 		{
 			tmp->val = ft_strdup(pars[1]);
+			tmp->set = 1;
 			break ;
 		}
 		tmp = tmp->next;
