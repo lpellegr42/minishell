@@ -9,4 +9,6 @@ void	ft_builtins(t_data *data, t_env *env)
 		ft_unset(data, env);
 	else if(ft_strncmp(data->cmd, "export", 6) == 0)
 		ft_export(data, env);
+	else if (ft_strncmp(data->cmd, "echo", 5) == 0)
+		ft_echo(data);
 }

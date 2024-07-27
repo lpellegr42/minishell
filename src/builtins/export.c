@@ -18,12 +18,12 @@ void	ft_set_pos(t_env *env)
 	t_env	*tmp;
 	t_env	*current;
 	int		i;
-	
+
 	tmp = env;
 	while (tmp)
 	{
 		current = env;
-		while (ft_strncmp(current->key, tmp->key, ft_strlen(current->key)) == 0 ||
+		while (ft_strncmp(current->key, tmp->key, ft_strlen(tmp->key)) == 0 ||
 			ft_strncmp(current->key, "_", 1) == 0)
 			current = current->next;
 		while (current)
@@ -34,7 +34,7 @@ void	ft_set_pos(t_env *env)
 			if (current && tmp->key[i] > current->key[i])
 				tmp->pos++;
 			current = current->next;
-			while (current && (ft_strncmp(current->key, tmp->key, ft_strlen(current->key)) == 0 ||
+			while (current && (ft_strncmp(current->key, tmp->key, ft_len(tmp->key, 0)) == 0 ||
 				ft_strncmp(current->key, "_", 1) == 0))
 				current = current->next;
 		}

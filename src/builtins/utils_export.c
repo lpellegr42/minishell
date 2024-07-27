@@ -22,24 +22,22 @@ int	ft_count_words(char *s, char sep)
 int	ft_len_key(char *s, char sep)
 {
 	int	i;
-	
+
 	i = 0;
 	while (s[i] && s[i] != sep)
 		i++;
 	return (i);
 }
 
-char *ft_key(char *s, char sep)
+char	*ft_key(char *s, char sep)
 {
 	char	*res;
 	int		i;
 	int		j;
-	int		len;
 
 	i = 0;
 	j = 0;
-	len = ft_len_key(s, sep);
-	res = malloc(sizeof(char) * (len + 1));
+	res = malloc(sizeof(char) * (ft_len_key(s, sep) + 1));
 	while (s[i] && s[i] != sep)
 	{
 		while (s[i] == '\"')
@@ -58,16 +56,8 @@ char	*ft_val(char *s, char sep)
 	int		i;
 	int		j;
 
-	i = 0;
-	while (s[i++])
-	{
-		if (s[i] == sep)
-		{
-			i++;
-			break ;
-		}
-	}
 	j = 0;
+	i = ft_len_key(s, sep) + 1;
 	res = malloc(sizeof(char) * (ft_len(s, i) + 1));
 	if (!res)
 		return (NULL);
@@ -87,7 +77,7 @@ char	**ft_split_export(char *s, char sep)
 {
 	char	**res;
 	int		len;
-	int	j;
+	int		j;
 
 	len = ft_count_words(s, sep);
 	if (len)

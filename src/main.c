@@ -2,7 +2,9 @@
 
 void	ft_print_data(t_data *lst)
 {
-	int i =  0;
+	int	i;
+
+	i = 0;
 	while (lst)
 	{
 		printf("%s\n", lst->cmd);
@@ -21,7 +23,6 @@ void	ft_prompt_loop(t_env *env)
 	char	*line;
 	char	*prompt;
 	t_data	*data;
-	(void)env;
 
 	data = NULL;
 	while (1)
@@ -38,7 +39,6 @@ void	ft_prompt_loop(t_env *env)
 		ft_builtins(data, env);
 	}
 }
-
 
 int	main(int argc, char **argv, char **envp)
 {
