@@ -58,10 +58,12 @@ void	ft_unset(t_data *data, t_env *env);
 int		ft_strlen(char *str);
 int		ft_len(char *str, int i);
 int		ft_strncmp(char *s1, char *s2, int n);
+int		ft_strchr(char *s, char c);
 int		ft_atoi(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_itoa(int n);
 char	*ft_strdup(char *s);
+
 
 /* ******************************UTILS_LST.C********************************* */
 t_env	*ft_last_node(t_env	*lst);

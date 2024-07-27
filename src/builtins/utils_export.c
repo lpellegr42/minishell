@@ -42,6 +42,8 @@ char *ft_key(char *s, char sep)
 	res = malloc(sizeof(char) * (len + 1));
 	while (s[i] && s[i] != sep)
 	{
+		while (s[i] == '\"')
+			i++;
 		res[j] = s[i];
 		i++;
 		j++;
@@ -69,10 +71,10 @@ char	*ft_val(char *s, char sep)
 	res = malloc(sizeof(char) * (ft_len(s, i) + 1));
 	if (!res)
 		return (NULL);
-	// if (!s[i])
-	// 	res = ft_strcpy(res, "\"\"");
 	while (s[i])
 	{
+		while (s[i] == '\"')
+			i++;
 		res[j] = s[i];
 		j++;
 		i++;
@@ -97,6 +99,8 @@ char	**ft_split_export(char *s, char sep)
 		res[j] = ft_key(s, sep);
 		if (len > 1)
 			res[++j] = ft_val(s, sep);
+		else if (len <= 1 && ft_strchr(s, sep))
+			res[++j] = ft_strdup("");
 	}
 	res[j + 1] = NULL;
 	return (res);

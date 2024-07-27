@@ -116,6 +116,7 @@ void	ft_print_export(t_env *env)
 			tmp = tmp->next;	
 	}
 }
+
 void	ft_export(t_data *data, t_env *env)
 {
 	int	i;
