@@ -69,6 +69,8 @@ char	*ft_val(char *s, char sep)
 	res = malloc(sizeof(char) * (ft_len(s, i) + 1));
 	if (!res)
 		return (NULL);
+	// if (!s[i])
+	// 	res = ft_strcpy(res, "\"\"");
 	while (s[i])
 	{
 		res[j] = s[i];

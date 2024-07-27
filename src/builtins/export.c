@@ -20,22 +20,22 @@ void	ft_set_pos(t_env *env)
 	int		i;
 	
 	tmp = env;
-	i = 0;
 	while (tmp)
 	{
 		current = env;
-		if (ft_strncmp(current->key, tmp->key, ft_strlen(current->key)) == 0)
-				current = current->next;
-		while (current && !(ft_strncmp(current->key, "_", 1) == 0))
-		{
-			while (current->key[i] == tmp->key[i])
-				i++;
-			if (tmp->key[i] > current->key[i])
-				tmp->pos++;
-			if (i != 0)
-				i = 0;
+		while (ft_strncmp(current->key, tmp->key, ft_strlen(current->key)) == 0 ||
+			ft_strncmp(current->key, "_", 1) == 0)
 			current = current->next;
-			if (current && ft_strncmp(current->key, tmp->key, ft_strlen(current->key)) == 0)
+		while (current)
+		{
+			i = 0;
+			while (current && current->key[i] == tmp->key[i])
+				i++;
+			if (current && tmp->key[i] > current->key[i])
+				tmp->pos++;
+			current = current->next;
+			while (current && (ft_strncmp(current->key, tmp->key, ft_strlen(current->key)) == 0 ||
+				ft_strncmp(current->key, "_", 1) == 0))
 				current = current->next;
 		}
 		tmp = tmp->next;
@@ -47,7 +47,6 @@ t_env	*ft_append_env(t_env *env, char **str)
 	t_env	*new;
 	t_env	*last;
 
-	// ft_reset_pos(env);
 	new = malloc(sizeof(t_env));
 	if (!new)
 		return (NULL);
@@ -72,8 +71,6 @@ t_env	*ft_append_env(t_env *env, char **str)
 void	ft_parse_export(t_env *env, char *str)
 {
 	t_env	*tmp;
-	// (void)env;
-	// int i = 0;
 	char	**pars;
 
 	pars = ft_split_export(str, '=');
@@ -82,8 +79,13 @@ void	ft_parse_export(t_env *env, char *str)
 	{
 		if (ft_strncmp(tmp->key, pars[0], ft_strlen(pars[0])) == 0)
 		{
-			tmp->val = ft_strdup(pars[1]);
-			tmp->set = 1;
+			if (pars[1])
+			{
+				tmp->val = ft_strdup(pars[1]);
+				tmp->set = 1;
+			}
+			else
+				tmp->set = 2;
 			break ;
 		}
 		tmp = tmp->next;
@@ -91,6 +93,7 @@ void	ft_parse_export(t_env *env, char *str)
 	if (!tmp)
 		tmp = ft_append_env(env, pars);
 }
+
 void	ft_print_export(t_env *env)
 {
 	t_env	*tmp;
@@ -128,7 +131,6 @@ void	ft_export(t_data *data, t_env *env)
 		{
 			ft_parse_export(env, data->arg[i]);
 			i++;
-			// ft_append_env(env, arg[i]);
 		}
 	}
 }

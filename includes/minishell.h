@@ -16,6 +16,7 @@ typedef struct s_env
 	char			*val; // value of the variable
 	int				set; // flag to set or unset the variable (for unset)
 	int				pos; // final position in ascii order (for export)
+	int				init;
 	struct s_env	*next; // pointer to the next node
 }	t_env;
 
