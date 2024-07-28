@@ -1,6 +1,22 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+int	ft_strchr(char *s, char c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 char	*ft_strdup(char *s)
 {
 	char	*cpy;

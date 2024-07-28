@@ -60,6 +60,7 @@ t_env	*ft_append_node(t_env *env, char *envp)
 	new->val = ft_val_copy(new, envp);
 	new->set = 1;
 	new->pos = 0;
+	new->init = 0;
 	if (!env)
 		env = new;
 	else
