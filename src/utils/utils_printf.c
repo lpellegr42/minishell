@@ -14,3 +14,8 @@ void	green(void)
 {
 	printf("\033[0;32m");
 }
+
+void	red(void)
+{
+	printf("\033[0;31m");
+}
