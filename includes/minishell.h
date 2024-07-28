@@ -46,6 +46,7 @@ typedef struct s_parsing
 /* **********************************ENV************************************* */
 t_env	*ft_copy_env(t_env *env, char **envp);
 char	*ft_getenv(char *str, t_env *env);
+void	ft_modify_env(char *s1, char *s2, t_env *env);
 
 /* ******************************BUILTINS.C********************************** */
 void	ft_builtins(t_data *data, t_env *env);
@@ -56,6 +57,7 @@ void	ft_env(t_env *env);
 void	ft_unset(t_data *data, t_env *env);
 void	ft_echo(t_data *data);
 void	ft_pwd(t_env *env);
+void	ft_cd(t_data *data, t_env *env);
 
 /* *****************************UTILS_LIBFT.C******************************** */
 int		ft_strlen(char *str);
