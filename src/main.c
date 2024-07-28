@@ -27,7 +27,7 @@ void	ft_prompt_loop(t_env *env)
 	data = NULL;
 	while (1)
 	{
-		home = getenv("PWD");
+		home = ft_getenv("PWD", env);
 		prompt = ft_strjoin("Minishell : ", home);
 		prompt = ft_strjoin(prompt, "$ ");
 		blue();
