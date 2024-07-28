@@ -13,4 +13,6 @@ void	ft_builtins(t_data *data, t_env *env)
 		ft_echo(data);
 	else if (ft_strncmp(data->cmd, "pwd", 3) == 0)
 		ft_pwd(env);
+	else if (ft_strncmp(data->cmd, "cd", 2) == 0)
+		ft_cd(data, env);
 }
