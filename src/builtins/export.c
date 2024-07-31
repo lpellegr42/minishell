@@ -77,7 +77,7 @@ void	ft_print_export(t_env *env)
 	i = 0;
 	while (tmp)
 	{
-		if (tmp->pos == i && !(ft_strncmp(tmp->key, "_", 1) == 0))
+		if (tmp->pos == i && !(ft_strncmp(tmp->key, "_", ft_strlen(tmp->key)) == 0))
 		{
 			if (tmp->set == 1)
 				printf("declare -x %s=\"%s\"\n", tmp->key, tmp->val);

@@ -22,7 +22,15 @@ void	ft_cd(t_data *data, t_env *env)
 		ft_cd_home(env);
 	else
 	{
-		ft_modify_env("OLDPWD", ft_getenv("PWD", env), env);
+		if (!getcwd(NULL, 0))
+		{
+			red();
+			printf("cd: error retrieving current directory: ");
+			printf("getcwd: cannot access parent directories: ");
+			printf("no such file or directory\n");
+			reset();
+			return ;
+		}
 		if (chdir(data->arg[0]) == -1)
 		{
 			red();
@@ -30,6 +38,7 @@ void	ft_cd(t_data *data, t_env *env)
 			reset();
 			return ;
 		}
+		ft_modify_env("OLDPWD", ft_getenv("PWD", env), env);
 		ft_modify_env("PWD", getcwd(NULL, 0), env);
 	}
 

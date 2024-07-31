@@ -32,6 +32,7 @@ void	ft_modify_env(char *s1, char *s2, t_env *env)
 	t_env	*tmp;
 
 	tmp = env;
+	if (!s2)
 	while (tmp)
 	{
 		if (ft_strncmp(s1, tmp->key, ft_strlen(s1)) == 0)

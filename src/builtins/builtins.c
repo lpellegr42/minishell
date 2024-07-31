@@ -15,4 +15,6 @@ void	ft_builtins(t_data *data, t_env *env)
 		ft_pwd(env);
 	else if (ft_strncmp(data->cmd, "cd", 2) == 0)
 		ft_cd(data, env);
+	else if (ft_strncmp(data->cmd, "exit", 4) == 0)
+		ft_exit(data, env);
 }

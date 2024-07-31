@@ -59,6 +59,7 @@ void	ft_unset(t_data *data, t_env *env);
 void	ft_echo(t_data *data);
 void	ft_pwd(t_env *env);
 void	ft_cd(t_data *data, t_env *env);
+void	ft_exit(t_data *data, t_env *env);
 
 /* *****************************UTILS_LIBFT.C******************************** */
 int		ft_strlen(char *str);

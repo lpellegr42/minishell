@@ -8,15 +8,25 @@ int	ft_isalpha(int c)
 	return (0);
 }
 
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}
+
 int	ft_isvalid(char *str)
 {
 	int	i;
 
-	i = 0;
-	while (str[i])
+	i = 1;
+	if (!ft_isalpha(str[0]) && str[0] != '_')
+		return (0);
+	while (str[i] && str[i] != '=')
 	{
-		if (!ft_isalpha(str[i]) && str[i] != '_')
+		if (!ft_isalpha(str[i]) && !ft_isdigit(str[i]) && str[i] != '_')
 			return (0);
+		i++;
 	}
 	return (1);
 }
