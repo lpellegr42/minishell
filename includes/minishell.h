@@ -45,6 +45,7 @@ typedef struct s_parsing
 
 /* **********************************ENV************************************* */
 t_env	*ft_copy_env(t_env *env, char **envp);
+t_env	*ft_append_env(t_env *env, char **str);
 char	*ft_getenv(char *str, t_env *env);
 void	ft_modify_env(char *s1, char *s2, t_env *env);
 
@@ -71,6 +72,7 @@ char	*ft_strdup(char *s);
 
 /* ******************************UTILS_LST.C********************************* */
 t_env	*ft_last_node(t_env	*lst);
+int		ft_isvalid(char *str);
 void	ft_print_list(char *str, t_env *lst);
 void	reset(void);
 void	blue(void);
