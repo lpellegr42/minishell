@@ -66,6 +66,7 @@ void	ft_parse_export(t_env *env, char *str)
 	}
 	if (!tmp)
 		tmp = ft_append_env(env, pars);
+	free_tab(pars);
 }
 
 void	ft_print_export(t_env *env)

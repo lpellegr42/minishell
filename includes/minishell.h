@@ -70,11 +70,14 @@ int		ft_atoi(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_itoa(int n);
 char	*ft_strdup(char *s);
+void free_tab(char **tab);
+
 
 /* ******************************UTILS_LST.C********************************* */
 t_env	*ft_last_node(t_env	*lst);
 int		ft_isvalid(char *str);
-void	ft_print_list(char *str, t_env *lst);
+void	ft_print_env(char *str, t_env *lst);
+void	ft_print_data(t_data *lst);
 void	reset(void);
 void	blue(void);
 void	green(void);

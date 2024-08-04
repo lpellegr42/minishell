@@ -29,7 +29,7 @@ char	*ft_val_copy(t_env *env, char *envp)
 		i++;
 	if (envp[i] == '=')
 		i++;
-	env->val = malloc(sizeof(char) * ft_len(envp, i));
+	env->val = malloc(sizeof(char) * (ft_len(envp, i) + 1));
 	j = 0;
 	while (envp[i] && envp[i] != '\n')
 	{

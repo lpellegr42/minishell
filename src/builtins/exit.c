@@ -30,13 +30,12 @@ void	ft_free_env(t_env *env)
 {
 	t_env	*tmp;
 
-	tmp = env;
+	tmp = env->next;
 	while (env)
 	{
-		tmp = tmp->next;
+		tmp = env->next;
 		if (env->key)
 			free(env->key);
-		// printf("test : %s\n", env->val);
 		if (env->val)
 			free(env->val);
 		free(env);
@@ -51,5 +50,6 @@ void	ft_exit(t_data *data, t_env *env)
 	if (env)
 		ft_free_env(env);
 	rl_clear_history();
+	printf("exit\n");
 	exit(EXIT_SUCCESS);
 }

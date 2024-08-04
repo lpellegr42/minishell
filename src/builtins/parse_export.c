@@ -93,5 +93,5 @@ char	**ft_split_export(char *s, char sep)
 			res[++j] = ft_strdup("");
 	}
 	res[j + 1] = NULL;
-	return (res);
+	return (free(s), res);
 }

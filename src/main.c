@@ -1,20 +1,33 @@
 #include "../includes/minishell.h"
 
-void	ft_print_data(t_data *lst)
-{
-	int	i;
 
+
+char	*ft_get_prompt(char	*s1, char *s2, int flag)
+{
+	char	*new;
+	int	i;
+	int	j;
+	int	len;
+
+	len = ft_strlen(s1) + ft_strlen(s2);
 	i = 0;
-	while (lst)
+	j = 0;
+	new = malloc(sizeof(char) * (len + 1));
+	while (s1 && s1[i])
 	{
-		printf("%s\n", lst->cmd);
-		while (lst->arg && lst->arg[i])
-		{
-			printf("arg : %s\n", lst->arg[i]);
-			i++;
-		}
-		lst = lst->next;
+		new[i] = s1[i];
+		i++;
 	}
+	while (s2 && s2[j])
+	{
+		new[i] = s2[j];
+		i++;
+		j++;
+	}
+	new[i] = '\0';
+	if (flag == 1)
+		free(s1);
+	return (new);
 }
 
 void	ft_prompt_loop(t_env *env)
@@ -28,11 +41,12 @@ void	ft_prompt_loop(t_env *env)
 	while (1)
 	{
 		home = ft_getenv("PWD", env);
-		prompt = ft_strjoin("Minishell : ", home);
-		prompt = ft_strjoin(prompt, "$ ");
+		prompt = ft_get_prompt("Minishell : ", home, 0);
+		prompt = ft_get_prompt(prompt, "$ ", 1);
 		blue();
 		line = readline(prompt);
 		reset();
+		free(prompt);
 		add_history(line);
 		data = parse_args(line, data);
 		//data = parsing(line); //the parsing will return command table that you can une in the exec. TODO
