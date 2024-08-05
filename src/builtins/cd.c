@@ -3,7 +3,6 @@
 
 void	ft_cd_home(t_env *env)
 {
-	ft_modify_env("OLDPWD", ft_getenv("PWD", env), env);
 	if (chdir(ft_getenv("HOME", env)) == -1)
 	{
 		red();
@@ -11,6 +10,7 @@ void	ft_cd_home(t_env *env)
 		reset();
 		return ;
 	}
+	ft_modify_env("OLDPWD", ft_getenv("PWD", env), env);
 	ft_modify_env("PWD", getcwd(NULL, 0), env);
 }
 
@@ -41,5 +41,4 @@ void	ft_cd(t_data *data, t_env *env)
 		ft_modify_env("OLDPWD", ft_getenv("PWD", env), env);
 		ft_modify_env("PWD", getcwd(NULL, 0), env);
 	}
-
 }
