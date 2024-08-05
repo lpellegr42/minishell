@@ -45,7 +45,7 @@ typedef enum s_tokentype
 	DEFAULT
 }			t_tokentype;
 
-typedef struct s_cmdtree
+typedef struct s_cmdtree // s_ast_node -> t_ast_node
 {
 	int	type; //default, need to define clearly which type i need.
 	char *str; //initial_str

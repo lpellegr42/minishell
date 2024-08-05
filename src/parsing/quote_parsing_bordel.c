@@ -48,6 +48,7 @@
 // 	return (1);
 // }
 
+//https://cdn.intra.42.fr/users/ab912c10f3741c839585613bf500c128/begonzal.jpg
 
 // // int quote_cheker(char *str, int i)
 // // {
