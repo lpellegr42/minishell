@@ -30,17 +30,15 @@ char	*ft_get_prompt(char	*s1, char *s2, int flag)
 	return (new);
 }
 
-void	ft_prompt_loop(t_env *env)
+void	ft_prompt_loop(t_all *all)
 {
 	char	*home;
 	char	*line;
 	char	*prompt;
-	t_data	*data;
 
-	data = NULL;
 	while (1)
 	{
-		home = ft_getenv("PWD", env);
+		home = ft_getenv("PWD", all->env);
 		prompt = ft_get_prompt("Minishell : ", home, 0);
 		prompt = ft_get_prompt(prompt, "$ ", 1);
 		blue();
@@ -48,15 +46,16 @@ void	ft_prompt_loop(t_env *env)
 		reset();
 		free(prompt);
 		add_history(line);
-		data = parse_args(line, data);
+		all->data = parse_args(line, all->data);
 		//data = parsing(line); //the parsing will return command table that you can une in the exec. TODO
-		ft_builtins(data, env);
+		ft_builtins(all);
 	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_env	*env;
+	// t_env	*env;
+	t_all	all;
 
 	(void)argv;
 	if (argc != 1)
@@ -65,7 +64,7 @@ int	main(int argc, char **argv, char **envp)
 		printf("Try : ./minishell\n");
 		return (1);
 	}
-	env = NULL;
-	env = ft_copy_env(env, envp);
-	ft_prompt_loop(env);
+	all.env = NULL;
+	all.env = ft_copy_env(all.env, envp);
+	ft_prompt_loop(&all);
 }
