@@ -9,7 +9,6 @@ GROUP TODO :
 
 // Livane specific roadmap
 
-parsing pour echo ? -n dans arg[0] et le reste dans arg[1] ? Si oui, qui s'en occupe ?
 
 // Léo specific roadmap
 

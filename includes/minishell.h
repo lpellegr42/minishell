@@ -74,7 +74,7 @@ void	ft_exit(t_all *all);
 int		ft_strlen(char *str);
 int		ft_len(char *str, int i);
 int		ft_strncmp(char *s1, char *s2, int n);
-int	ft_strlcpy(char *dest, char *src, int size);
+int		ft_strlcpy(char *dest, char *src, int size);
 int		ft_strchr(char *s, char c);
 int		ft_atoi(char *str);
 char	*ft_strjoin(char *s1, char *s2);
