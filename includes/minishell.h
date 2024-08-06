@@ -45,11 +45,15 @@ typedef struct s_all
 {
 	t_data	*data;
 	t_env	*env;
-	char	*line;
 	int		err;
+	int		sig;
 }		t_all;
 
 /* Functions */
+
+/* ********************************SIGNALS*********************************** */
+void	ft_handler(int	sig, siginfo_t *s_info, void *context);
+void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *));
 
 /* **********************************ENV************************************* */
 t_env	*ft_copy_env(t_env *env, char **envp);
@@ -57,7 +61,7 @@ t_env	*ft_append_env(t_env *env, char **str);
 char	*ft_getenv(char *str, t_env *env);
 void	ft_modify_env(char *s1, char *s2, t_env *env);
 
-/* ******************************BUILTINS.C********************************** */
+/* *******************************BUILTINS*********************************** */
 
 void	ft_builtins(t_all *all);
 void	ft_export(t_all *all);
@@ -70,7 +74,7 @@ void	ft_pwd(t_all *all);
 void	ft_cd(t_all *all);
 void	ft_exit(t_all *all);
 
-/* *****************************UTILS_LIBFT.C******************************** */
+/* ******************************UTILS_LIBFT********************************* */
 int		ft_strlen(char *str);
 int		ft_len(char *str, int i);
 int		ft_strncmp(char *s1, char *s2, int n);
@@ -84,7 +88,7 @@ void	free_tab(char **tab);
 void	ft_display_error(char *s, t_all *all, int err_status);
 
 
-/* ******************************UTILS_LST.C********************************* */
+/* *******************************UTILS_LST********************************** */
 t_env	*ft_last_node(t_env	*lst);
 int		ft_isvalid(char *str);
 void	ft_print_env(t_all *all);

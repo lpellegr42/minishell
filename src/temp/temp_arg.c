@@ -32,6 +32,8 @@ t_data	*parse_args(char *line, t_data *data)
 	int j = 0;
 	int k = 0;
 
+	if (!line)
+		return (NULL);
 	data = malloc(sizeof(t_data));
 	res = ft_split(line, ' ');
 
