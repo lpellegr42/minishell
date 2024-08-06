@@ -1,20 +1,23 @@
 
 GROUP TODO : 
 
-- Important TODO, parler de comment les fork et les pipe (permettant la communication entre processus, et donc différentes partie de notre prompt) va fonctionner 
+- Important TODO, parler de comment les fork et les pipe (permettant la communication entre processus, et donc différentes partie de notre prompt) va fonctionner.
 	dans les grandes lignes, le parsing doit refleter cela et l'exec doit aussi, basique pour le projet mais important.
 
-- Creer la fonction
 
+- Creer la fonction
 
 // Livane specific roadmap
 
 
+- UNSET - ok - need further testing
+- ENV - ok -
+
+- gestion erreur des builtin (prendre info supsur la notion)
+
 // Léo specific roadmap
 
-- Modif makefile pour avoir différents dossiers de source.
 
-- Creer la struct et test avec des pipe simple. Malloc accordingly and test.
+- une fonction qui remplit simplement les arguments de la structure
 
--
 //
