@@ -1,6 +1,25 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+int	ft_strlcpy(char *dest, char *src, int size)
+{
+	int	i;
+	int	lens;
+
+	lens = ft_strlen(src);
+	i = 0;
+	if (size > 0)
+	{
+		while (src[i] && i < size - 1)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+	}
+	return (lens);
+}
+
 int	ft_strchr(char *s, char c)
 {
 	int	i;

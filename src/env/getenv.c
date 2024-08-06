@@ -36,6 +36,7 @@ void	ft_modify_env(char *s1, char *s2, t_env *env)
 	{
 		if (ft_strncmp(s1, tmp->key, ft_strlen(s1)) == 0)
 		{
+			free(tmp->val);
 			tmp->val = ft_strdup(s2);
 			return ;
 		}

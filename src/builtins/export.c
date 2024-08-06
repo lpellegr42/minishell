@@ -109,10 +109,12 @@ void	ft_export(t_all *all)
 			{
 				red();
 				printf("bash: export : '%s': not a valid identifier\n", all->data->arg[i]);
+				all->err = 1;
 				reset();
 			}
 			ft_parse_export(all->env, all->data->arg[i]);
 			i++;
 		}
 	}
+	all->err = 0;
 }

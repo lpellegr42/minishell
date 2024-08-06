@@ -13,11 +13,11 @@ void	ft_builtins(t_all *all)
 	else if(ft_strncmp(all->data->cmd, "export", ft_strlen(all->data->cmd)) == 0)
 		ft_export(all);
 	else if (ft_strncmp(all->data->cmd, "echo", ft_strlen(all->data->cmd)) == 0)
-		ft_echo(all->data);
+		ft_echo(all);
 	else if (ft_strncmp(all->data->cmd, "pwd", ft_strlen(all->data->cmd)) == 0)
-		ft_pwd(all->env);
+		ft_pwd(all);
 	else if (ft_strncmp(all->data->cmd, "cd", ft_strlen(all->data->cmd)) == 0)
-		ft_cd(all->data, all->env);
+		ft_cd(all);
 	else if (ft_strncmp(all->data->cmd, "exit", ft_strlen(all->data->cmd)) == 0)
-		ft_exit(all->data, all->env);
+		ft_exit(all);
 }

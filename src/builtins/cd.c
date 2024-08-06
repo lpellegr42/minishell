@@ -1,44 +1,48 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
-void	ft_cd_home(t_env *env)
+void	ft_cd_home(t_all *all)
 {
-	if (chdir(ft_getenv("HOME", env)) == -1)
+	char	**buf;
+
+	buf = malloc(sizeof(char *) * 1);
+	buf[0] = malloc(sizeof(char) * 4096);
+	if (chdir(ft_getenv("HOME", all->env)) == -1)
 	{
-		red();
-		printf("cd: no such file or directory\n");
-		reset();
+		ft_display_error("cd: no such file or directory\n", all, 1);
 		return ;
 	}
-	ft_modify_env("OLDPWD", ft_getenv("PWD", env), env);
-	ft_modify_env("PWD", getcwd(NULL, 0), env);
+	ft_modify_env("OLDPWD", ft_getenv("PWD", all->env), all->env);
+	ft_modify_env("PWD", getcwd(buf[0], 4096), all->env);
+	free(buf[0]);
+	free(buf);
 }
 
-void	ft_cd(t_data *data, t_env *env)
+void	ft_cd(t_all *all)
 {
-	if (ft_getenv("PATH", env) == NULL)
-		return ;
-	else if (!data->arg || data->arg[0][0] == '~')
-		ft_cd_home(env);
+	char	**buf;
+
+	if (!all->data->arg || all->data->arg[0][0] == '~')
+		ft_cd_home(all);
 	else
 	{
-		if (!getcwd(NULL, 0))
+		buf = malloc(sizeof(char *) * 1);
+		buf[0] = malloc(sizeof(char) * 4096);
+		if (!getcwd(buf[0], 4096))
 		{
-			red();
-			printf("cd: error retrieving current directory: ");
-			printf("getcwd: cannot access parent directories: ");
-			printf("no such file or directory\n");
-			reset();
+			ft_display_error("cd: error retrieving current directory: ", all, 0);
+			ft_display_error("getcwd: cannot access parent directories: ", all, 0);
+			ft_display_error("no such file or directory\n", all, 0);
+			return (free(buf[0]), free(buf)) ;
+		}
+		if (chdir(all->data->arg[0]) == -1)
+		{
+			ft_display_error("cd: no such file or directory\n", all, 1);
 			return ;
 		}
-		if (chdir(data->arg[0]) == -1)
-		{
-			red();
-			printf("cd: no such file or directory\n");
-			reset();
-			return ;
-		}
-		ft_modify_env("OLDPWD", ft_getenv("PWD", env), env);
-		ft_modify_env("PWD", getcwd(NULL, 0), env);
+		ft_modify_env("OLDPWD", ft_getenv("PWD", all->env), all->env);
+		ft_modify_env("PWD", getcwd(buf[0], 4096), all->env);
+		free(buf[0]);
+		free(buf);
 	}
 }

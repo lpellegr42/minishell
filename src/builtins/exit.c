@@ -37,18 +37,22 @@ void	ft_free_env(t_env *env)
 		if (env->key)
 			free(env->key);
 		if (env->val)
+		{
+			printf("val : %s\n", env->val);
 			free(env->val);
+		}
 		free(env);
 		env = tmp;
 	}
 }
 
-void	ft_exit(t_data *data, t_env *env)
+void	ft_exit(t_all *all)
 {
-	if (data)
-		ft_free_data(data);
-	if (env)
-		ft_free_env(env);
+	if (all->data)
+		ft_free_data(all->data);
+	// ft_print_env(all);
+	if (all->env)
+		ft_free_env(all->env);
 	rl_clear_history();
 	printf("exit\n");
 	exit(EXIT_SUCCESS);
