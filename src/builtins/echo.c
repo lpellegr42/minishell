@@ -17,25 +17,32 @@ int	ft_check_echo(char	*str)
 	return (1);
 }
 
-void	ft_echo(t_data *data)
+void	ft_echo(t_all *all)
 {
 	int	i;
 
 	i = 0;
-	if (!data->arg)
+	if (!all->data->arg)
 		printf("\n");
 	else
 	{
-		while (ft_check_echo(data->arg[i]))
+		while (ft_check_echo(all->data->arg[i]))
 				i++;
-		while (data->arg[i])
+		while (all->data->arg[i])
 		{
-			printf("%s", data->arg[i]);
+			if (ft_strncmp(all->data->arg[i], "$?", 2) == 0)
+			{
+				printf("%d\n", all->err);
+				all->err = 0;
+				return ;
+			}
+			printf("%s", all->data->arg[i]);
 			i++;
-			if (data->arg[i])
+			if (all->data->arg[i])
 				printf(" ");
-			else if (!ft_check_echo(data->arg[0]))
+			else if (!ft_check_echo(all->data->arg[0]))
 				printf("\n");
 		}
 	}
+	all->err = 0;
 }

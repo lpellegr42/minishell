@@ -84,6 +84,7 @@ void	ft_shlvl(t_env *env)
 		{
 			shlvl = ft_atoi(tmp->val);
 			shlvl++;
+			free(tmp->val);
 			tmp->val = ft_itoa(shlvl);
 		}
 		tmp = tmp->next;

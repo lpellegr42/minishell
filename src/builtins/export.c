@@ -92,27 +92,29 @@ void	ft_print_export(t_env *env)
 	}
 }
 
-void	ft_export(t_data *data, t_env *env)
+void	ft_export(t_all *all)
 {
 	int	i;
 
 	i = 0;
-	ft_reset_pos(env);
-	ft_set_pos(env);
-	if (!data->arg)
-			ft_print_export(env);
+	ft_reset_pos(all->env);
+	ft_set_pos(all->env);
+	if (!all->data->arg)
+			ft_print_export(all->env);
 	else
 	{
-		while (data->arg[i])
+		while (all->data->arg[i])
 		{
-			if (!ft_isvalid(data->arg[i]))
+			if (!ft_isvalid(all->data->arg[i]))
 			{
 				red();
-				printf("bash: export : '%s': not a valid identifier\n", data->arg[i]);
+				printf("bash: export : '%s': not a valid identifier\n", all->data->arg[i]);
+				all->err = 1;
 				reset();
 			}
-			ft_parse_export(env, data->arg[i]);
+			ft_parse_export(all->env, all->data->arg[i]);
 			i++;
 		}
 	}
+	all->err = 0;
 }

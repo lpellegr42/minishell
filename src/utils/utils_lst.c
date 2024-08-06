@@ -8,11 +8,14 @@ t_env	*ft_last_node(t_env	*lst)
 	return (lst);
 }
 
-void	ft_print_env(char *str, t_env *lst)
+void	ft_print_env(t_all *all)
 {
+	t_env	*lst;
+
+	lst = all->env;
 	while (lst)
 	{
-		printf("%s, %s\n", str, lst->key);
+		printf("%s\n", lst->key);
 		lst = lst->next;
 	}
 }

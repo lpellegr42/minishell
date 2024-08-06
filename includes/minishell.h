@@ -41,6 +41,14 @@ typedef struct s_parsing
 
 // - End parsing struct.
 
+typedef struct s_all
+{
+	t_data	*data;
+	t_env	*env;
+	char	*line;
+	int		err;
+}		t_all;
+
 /* Functions */
 
 /* **********************************ENV************************************* */
@@ -50,33 +58,36 @@ char	*ft_getenv(char *str, t_env *env);
 void	ft_modify_env(char *s1, char *s2, t_env *env);
 
 /* ******************************BUILTINS.C********************************** */
-void	ft_builtins(t_data *data, t_env *env);
-void	ft_export(t_data *data, t_env *env);
+
+void	ft_builtins(t_all *all);
+void	ft_export(t_all *all);
 void	ft_print_export(t_env *env);
 char	**ft_split_export(char *s, char sep);
 void	ft_env(t_env *env);
 void	ft_unset(t_data *data, t_env *env);
-void	ft_echo(t_data *data);
-void	ft_pwd(t_env *env);
-void	ft_cd(t_data *data, t_env *env);
-void	ft_exit(t_data *data, t_env *env);
+void	ft_echo(t_all *all);
+void	ft_pwd(t_all *all);
+void	ft_cd(t_all *all);
+void	ft_exit(t_all *all);
 
 /* *****************************UTILS_LIBFT.C******************************** */
 int		ft_strlen(char *str);
 int		ft_len(char *str, int i);
 int		ft_strncmp(char *s1, char *s2, int n);
+int		ft_strlcpy(char *dest, char *src, int size);
 int		ft_strchr(char *s, char c);
 int		ft_atoi(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_itoa(int n);
 char	*ft_strdup(char *s);
-void free_tab(char **tab);
+void	free_tab(char **tab);
+void	ft_display_error(char *s, t_all *all, int err_status);
 
 
 /* ******************************UTILS_LST.C********************************* */
 t_env	*ft_last_node(t_env	*lst);
 int		ft_isvalid(char *str);
-void	ft_print_env(char *str, t_env *lst);
+void	ft_print_env(t_all *all);
 void	ft_print_data(t_data *lst);
 void	reset(void);
 void	blue(void);
