@@ -1,54 +1,51 @@
 #include "../../includes/minishell.h"
 
-int	is_between_quote(char *str, int pos, int verif_flag)
+void	quote_checker(char *str, int i, int *s_quote, int *d_quote)
+{
+	if (str[i] == '\'')
+	{
+		if ((i = 0 || str[i - 1]  == '\\') &&!(*s_quote) && !(*d_quote))
+			*s_quote = 1;
+		if (*s_quote == 1)
+			*s_quote = 0;
+	}
+	else if (str[i] == '"')
+	{
+		if ((i = 0 || str[i - 1]  == '\\') && !(*s_quote) && !(*d_quote))
+			*d_quote = 1;
+		else if ((i = 0 || str[i - 1]  == '\\') && *d_quote == 1)
+			*d_quote == 0;
+	}
+}
+
+/* @brief This function verifies whether the character at the specified position 
+ *	in the given string is within quotes.
+ * @param str The string to examine.
+ * @param pos The position of the character to check.
+ * @return Returns 1 if the character is within single quotes, 2 if within double quotes, 
+ * and 0 if it's not within any quotes.
+ */
+int	is_in_quote(char *str, int pos)
 {
 	int	i;
-	//verif_flag = 0; //verif single_quote
-	//verif_flag = 1;
-	int *s_quote;
-	int *d_quote;
-
-	*s_quote = 0;
-	*d_quote = 0;
+	int	s_quote;
+	int	d_quote;
 
 	i = 0;
-	while (str[i])
+	s_quote = 0;
+	d_quote = 0;
+	while(str && str[i] && i < pos)
 	{
-		if (str[i] == '\'')
+		if (str[i] == '\'' || str[i] == '"')
+			quote_checker(str, i, &s_quote, &d_quote);
+		if (i == pos && (d_quote || s_quote))
 		{
-			//*s_quote = !(*s_quote);
-			is_in_quote(str, i, *s_quote, *d_quote);
+			if (d_quote)
+				return (2);
+			else
+				return (1);
 		}
 		i++;
 	}
-
+	return (0);
 }
-
-void is_in_quote(char *str, int i, int *s_quote, int *d_quote)
-{
-	if ((i = 0 || str[i - 1] != '\\') && *s_quote == 0 && *d_quote == 0)
-		*s_quote = 1;
-	if ()
-	
-}
-
-// So compare:
-
-// echo ""hello""    # just prints hello
-// echo "\"hello\""  # prints "hello", because the escaped
-//                   # quotes are part of the string
-// echo "$PATH"      # prints the value of the PATH variable
-// echo "\$PATH"     # prints $PATH
-// echo ""'$PATH'""  # prints $PATH, because it's in
-//                   # single-quotes (with zero-lenght
-//                   # double-quoted sections on each side
-
-// Also, single- and double-quotes have no special meaning within the other type of quote. So:
-
-// echo "'hello'"    # prints 'hello', because the single-quotes
-//                   # are just ordinary characters in a
-//                   # double-quoted string
-// echo '"hello"'    # similarly, prints "hello"
-// echo "'$PATH'"    # prints the PATH variable with
-//                   # single-quotes around it (because
-//                   # $variable expands in double-quotes)
