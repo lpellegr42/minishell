@@ -39,7 +39,7 @@ void	redir_parsing(t_cmdtree *node, char *str)
 	}
 }
 
-int	search_redir(char *str)
-{
+// int	search_redir(char *str)
+// {
 	
-}
+// }
