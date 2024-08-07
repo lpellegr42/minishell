@@ -45,8 +45,9 @@ typedef struct s_all
 {
 	t_data	*data;
 	t_env	*env;
+	char	**env_cpy;
 	int		err;
-	int		sig;
+	
 }		t_all;
 
 /* Functions */
@@ -60,6 +61,7 @@ t_env	*ft_copy_env(t_env *env, char **envp);
 t_env	*ft_append_env(t_env *env, char **str);
 char	*ft_getenv(char *str, t_env *env);
 void	ft_modify_env(char *s1, char *s2, t_env *env);
+void	ft_reset_env(t_all *all);
 
 /* *******************************BUILTINS*********************************** */
 
@@ -91,8 +93,10 @@ void	ft_display_error(char *s, t_all *all, int err_status);
 /* *******************************UTILS_LST********************************** */
 t_env	*ft_last_node(t_env	*lst);
 int		ft_isvalid(char *str);
+int		ft_lstsize(t_env *lst);
 void	ft_print_env(t_all *all);
 void	ft_print_data(t_data *lst);
+
 void	reset(void);
 void	blue(void);
 void	green(void);
