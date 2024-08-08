@@ -21,6 +21,7 @@ https://m4nnb3ll.medium.com/minishell-building-a-mini-bash-a-42-project-b55a1059
 
 https://medium.com/@simonzerisenay/embark-on-a-shell-tastic-adventure-with-minishell-69a59758e84f - Description TODO
 
+https://medium.com/@mostafa.omrane/mes-conseils-si-je-devais-recommencer-minishell-a9783c51ba1b - medium français avec conseils sur les choses importantes et explications pipe, fork...
 // TRI TODO \\
 
 https://brennan.io/2015/01/16/write-a-shell-in-c/ -  un tuto trés connus d'un gars qui fait son  propre shell et explique sa démarche, named LSH, english only.

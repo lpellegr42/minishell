@@ -7,10 +7,12 @@ LDFLAGS = -lreadline
 RM = rm -f
 
 SRCS =  $(wildcard $(DIR_SRC)*.c) \
+		$(wildcard $(DIR_SRC)/exec/*.c) \
 		$(wildcard $(DIR_SRC)/builtins/*.c) \
 		$(wildcard $(DIR_SRC)/env/*.c) \
 		$(wildcard $(DIR_SRC)/parsing/*.c) \
 		$(wildcard $(DIR_SRC)/utils/*.c) \
+		$(wildcard $(DIR_SRC)/temp/*.c) \
 
 OBJS = $(SRCS:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 

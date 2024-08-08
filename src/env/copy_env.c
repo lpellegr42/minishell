@@ -29,7 +29,7 @@ char	*ft_val_copy(t_env *env, char *envp)
 		i++;
 	if (envp[i] == '=')
 		i++;
-	env->val = malloc(sizeof(char) * ft_len(envp, i));
+	env->val = malloc(sizeof(char) * (ft_len(envp, i) + 1));
 	j = 0;
 	while (envp[i] && envp[i] != '\n')
 	{
@@ -59,6 +59,8 @@ t_env	*ft_append_node(t_env *env, char *envp)
 	new->key = ft_key_copy(new, envp);
 	new->val = ft_val_copy(new, envp);
 	new->set = 1;
+	new->pos = 0;
+	new->init = 0;
 	if (!env)
 		env = new;
 	else
@@ -82,6 +84,7 @@ void	ft_shlvl(t_env *env)
 		{
 			shlvl = ft_atoi(tmp->val);
 			shlvl++;
+			free(tmp->val);
 			tmp->val = ft_itoa(shlvl);
 		}
 		tmp = tmp->next;
@@ -97,7 +100,9 @@ t_env	*ft_copy_env(t_env *env, char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		tmp = ft_append_node(tmp, envp[i]);
+		if (!(ft_strncmp(envp[i], "COLUMNS", 7) == 0
+				|| ft_strncmp(envp[i], "LINES", 5) == 0))
+			tmp = ft_append_node(tmp, envp[i]);
 		i++;
 	}
 	ft_shlvl(tmp);

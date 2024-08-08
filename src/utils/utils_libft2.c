@@ -1,6 +1,41 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+int	ft_strlcpy(char *dest, char *src, int size)
+{
+	int	i;
+	int	lens;
+
+	lens = ft_strlen(src);
+	i = 0;
+	if (size > 0)
+	{
+		while (src[i] && i < size - 1)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+	}
+	return (lens);
+}
+
+int	ft_strchr(char *s, char c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 char	*ft_strdup(char *s)
 {
 	char	*cpy;
@@ -8,19 +43,16 @@ char	*ft_strdup(char *s)
 	size_t	i;
 
 	len = ft_strlen(s);
-	cpy = (char *)malloc(len * sizeof(char) + 1);
+	cpy = (char *)malloc(sizeof(char) *(len + 1));
 	i = 0;
 	if (cpy == NULL)
 		return (NULL);
-	else
+	while (s && s[i])
 	{
-		while (s[i])
-		{
-			cpy[i] = s[i];
-			i++;
-		}
-		cpy[i] = '\0';
+		cpy[i] = s[i];
+		i++;
 	}
+	cpy[i] = '\0';
 	return (cpy);
 }
 

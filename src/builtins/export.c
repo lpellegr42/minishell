@@ -1,58 +1,117 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
-t_env *ft_sort_env(t_env *env)
+void	ft_reset_pos(t_env *env)
 {
 	t_env	*tmp;
-	int 	i;
-	
+
+	tmp = env;
+	while (tmp)
+	{
+		tmp->pos = 0;
+		tmp = tmp->next;
+	}
+}
+
+void	ft_set_pos(t_env *env)
+{
+	t_env	*tmp;
+	t_env	*current;
+	int		i;
+
+	tmp = env;
+	while (tmp)
+	{
+		current = env;
+		while (!ft_check_node(current->key, tmp->key))
+			current = current->next;
+		while (current)
+		{
+			i = 0;
+			while (current && current->key[i] == tmp->key[i])
+				i++;
+			if (current && tmp->key[i] > current->key[i])
+				tmp->pos++;
+			current = current->next;
+			while (current && !ft_check_node(current->key, tmp->key))
+				current = current->next;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	ft_parse_export(t_env *env, char *str)
+{
+	t_env	*tmp;
+	char	**pars;
+
+	pars = ft_split_export(str, '=');
+	tmp = env;
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->key, pars[0], ft_strlen(pars[0])) == 0)
+		{
+			if (pars[1])
+			{
+				tmp->val = ft_strdup(pars[1]);
+				tmp->set = 1;
+			}
+			else
+				tmp->set = 2;
+			break ;
+		}
+		tmp = tmp->next;
+	}
+	if (!tmp)
+		tmp = ft_append_env(env, pars);
+	free_tab(pars);
+}
+
+void	ft_print_export(t_env *env)
+{
+	t_env	*tmp;
+	int		i;
+
 	tmp = env;
 	i = 0;
 	while (tmp)
 	{
-		while (tmp && tmp->next && tmp->key[i] == tmp->next->key[i])
-			i++;
-		if (tmp && tmp->next && tmp->key[i] > tmp->next->key[i])
+		if (tmp->pos == i && ft_check_node(tmp->key, NULL))
 		{
-			ft_swap(&tmp);
-			if (i != 0)
-				i = 0;
+			if (tmp->set == 1)
+				printf("declare -x %s=\"%s\"\n", tmp->key, tmp->val);
+			else if (tmp->set == 2)
+				printf("declare -x %s\n", tmp->key);
+			i++;
 			tmp = env;
 		}
 		else
-		{
-			if (i != 0)
-				i = 0;
 			tmp = tmp->next;
-		}
 	}
-	return (env);
 }
 
-void	ft_export(char *line, t_data *data, t_env *env)
+void	ft_export(t_all *all)
 {
-	t_env	*env_sorted;
-	(void)line;
-	(void)data;
-	// if (!data->arg)
-	// {
-		env_sorted = ft_sort_env(env);
-		while (env_sorted)
+	int	i;
+
+	i = 0;
+	ft_reset_pos(all->env);
+	ft_set_pos(all->env);
+	if (!all->data->arg)
+		ft_print_export(all->env);
+	else
+	{
+		while (all->data->arg[i])
 		{
-			if (ft_strncmp(env_sorted->key, "_", 1) == 0)
-				env_sorted = env_sorted->next;
-			else if (env_sorted->set == 1)
+			if (!ft_isvalid(all->data->arg[i]))
 			{
-				printf("declare -x %s=\"%s\"\n", env_sorted->key, env_sorted->val);
-				env_sorted = env_sorted->next;
+				red();
+				printf("bash: export : '%s'", all->data->arg[i]);
+				ft_display_err(": not a valid identifier\n", all, 1);
 			}
-			else if (env_sorted->set == 2)
-			{
-				printf("declare -x %s\n", env_sorted->key);
-				env_sorted = env_sorted->next;
-			}
-			else
-				env_sorted = env_sorted->next;
+			ft_parse_export(all->env, all->data->arg[i]);
+			i++;
 		}
-	// }
+	}
+	all->err = 0;
 }
