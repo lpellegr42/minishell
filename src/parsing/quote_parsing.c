@@ -49,3 +49,14 @@ int	is_in_quote(char *str, int pos)
 	}
 	return (0);
 }
+
+/* ANCIEN */
+
+// Add quote counter ?
+
+// int	is_unclosed_quotes(char *line)
+// {
+// 	if (count_double_quotes(line) % 2 == 0 && count_single_quotes(line) % 2 == 0)
+// 		return (0);
+// 	return (1);
+// }

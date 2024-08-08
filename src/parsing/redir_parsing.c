@@ -30,6 +30,7 @@ void	redir_parsing(t_cmdtree *node, char *str)
 		if (node->str[i] == '<' && node->str[i - 1] != '\\')
 		{
 			return (i); //return char * "redir_in" and treat later ?
+
 		}
 		else if (node->str[i] == '>' && node->str[i - 1] != '\\')
 		{
@@ -39,7 +40,8 @@ void	redir_parsing(t_cmdtree *node, char *str)
 	}
 }
 
-// int	search_redir(char *str)
-// {
-	
-// }
+int	search_redir(char *str)
+{
+
+}
+

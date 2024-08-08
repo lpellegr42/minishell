@@ -31,10 +31,9 @@ typedef struct s_data //what i give to liv - s_data t_data
 	int			flag_out; //simple ou double redir; > O_CREATE ou >> O_APPEND
 	char 		*here_doc; //change for int fd
 	struct s_data		*next;
-} 	t_data; //fill en * simple (ptr simple) pour l'exec.
+} 	t_data; //fill en * simple (ptr simple) pour l'exec
 
 // my enum
-
 typedef enum s_tokentype
 {
 	EXEC, //useless
@@ -109,6 +108,8 @@ int	search_pipe(char *str);
 
 //	parsing/quote_parsing.c
 
+void	quote_checker(char *str, int i, int *s_quote, int *d_quote);
+int	is_in_quote(char *str, int pos);
 int	unclosed_quotes_check(char *str);
 
 	// Temp
@@ -119,5 +120,18 @@ char* 	enum_to_str(int spec_enum); //can be removed from .h for now
 void	print_tree(t_cmdtree *node);
 char	**ft_split(char const *s, char sep);
 //void	test_parsing(char *line);
+
+// parsing/content_checking_utils.c
+
+int	is_separator(char c);
+int is_whitespace(char c);
+int	is_only_whitespace(char *str);
+int	empty_line_check(char *line);
+
+//	parsing/quote_parsing.c
+
+void	quote_checker(char *str, int i, int *s_quote, int *d_quote);
+int		is_in_quote(char *str, int pos);
+
 
 #endif

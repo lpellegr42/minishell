@@ -8,10 +8,10 @@ t_cmdtree	*parse_pipe(t_cmdtree *node)
 	pipe_pos = search_pipe(node->str);
 	if (pipe_pos == -1)
 	{
-		// next_parsing_step
-		return (NULL); //secu for now
+		// next_parsing_step (in main parse funct)
+		return (NULL);
 	}
-	else //tester dans cas ou str[0] est un pipe -> segfault i think -> gerer ce cas
+	else //tester dans cas ou str[0] est un pipe -> should work with split
 	{
 		node->type = PIPE;
 		node->part1 = init_node(my_substr(node->str, 0, pipe_pos));
@@ -25,7 +25,7 @@ t_cmdtree	*parse_pipe(t_cmdtree *node)
 /* 
  * @brief Search for the a pipe char '|' in the given string.
  * @param test c'est test @param test1
- * @return 	Return the first pipe found in the given string, return -1 if none is found.
+ * @return 	Return the position of the first pipe found in the given string, return -1 if none is found.
 */
 int	search_pipe(char *str)
 {
@@ -34,7 +34,7 @@ int	search_pipe(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '|' && str[i - 1] != '\\' /* && !quote_verif */ ) //add between quote verif.
+		if (str[i] == '|' && str[i - 1] != '\\' && !is_in_quote(str, i)) //add between quote verif.
 			return (i);
 		i++;
 	}

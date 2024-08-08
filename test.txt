@@ -19,3 +19,9 @@ test | test | test
 	part1		  part2
 	/    \    	/  		\
 part1	part2  part1	part2
+
+
+
+only 1 arg for exit and only digit
+verif erreur exit
+

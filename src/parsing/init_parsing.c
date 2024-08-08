@@ -6,15 +6,19 @@ t_cmdtree	*parsing(char *line)
 	t_cmdtree	*node;
 	t_cmdtree	*root_node;
 
+	if (empty_line_check(line) == 1)
+		exit (127); //check if not done in the exit built-in
 	node = init_node(line);
 	root_node = node;
 	node = parse_pipe(node);
-	// securité si pas de pipe.
+	// securité si pas de pipe -> verif que le tree soit pas vide dans next fct de parsing.
 	print_tree(node);
 	//node = parse_redir(node);
 	//split pimp qui garde plus de choses
 	return (root_node);
 }
+
+
 
 // create a new node with default value.
 t_cmdtree	*init_node(char *str)
