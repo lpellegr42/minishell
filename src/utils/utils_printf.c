@@ -5,6 +5,7 @@ void	reset(void)
 {
 	printf("\033[0m");
 }
+
 void	blue(void)
 {
 	printf("\033[1;34m");

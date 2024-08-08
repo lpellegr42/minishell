@@ -8,6 +8,21 @@ t_env	*ft_last_node(t_env	*lst)
 	return (lst);
 }
 
+int	ft_lstsize(t_env *lst)
+{
+	int		size;
+	t_env	*temp;
+
+	size = 0;
+	temp = lst;
+	while (temp)
+	{
+		temp = temp->next;
+		size++;
+	}
+	return (size);
+}
+
 void	ft_print_env(t_all *all)
 {
 	t_env	*lst;

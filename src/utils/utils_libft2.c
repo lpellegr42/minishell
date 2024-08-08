@@ -43,19 +43,16 @@ char	*ft_strdup(char *s)
 	size_t	i;
 
 	len = ft_strlen(s);
-	cpy = (char *)malloc(len * sizeof(char) + 1);
+	cpy = (char *)malloc(sizeof(char) *(len + 1));
 	i = 0;
 	if (cpy == NULL)
 		return (NULL);
-	else
+	while (s && s[i])
 	{
-		while (s[i])
-		{
-			cpy[i] = s[i];
-			i++;
-		}
-		cpy[i] = '\0';
+		cpy[i] = s[i];
+		i++;
 	}
+	cpy[i] = '\0';
 	return (cpy);
 }
 

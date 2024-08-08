@@ -30,7 +30,7 @@ int	g_signum = 0;
 // 	return (new);
 // }
 
-void	ft_handler(int	sig, siginfo_t *s_info, void *context)
+void	ft_handler(int sig, siginfo_t *s_info, void *context)
 {
 	(void)context;
 	(void)s_info;
@@ -42,8 +42,6 @@ void	ft_handler(int	sig, siginfo_t *s_info, void *context)
 		rl_redisplay();
 		g_signum = sig;
 	}
-	// else if (sig == SIGQUIT)
-	// 	return ;
 }
 
 void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *))
@@ -79,6 +77,7 @@ void	ft_prompt_loop(t_all *all)
 			ft_exit(all);
 		//data = parsing(line); //the parsing will return command table that you can une in the exec. TODO
 		ft_builtins(all);
+		ft_reset_env(all);
 		free(line);
 	}
 }
@@ -96,6 +95,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	all.err = 0;
 	all.env = NULL;
+	all.env_cpy = NULL;
 	all.env = ft_copy_env(all.env, envp);
 	init_sig(SIGINT, &ft_handler);
 	signal(SIGQUIT, SIG_IGN);
