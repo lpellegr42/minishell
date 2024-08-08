@@ -23,7 +23,7 @@ void	ft_print_echo(t_all *all)
 
 	i = 0;
 	while (ft_check_echo(all->data->arg[i]))
-				i++;
+		i++;
 	while (all->data->arg[i])
 	{
 		if (ft_strncmp(all->data->arg[i], "$?", 2) == 0)
@@ -40,7 +40,6 @@ void	ft_print_echo(t_all *all)
 			printf("\n");
 	}
 }
-
 
 void	ft_echo(t_all *all)
 {

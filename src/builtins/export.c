@@ -23,8 +23,7 @@ void	ft_set_pos(t_env *env)
 	while (tmp)
 	{
 		current = env;
-		while (ft_strncmp(current->key, tmp->key, ft_strlen(tmp->key)) == 0 ||
-			ft_strncmp(current->key, "_", 1) == 0)
+		while (!ft_check_node(current->key, tmp->key))
 			current = current->next;
 		while (current)
 		{
@@ -34,8 +33,7 @@ void	ft_set_pos(t_env *env)
 			if (current && tmp->key[i] > current->key[i])
 				tmp->pos++;
 			current = current->next;
-			while (current && (ft_strncmp(current->key, tmp->key, ft_len(tmp->key, 0)) == 0 ||
-				ft_strncmp(current->key, "_", 1) == 0))
+			while (current && !ft_check_node(current->key, tmp->key))
 				current = current->next;
 		}
 		tmp = tmp->next;
@@ -78,7 +76,7 @@ void	ft_print_export(t_env *env)
 	i = 0;
 	while (tmp)
 	{
-		if (tmp->pos == i && !(ft_strncmp(tmp->key, "_", ft_strlen(tmp->key)) == 0))
+		if (tmp->pos == i && ft_check_node(tmp->key, NULL))
 		{
 			if (tmp->set == 1)
 				printf("declare -x %s=\"%s\"\n", tmp->key, tmp->val);
@@ -88,7 +86,7 @@ void	ft_print_export(t_env *env)
 			tmp = env;
 		}
 		else
-			tmp = tmp->next;	
+			tmp = tmp->next;
 	}
 }
 
@@ -100,7 +98,7 @@ void	ft_export(t_all *all)
 	ft_reset_pos(all->env);
 	ft_set_pos(all->env);
 	if (!all->data->arg)
-			ft_print_export(all->env);
+		ft_print_export(all->env);
 	else
 	{
 		while (all->data->arg[i])
@@ -108,9 +106,8 @@ void	ft_export(t_all *all)
 			if (!ft_isvalid(all->data->arg[i]))
 			{
 				red();
-				printf("bash: export : '%s': not a valid identifier\n", all->data->arg[i]);
-				all->err = 1;
-				reset();
+				printf("bash: export : '%s'", all->data->arg[i]);
+				ft_display_err(": not a valid identifier\n", all, 1);
 			}
 			ft_parse_export(all->env, all->data->arg[i]);
 			i++;

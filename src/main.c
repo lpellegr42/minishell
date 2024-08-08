@@ -30,7 +30,7 @@ int	g_signum = 0;
 // 	return (new);
 // }
 
-void	ft_handler(int	sig, siginfo_t *s_info, void *context)
+void	ft_handler(int sig, siginfo_t *s_info, void *context)
 {
 	(void)context;
 	(void)s_info;

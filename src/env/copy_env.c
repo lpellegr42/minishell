@@ -100,7 +100,8 @@ t_env	*ft_copy_env(t_env *env, char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		if (!(ft_strncmp(envp[i], "COLUMNS", 7) == 0 || ft_strncmp(envp[i], "LINES", 5) == 0))
+		if (!(ft_strncmp(envp[i], "COLUMNS", 7) == 0
+				|| ft_strncmp(envp[i], "LINES", 5) == 0))
 			tmp = ft_append_node(tmp, envp[i]);
 		i++;
 	}

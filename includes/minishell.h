@@ -23,8 +23,7 @@ typedef struct s_env
 typedef struct s_data
 {
 	char			*cmd;	//mettre le path env
-	char			**arg; //const ? NULL -> premier argument est le nom du programme.
-	int				fd_out;
+	char			**arg;
 	int				fd_in;
 	int				flag_out; //simple ou double redir; > ou >>
 	char			*here_doc;
@@ -47,13 +46,12 @@ typedef struct s_all
 	t_env	*env;
 	char	**env_cpy;
 	int		err;
-	
 }		t_all;
 
 /* Functions */
 
 /* ********************************SIGNALS*********************************** */
-void	ft_handler(int	sig, siginfo_t *s_info, void *context);
+void	ft_handler(int sig, siginfo_t *s_info, void *context);
 void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *));
 
 /* **********************************ENV************************************* */
@@ -69,6 +67,7 @@ void	ft_builtins(t_all *all);
 void	ft_export(t_all *all);
 void	ft_print_export(t_env *env);
 char	**ft_split_export(char *s, char sep);
+int	ft_check_node(char *s1, char *s2);
 void	ft_env(t_env *env);
 void	ft_unset(t_data *data, t_env *env);
 void	ft_echo(t_all *all);
@@ -87,8 +86,7 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_itoa(int n);
 char	*ft_strdup(char *s);
 void	free_tab(char **tab);
-void	ft_display_error(char *s, t_all *all, int err_status);
-
+void	ft_display_err(char *s, t_all *all, int err_status);
 
 /* *******************************UTILS_LST********************************** */
 t_env	*ft_last_node(t_env	*lst);

@@ -10,7 +10,7 @@ void	ft_builtins(t_all *all)
 		ft_env(all->env);
 	else if (ft_strncmp(all->data->cmd, "unset", 5) == 0)
 		ft_unset(all->data, all->env);
-	else if(ft_strncmp(all->data->cmd, "export", 6) == 0)
+	else if (ft_strncmp(all->data->cmd, "export", 6) == 0)
 		ft_export(all);
 	else if (ft_strncmp(all->data->cmd, "echo", 4) == 0)
 		ft_echo(all);

@@ -61,7 +61,6 @@ t_data	*parse_args(char *line, t_data *data)
 	{
 		data->arg = NULL;
 	}
-	data->fd_out = 0;
 	data->fd_in = 0;
 	data->flag_out = 0;
 	data->here_doc = NULL;
