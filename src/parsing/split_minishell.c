@@ -18,7 +18,6 @@ void	split_free(char **res, int count)
  * @brief Calculate the length of the next part of the given string up to a separator or redirection.
  * This function traverses the string `s` to count characters until it finds the specified separator `sep`
  * unless the character is within quotes or is part of a redirection command.
- *
  * @param s The string to process.
  * @param sep The separator character to stop at.
  * @return The count of characters up to the separator, end of the string, or redirection symbol.
@@ -51,7 +50,6 @@ static int	countchar(char *s, char sep) //next_word_len, next_token_len
 /**
  * @brief Counts the number of words in a string, delimited by a specified separator,
  *        ignoring the separators within quotes.
- *
  * @param s The string to process.
  * @param sep The character used as a word separator.
  * @return The number of words found in the string. If the string is empty or NULL, returns 0.
@@ -109,7 +107,6 @@ static char	*strldup(char *s, int len)
  *        and advances the index past the copied word. This function modifies the index `i` to 
  *        point to the character following the last character of the word copied, handling separators 
  *        and quotes appropriately.
- *
  * @param s The string from which to copy the word.
  * @param i Pointer to the index in string `s` where the word starts. This index is modified by the function
  *          to reflect the new position after the word has been copied, thus affecting the caller's state.
@@ -134,7 +131,6 @@ static char	*word_copy(char *s, int *i, char sep)
 /**
  * @brief Splits a string `s` into an array of words based on the separator `sep`,
  *        considering quotes and managing memory allocation for the array of words.
- *
  * @param s The string to split.
  * @param sep The character used as a word separator.
  * @return A pointer to the first element of an array of word strings,

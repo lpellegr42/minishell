@@ -1,13 +1,14 @@
 #include "../../includes/minishell.h"
 
-/*
+/**
  * redir_in  <
  * redir_out > O_CREATE
  * redir_out >> O_APPEND
  * here_doc  <<
 */
 
-/* 0 no redir
+/**
+ * 0 no redir
  * 1 redir in < / redir file before the redir
  * 2 redir_out > redir file after the redir
  * 3 redir_out >> 0_APPEND redir file after the redir
@@ -15,7 +16,7 @@
 
 /* will return a fd to the last */
 
-/* 
+/**
  * need un split qui se charge des redir selon leur type et donc direction.
  * le split doit garder la redir me semble.
 */

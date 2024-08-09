@@ -22,10 +22,9 @@ t_cmdtree	*parse_pipe(t_cmdtree *node)
 	}
 }
 
-/* 
+/**
  * @brief Search for the a pipe char '|' in the given string.
- * @param test c'est test @param test1
- * @return 	Return the position of the first pipe found in the given string, return -1 if none is found.
+ * @return 	Return the position of the first pipe found in the given string. -1 if none is found.
 */
 int	search_pipe(char *str)
 {

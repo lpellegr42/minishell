@@ -1,6 +1,13 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+//FURTHER COMMENT AND ADD NEXT PARSING STEP
+// Add free b_tree functions in the loop.
+
+/**
+ * @brief Main parsing funct
+ * TODO further comment and fct rework 
+*/
 t_cmdtree	*parsing(char *line)
 {
 	t_cmdtree	*node;
@@ -18,9 +25,9 @@ t_cmdtree	*parsing(char *line)
 	return (root_node);
 }
 
-
-
-// create a new node with default value.
+/**
+ * @brief Create a new node with default value.
+ */
 t_cmdtree	*init_node(char *str)
 {
 	t_cmdtree	*new_node;
@@ -37,9 +44,13 @@ t_cmdtree	*init_node(char *str)
 	return (new_node);
 }
 
-// // FREE FUNCT - NOT IN USED ATM
+// /*
+// FREE FUNCT - NOT IN USED ATM
+// */
 
-// // @brief Free a simple node
+// /**
+//  * @brief Free a simple node
+// */
 // void	free_node(t_cmdtree *node)
 // {
 // 	//free(node->type);
@@ -51,7 +62,9 @@ t_cmdtree	*init_node(char *str)
 // 	// have i to free part 1 and 2 cause i do it recursively above ?
 // }
 
-// // @brief Free a complete binary tree recursively.
+// /**
+//  * @brief Free a complete binary tree recursively.
+// */
 // void	free_tree(t_cmdtree *node)
 // {
 // 	if (!node)
