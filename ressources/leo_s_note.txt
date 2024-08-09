@@ -2,10 +2,10 @@ test | test | test | test | test | test | test
 
 test | test | test
 
-- Faire un split qui check les quotes + specificites du bash
-- Faire fct de print de l'ast -> rename struct en s_ast -> t_ast
+- Faire un split qui check les quotes + specificites du bash - DONE
+- Faire fct de print de l'ast -> rename struct en s_ast -> t_ast PRINT AST DONE
 - Handle redir - ouvrir ttes redir/fd dans meme sens et 
-- Coder fct de verif des quotes
+- Coder fct de verif des quotes DONE
 
 // je veux init mon arbre, son premier noeud, et y mettre ma line de depart
 
