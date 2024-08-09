@@ -4,16 +4,15 @@ GROUP TODO :
 - Important TODO, parler de comment les fork et les pipe (permettant la communication entre processus, et donc différentes partie de notre prompt) va fonctionner 
 	dans les grandes lignes, le parsing doit refleter cela et l'exec doit aussi, basique pour le projet mais important.
 
-- Creer la fonction
-
-
-// Livane specific roadmap
-
-
 // Léo specific roadmap
 
 - Create a simple between quote verif. done
-- code a minishell adapted split - !!
+- code a minishell adapted split - WIP
+
+
+Ajouter gestion d'erreur simple
+
+- Pipe vide
 - 
 
 //

@@ -1,19 +1,38 @@
 #include "../../includes/minishell.h"
 
-static void	*ft_free(char **res, int count)
+// void	*split_free(char **res)
+// {
+// 	int	i;
+
+// 	while (res[i])
+// 	{
+// 		free(res[i]);
+// 		i++;
+// 	}
+// 	free(res);
+// 	return (NULL);
+// }
+
+int	minishell_countchar(char *s, char sep)
 {
-	while (count >= 0)
+	int	i;
+
+	i = 0;
+	while(*(s + i) && *(s + i) != sep || is_in_quote(s, i))
 	{
-		free(res[count]);
-		count--;
+		if (i == 0 && is_redir_token(*(s + i))) // si la chaine contient une redir en premier char.
+		{
+			if (is_redir_token(*(s + i + 1))) // '<<' ou '>>'
+				/* return (2) */
+			return (1); // simple redir
+		}
+		else if
 	}
-	free(res);
-	return (NULL);
 }
 
-static size_t	ft_countwords(char *s, char sep)
+int	countwords(char *s, char sep)
 {
-	size_t	count;
+	int		count;
 	int		i;
 
 	if (!*s || !s)
@@ -22,43 +41,33 @@ static size_t	ft_countwords(char *s, char sep)
 	i = 0;
 	while (s[i])
 	{
-		while (s[i] && s[i] == sep)
+		while (s[i] && s[i] == sep && !is_in_quote(s, i))
 			i++;
 		if (s[i])
+		{
+			i += minishell_countchar(&s[i], sep); //right order ? will calculate the next word len taking account token and quotes.
 			count++;
-		while (s[i] && s[i] != sep)
-			i++;
+		}
 	}
 	return (count);
 }
 
-static char	**word_malloc(char **res, char const *s, char sep)
+char	*strldup(char *s, int len)
 {
-	int		word_len;
+	char	*dest;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
-	while (s[i])
+	dest = (char *)malloc(sizeof(char) * (len + 1));
+	if (dest == NULL)
+		return (NULL);
+	while (*(s + i) != '\0' && i < len)
 	{
-		word_len = 0;
-		while (s[i] == sep && s[i])
-			i++;
-		while (s[i] != sep && s[i])
-		{
-			i++;
-			word_len++;
-		}
-		if (word_len != 0)
-		{
-			res[j] = ft_calloc((word_len + 1), sizeof(char));
-			if (!res[j])
-				return (ft_free(res, j));
-		}
-		j++;
+		*(dest + i) = *(s + i);
+		i++;
 	}
-	return (res);
+	*(dest + i) = '\0';
+	return (dest);
 }
 
 static char	**word_copy(char **res, char const *s, char sep)
@@ -87,7 +96,7 @@ static char	**word_copy(char **res, char const *s, char sep)
 	return (res);
 }
 
-char	**ft_split(char const *s, char sep)
+char	**ft_split(char *s, char sep)
 {
 	char	**res;
 	int		counter;

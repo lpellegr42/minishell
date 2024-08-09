@@ -8,9 +8,7 @@
 */
 int	is_separator(char c)
 {
-	if (c == ' ' || c == '|' || c == '<' || c == '>')
-		return (1);
-	return (0);
+	return (c == ' ' || c == '|' || c == '<' || c == '>');
 }
 
 int is_digit(char *c)
@@ -37,9 +35,7 @@ int is_only_digit(char *str)
 */
 int is_whitespace(char c)
 {
-	if (c == ' ' || c == '\t' || c == '\n')
-		return (1);
-	return (0);
+	return (c == ' ' || c == '\t' || c == '\n'); //some missing ? sufficient i think
 }
 
 /*
@@ -68,4 +64,9 @@ int	empty_line_check(char *line)
 	if (*line == '\0' || /* !line ||*/ is_only_whitespace(line))
 		return (1);
 	return (0);
+}
+
+int	is_redir(char c)
+{
+	return (c == '>' || c == '<');
 }
