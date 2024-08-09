@@ -112,6 +112,11 @@ void	quote_checker(char *str, int i, int *s_quote, int *d_quote);
 int	is_in_quote(char *str, int pos);
 int	unclosed_quotes_check(char *str);
 
+//	parsing/split_minishell.c
+
+void	split_free(char **res, int count); //need to be put in another function, cause there's too many
+char	**shell_split(char *s, char sep);
+
 	// Temp
 
 //	temp/test.c
