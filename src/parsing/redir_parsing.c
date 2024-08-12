@@ -21,28 +21,28 @@
  * le split doit garder la redir me semble.
 */
 
-void	redir_parsing(t_cmdtree *node, char *str)
-{
-	int	i;
+// void	redir_parsing(t_cmdtree *node, char *str)
+// {
+// 	int	i;
 
-	i = 0;
-	while (node->str[i])
-	{
-		if (node->str[i] == '<' && node->str[i - 1] != '\\')
-		{
-			return (i); //return char * "redir_in" and treat later ?
+// 	i = 0;
+// 	while (node->str[i])
+// 	{
+// 		if (node->str[i] == '<' && node->str[i - 1] != '\\')
+// 		{
+// 			return (i); //return char * "redir_in" and treat later ?
 
-		}
-		else if (node->str[i] == '>' && node->str[i - 1] != '\\')
-		{
-			return (i); // or do it in the parent function and re-analyse the node type.
-		}
-		i++;
-	}
-}
+// 		}
+// 		else if (node->str[i] == '>' && node->str[i - 1] != '\\')
+// 		{
+// 			return (i); // or do it in the parent function and re-analyse the node type.
+// 		}
+// 		i++;
+// 	}
+// }
 
-int	search_redir(char *str)
-{
+// int	search_redir(char *str)
+// {
 
-}
+// }
 

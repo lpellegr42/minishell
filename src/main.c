@@ -1,14 +1,37 @@
 #include "../includes/minishell.h"
 
+void	ft_putstr(char *str)
+{
+	while(*str)
+	{
+		write(1, str, 1);
+		str++;
+	}
+}
+
+void	print_split(char **res)
+{
+	int i;
+
+	i = 0;
+	while (res[i] != NULL)
+	{
+		ft_putstr(res[i]);
+		write(1, "\n", 1);
+		i++;
+	}
+}
+
 void	ft_prompt_loop(t_env *env)
 {
 	char	*home;
 	char	*line;
 	char	*prompt;
+	char	**res;
 	(void)env;
-	t_cmdtree	*node;
+	//t_cmdtree	*node;
 
-	node = NULL;
+	//node = NULL;
 	while (1)
 	{
 		home = getenv("PWD");
@@ -17,14 +40,15 @@ void	ft_prompt_loop(t_env *env)
 		line = readline(prompt);
 		//data = parse_args(line);
 		//node = parsing(line); //the parsing will return command table that you can use in the exec. TODO
-		
-		printf("quote return: %d\n", unclosed_quotes_check(line));
+		res = shell_split(line, ' ');
+		print_split(res);
+		//printf("quote return: %d\n", unclosed_quotes_check(line));
 		//ft_builtins(line, data, env);
-		if (strncmp("exit", line, 4) == 0)
-		{
-			//free_tree(node);
-			//exit(EXIT_SUCCESS);
-		}
+		// if (strncmp("exit", line, 4) == 0)
+		// {
+		// 	//free_tree(node);
+		// 	//exit(EXIT_SUCCESS);
+		// }
 	}
 }
 

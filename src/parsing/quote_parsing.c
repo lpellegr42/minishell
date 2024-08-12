@@ -14,15 +14,15 @@ void	quote_checker(char *str, int i, int *s_quote, int *d_quote)
 		if ((i = 0 || str[i - 1]  == '\\') && !(*s_quote) && !(*d_quote))
 			*d_quote = 1;
 		else if ((i = 0 || str[i - 1]  == '\\') && *d_quote == 1)
-			*d_quote == 0;
+			*d_quote = 0;
 	}
 }
 
-void	quote_chercker_arg(char c, char next_c, int *s_quote, int *d_quote)
+void	quote_checker_arg(char c, char next_c, int *s_quote, int *d_quote)
 {
 	if (c == '\'' && !(*d_quote))
 	{
-		if (!*s_quote == 1 && (is_sep(next_c) || !next_c))
+		if (*s_quote == 1 && (is_sep(next_c) || !next_c))
 			*s_quote = 0;
 		else
 			*s_quote = 1;
@@ -32,7 +32,7 @@ void	quote_chercker_arg(char c, char next_c, int *s_quote, int *d_quote)
 		if (*d_quote == 1 && (is_sep(next_c) || !next_c))
 			*d_quote = 0;
 		else
-			*d_quote == 1;
+			*d_quote = 1;
 	}
 }
 

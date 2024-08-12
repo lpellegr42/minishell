@@ -122,8 +122,8 @@ char	**ft_split(char const *s, char sep);
 
 // parsing/content_checking_utils.c
 
-int	is_separator(char c);
-int is_digit(char *c);
+int	is_sep(char c);
+int is_digit(char c);
 int is_only_digit(char *str);
 int is_whitespace(char c);
 int	is_only_whitespace(char *str);
@@ -133,6 +133,7 @@ int	is_redir(char c);
 //	parsing/quote_parsing.c
 
 void	quote_checker(char *str, int i, int *s_quote, int *d_quote); //useless ?
+void	quote_checker_arg(char c, char next_c, int *s_quote, int *d_quote);
 int		is_in_quote(char *str, int pos, int flag);
 
 #endif

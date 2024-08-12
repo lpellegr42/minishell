@@ -14,7 +14,7 @@ int	is_sep(char c)
  * @brief check if the given char is an ASCII digit.
  * @return 1 if yes. 0 if not.
  */
-int is_digit(char *c)
+int is_digit(char c)
 {
 	return (c >= '0' && c <= '9');
 }

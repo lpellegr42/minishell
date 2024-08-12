@@ -31,7 +31,7 @@ static int	countchar(char *s, char sep) //next_word_len, next_token_len
 	int	i;
 
 	i = 0;
-	while(*(s + i) && *(s + i) != sep || is_in_quote(s, i, 1))
+	while((*(s + i) && *(s + i) != sep) || is_in_quote(s, i, 1))
 	{
 		if (i == 0 && is_redir(*(s + i)))
 		{
@@ -157,7 +157,7 @@ char	**shell_split(char *s, char sep)
 	j = 0;
 	while (j < counter)
 	{
-		res[j] = word_copy(res, &i, sep);
+		res[j] = word_copy(s, &i, sep);
 		if (!res[j])
 			return (split_free(res, j), NULL);
 		j++;

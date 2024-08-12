@@ -4,6 +4,7 @@
 //FURTHER COMMENT AND ADD NEXT PARSING STEP
 // Add free b_tree functions in the loop.
 
+
 /**
  * @brief Main parsing funct
  * TODO further comment and fct rework 
@@ -21,7 +22,7 @@ t_cmdtree	*parsing(char *line)
 	// securité si pas de pipe -> verif que le tree soit pas vide dans next fct de parsing.
 	print_tree(node);
 	//node = parse_redir(node);
-	//split pimp qui garde plus de choses
+	//split pimp qui garde plus de choses shell_plit done.
 	return (root_node);
 }
 
@@ -43,6 +44,7 @@ t_cmdtree	*init_node(char *str)
 	new_node->part2 = NULL;
 	return (new_node);
 }
+
 
 // /*
 // FREE FUNCT - NOT IN USED ATM
