@@ -31,7 +31,7 @@ static int	countchar(char *s, char sep) //next_word_len, next_token_len
 	int	i;
 
 	i = 0;
-	while(*(s + i) && *(s + i) != sep || is_in_quote(s, i))
+	while(*(s + i) && *(s + i) != sep || is_in_quote(s, i, 1))
 	{
 		if (i == 0 && is_redir(*(s + i)))
 		{
@@ -39,7 +39,7 @@ static int	countchar(char *s, char sep) //next_word_len, next_token_len
 				return (2);
 			return (1);
 		}
-		else if (is_redir(s[i]) && !is_in_quote(s, i))
+		else if (is_redir(s[i]) && !is_in_quote(s, i, 1))
 			return (i);
 		else
 			i++;
@@ -65,7 +65,7 @@ static int	countwords(char *s, char sep)
 	i = 0;
 	while (s[i])
 	{
-		while (s[i] && s[i] == sep && !is_in_quote(s, i))
+		while (s[i] && s[i] == sep && !is_in_quote(s, i, 1))
 			i++;
 		if (s[i])
 		{
@@ -117,7 +117,10 @@ static char	*word_copy(char *s, int *i, char sep)
 {
 	char	*new_word;
 	int		len; //next_word_len, next_token_len
-	{	
+	while (*(s + *i) == sep && !is_in_quote(s, *i, 1))
+        (*i)++;
+	 if (*(s + *i))
+	{
 		len = countchar(s + *i, sep);
 		new_word = strldup(s + *i, len);
 		if (!new_word)

@@ -33,7 +33,7 @@ int	search_pipe(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '|' && str[i - 1] != '\\' && !is_in_quote(str, i)) //add between quote verif.
+		if (str[i] == '|' && str[i - 1] != '\\' && !is_in_quote(str, i))
 			return (i);
 		i++;
 	}

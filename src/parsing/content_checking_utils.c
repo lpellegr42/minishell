@@ -5,7 +5,7 @@
 * @brief check if the given char is a separator (space, |, <, >)
 * @return 1 if yes. 0 if not.
 */
-int	is_separator(char c)
+int	is_sep(char c)
 {
 	return (c == ' ' || c == '|' || c == '<' || c == '>');
 }

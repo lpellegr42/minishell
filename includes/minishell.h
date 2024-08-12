@@ -106,12 +106,6 @@ size_t	my_strlen(const char *s);
 t_cmdtree	*parse_pipe(t_cmdtree *node);
 int	search_pipe(char *str);
 
-//	parsing/quote_parsing.c
-
-void	quote_checker(char *str, int i, int *s_quote, int *d_quote);
-int	is_in_quote(char *str, int pos);
-int	unclosed_quotes_check(char *str);
-
 //	parsing/split_minishell.c
 
 void	split_free(char **res, int count); //need to be put in another function, cause there's too many
@@ -138,7 +132,7 @@ int	is_redir(char c);
 
 //	parsing/quote_parsing.c
 
-void	quote_checker(char *str, int i, int *s_quote, int *d_quote);
-int		is_in_quote(char *str, int pos);
+void	quote_checker(char *str, int i, int *s_quote, int *d_quote); //useless ?
+int		is_in_quote(char *str, int pos, int flag);
 
 #endif
