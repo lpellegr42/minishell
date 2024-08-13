@@ -35,6 +35,7 @@ verif erreur exit
 - Faire creation de liste avec check des built-in (arg[0] selon si built-in ou exec).
 - Parse pipe -> puis parse arg, avant puis apres pipe
 - Gerer le remplacement des var environnement
-- 
+- export test="test" est parse en test="test" pareil  test="""test""" deviens test=test
+ >faire une fonction de clean de ce qu'il y apres le = dans le cas de export
 
 

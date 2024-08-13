@@ -26,11 +26,14 @@ typedef struct s_env
 
 // Parsing struct
 
-typedef struct s_data //what i give to liv - s_data t_data
+typedef struct s_data
 {
-	char		*cmd;	//mettre le path env - get ma fonction pipex qui permet de creer un path from funct
+	int			type;
+	char		*str;
+
+	char		*cmd;
 	char		**arg; //const ? premier argument est le nom du programme ds cas de EXECVE, dernier est NULL
-	int			fd_out; //fd_out et in same thing
+	int			fd_out; //fd_out et in same thing - to check
 	int			fd_in;
 	int			flag_out; //simple ou double redir; > O_CREATE ou >> O_APPEND
 	char 		*here_doc; //change for int fd
@@ -38,9 +41,9 @@ typedef struct s_data //what i give to liv - s_data t_data
 } 	t_data; //fill en * simple (ptr simple) pour l'exec
 
 // my enum
-typedef enum s_tokentype
+typedef enum s_tokentype //see if usefull
 {
-	EXEC, //useless
+	BUILT_IN,
 	PIPE,
 	IN_REDIR,
 	OUT_REDIR,
@@ -48,15 +51,15 @@ typedef enum s_tokentype
 	DEFAULT
 }			t_tokentype;
 
-typedef struct s_cmdtree // s_ast_node -> t_ast_node
-{
-	int	type; //default, need to define clearly which type i need.
-	char *str; //initial_str
-	char **arg; //command_args
-	int fd; //in case of pipe and redir -> keep only the last fd open
-	struct s_cmdtree	*part1; //left
-	struct s_cmdtree	*part2; //right
-}	t_cmdtree;
+// typedef struct s_cmdlist // s_ast_node -> t_ast_node
+// {
+// 	int	type; //default, need to define clearly which type i need.
+// 	char *str; //initial_str
+// 	char *cmd;
+// 	char **arg; //command_args
+// 	int fd; //in case of pipe and redir -> keep only the last fd open
+// 	struct s_cmdtree	*next; //left
+// }	t_cmdlist;
 
 // End parsing struct.
 
@@ -140,10 +143,13 @@ t_data	*parse_args(char *line, t_data *data);
 
 // 	parsing/init_parsing.c
 
-t_cmdtree	*parsing(char *line);
-t_cmdtree	*init_node(char *str);
-//void	free_tree(t_cmdtree *node);
-//void	free_node(t_cmdtree *node); //Not needed in header file
+int	initial_check(char *line, t_all *all);
+t_all	*parsing(char *line, t_all *all);
+t_data	*init_node(char *str);
+int	is_builtin(char **res);
+void	builtin_or_exec(t_data *data, char **res, int *i, int flag);
+t_data	*fill_args(char *line, t_data *data);
+
 
 //	parsing/pipe_parsing.c
 
@@ -188,7 +194,7 @@ char* 	enum_to_str(int spec_enum); //can be removed from .h for now
 void	print_tree(t_cmdtree *node);
 char	**ft_split(char const *s, char sep);
 //void	test_parsing(char *line);
-void	free_tab(char **tab);
+void	free_tab_tab(char **tab);
 void	quote_checker_verif(char *str);
 void	print_split(char **res);
 

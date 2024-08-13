@@ -37,7 +37,7 @@ void	print_tree(t_cmdtree *node)
 }
 
 /* Free a char** completely. */
-void free_tab(char **tab)
+void free_tab_tab(char **tab)
 {
 	int i;
 
