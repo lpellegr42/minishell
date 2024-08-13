@@ -1,6 +1,9 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+/* @brief Unset environment variables given in parameter.
+ * @return Nothing
+*/
 void	ft_unset(t_data *data, t_env *env)
 {
 	t_env	*tmp;

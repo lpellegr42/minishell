@@ -36,7 +36,6 @@ t_data	*parse_args(char *line, t_data *data)
 		return (NULL);
 	data = malloc(sizeof(t_data));
 	res = ft_split(line, ' ');
-
 	data->cmd = ft_strdup(res[0]);
 	if (res[i])
 	{

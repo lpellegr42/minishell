@@ -1,6 +1,9 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+/* @brief Displays the current working directory
+ * @return Nothing
+*/
 void	ft_pwd(t_all *all)
 {
 	char	**buf;

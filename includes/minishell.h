@@ -8,7 +8,9 @@
 # include <readline/history.h>
 # include <signal.h> //Usefull lib
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <time.h>
+# include <errno.h>
 
 typedef struct s_env
 {
@@ -74,6 +76,12 @@ void	ft_echo(t_all *all);
 void	ft_pwd(t_all *all);
 void	ft_cd(t_all *all);
 void	ft_exit(t_all *all);
+
+/* *********************************EXEC************************************* */
+void	ft_exec(t_all *all);
+char	*ft_getpath(char *cmd, char **envp);
+char	*ft_getenv_tab(char *name, char **envp);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 
 /* ******************************UTILS_LIBFT********************************* */
 int		ft_strlen(char *str);
