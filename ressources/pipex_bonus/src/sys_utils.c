@@ -6,7 +6,7 @@
 /*   By: lpellegr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:32:31 by lpellegr          #+#    #+#             */
-/*   Updated: 2024/06/26 17:48:11 by lpellegr         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:32:53 by lpellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	exec(char *cmd, char **envp)
 		free_arrays(splitted_cmd);
 		error_handler("execve");
 	}
+	execve("path_command", "cmd" "argc_command01" )
 }
 
 /*
@@ -71,7 +72,7 @@ char	*get_path(char *cmd, char **envp)
 		free(path_slash);
 		if (access(cmd_path, F_OK | X_OK) == 0)
 		{
-			free_arrays(path_array);
+			q(path_array);
 			return (cmd_path);
 		}
 		free(cmd_path);

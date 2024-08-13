@@ -20,4 +20,15 @@ GROUP TODO :
 
 - une fonction qui remplit simplement les arguments de la structure
 
+// Léo specific roadmap
+
+- Create a simple between quote verif. done
+- code a minishell adapted split - WIP
+
+
+Ajouter gestion d'erreur simple
+
+- Pipe vide
+- 
+
 //

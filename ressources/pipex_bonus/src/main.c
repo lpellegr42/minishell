@@ -6,7 +6,7 @@
 /*   By: lpellegr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:30:05 by lpellegr          #+#    #+#             */
-/*   Updated: 2024/06/28 19:51:37 by lpellegr         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:28:45 by lpellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	do_pipe(char *cmd, char **envp)
 	pid = fork();
 	if (pid == -1)
 		error_handler("fork");
-	if (pid == 0)
+	if (pid == 0) //child process
 	{
-		dup2(pipe_fd[1], STDOUT_FILENO);
+		dup2(pipe_fd[1], STDOUT_FILENO); //dup2 va copier 
 		close(pipe_fd[0]);
 		exec(cmd, envp);
 	}
@@ -125,3 +125,5 @@ int	main(int argc, char **argv, char **envp)
 	exec(argv[argc - 2], envp);
 	return (0);
 }
+
+wait(NULL)
