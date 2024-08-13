@@ -4,7 +4,6 @@
 //FURTHER COMMENT AND ADD NEXT PARSING STEP
 // Add free b_tree functions in the loop.
 
-
 /**
  * @brief Main parsing funct
  * TODO further comment and fct rework 
@@ -16,13 +15,13 @@ t_cmdtree	*parsing(char *line)
 
 	if (empty_line_check(line) == 1)
 		exit (127); //check if not done in the exit built-in
+	//if (unclosed_quote_check(line)) //TODO
 	node = init_node(line);
 	root_node = node;
 	node = parse_pipe(node);
 	// securité si pas de pipe -> verif que le tree soit pas vide dans next fct de parsing.
 	print_tree(node);
 	//node = parse_redir(node);
-	//split pimp qui garde plus de choses shell_plit done.
 	return (root_node);
 }
 
@@ -38,7 +37,6 @@ t_cmdtree	*init_node(char *str)
 		return (NULL);
 	new_node->type = DEFAULT;
 	new_node-> str = my_strdup(str); //malloc'd
-	//new_node->str = strdup(str); //test purpose
 	new_node->arg = NULL;
 	new_node->part1 = NULL;
 	new_node->part2 = NULL;

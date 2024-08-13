@@ -91,15 +91,8 @@ void	ft_swap(t_env **lst);
 
 t_cmdtree	*parsing(char *line);
 t_cmdtree	*init_node(char *str);
+//void	free_tree(t_cmdtree *node);
 //void	free_node(t_cmdtree *node); //Not needed in header file
-void	free_tree(t_cmdtree *node);
-
-//	parsing/parsing_utils.c
-
-char	*my_strchr(const char *s, int c);
-char	*my_substr(char const *s, unsigned int start, size_t len);
-char	*my_strdup(const char *s);
-size_t	my_strlen(const char *s);
 
 //	parsing/pipe_parsing.c
 
@@ -111,14 +104,20 @@ int	search_pipe(char *str);
 void	split_free(char **res, int count); //need to be put in another function, cause there's too many
 char	**shell_split(char *s, char sep);
 
-	// Temp
+//	parsing/quote_parsing.c
 
-//	temp/test.c
+void	quote_checker(char *str, int i, int *s_quote, int *d_quote);
+void	quote_checker_arg(char c, char next_c, int *s_quote, int *d_quote);
+int		is_in_quote(char *str, int pos, int flag);
+int		is_unclosed_quotes(char *str);
 
-char* 	enum_to_str(int spec_enum); //can be removed from .h for now
-void	print_tree(t_cmdtree *node);
-char	**ft_split(char const *s, char sep);
-//void	test_parsing(char *line);
+//	parsing/parsing_utils.c
+
+char	*my_strchr(const char *s, int c);
+char	*my_substr(char const *s, unsigned int start, size_t len);
+char	*my_strdup(const char *s);
+size_t	my_strlen(const char *s);
+void	ft_putstr(char *str);
 
 // parsing/content_checking_utils.c
 
@@ -130,10 +129,16 @@ int	is_only_whitespace(char *str);
 int	empty_line_check(char *line);
 int	is_redir(char c);
 
-//	parsing/quote_parsing.c
+	// Temp
 
-void	quote_checker(char *str, int i, int *s_quote, int *d_quote); //useless ?
-void	quote_checker_arg(char c, char next_c, int *s_quote, int *d_quote);
-int		is_in_quote(char *str, int pos, int flag);
+//	temp/test.c
+
+char* 	enum_to_str(int spec_enum); //can be removed from .h for now
+void	print_tree(t_cmdtree *node);
+char	**ft_split(char const *s, char sep);
+//void	test_parsing(char *line);
+void	free_tab(char **tab);
+void	quote_checker_verif(char *str);
+void	print_split(char **res);
 
 #endif

@@ -1,27 +1,5 @@
 #include "../includes/minishell.h"
 
-void	ft_putstr(char *str)
-{
-	while(*str)
-	{
-		write(1, str, 1);
-		str++;
-	}
-}
-
-void	print_split(char **res)
-{
-	int i;
-
-	i = 0;
-	while (res[i] != NULL)
-	{
-		ft_putstr(res[i]);
-		write(1, "\n", 1);
-		i++;
-	}
-}
-
 void	ft_prompt_loop(t_env *env)
 {
 	char	*home;
@@ -40,6 +18,7 @@ void	ft_prompt_loop(t_env *env)
 		line = readline(prompt);
 		//data = parse_args(line);
 		//node = parsing(line); //the parsing will return command table that you can use in the exec. TODO
+		quote_checker_verif(line);
 		res = shell_split(line, ' ');
 		print_split(res);
 		//printf("quote return: %d\n", unclosed_quotes_check(line));

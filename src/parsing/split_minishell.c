@@ -59,18 +59,18 @@ static int	countwords(char *s, char sep)
 	int		count;
 	int		i;
 
-	if (!s || !*s)
-		return (0);
+	// if (!s || !*s)
+	// 	return (0);
 	count = 0;
 	i = 0;
 	while (s[i])
 	{
-		while (s[i] && s[i] == sep && !is_in_quote(s, i, 1))
+		while (s[i] == sep && !is_in_quote(s, i, 1))
 			i++;
 		if (s[i])
 		{
-			i += countchar(&s[i], sep); //right order ? will calculate the next word_len taking account token and quotes.
 			count++;
+			i += countchar(&s[i], sep);
 		}
 	}
 	return (count);
@@ -91,14 +91,14 @@ static char	*strldup(char *s, int len)
 
 	i = 0;
 	dest = (char *)malloc(sizeof(char) * (len + 1));
-	if (dest == NULL)
-		return (NULL);
-	while (*(s + i) != '\0' && i < len)
+	if (!dest)
+		return (dest);
+	while (s[i] && i < len)
 	{
-		*(dest + i) = *(s + i);
+		dest[i] = s[i];
 		i++;
 	}
-	*(dest + i) = '\0';
+	dest[i] = '\0';
 	return (dest);
 }
 
@@ -116,15 +116,15 @@ static char	*strldup(char *s, int len)
 static char	*word_copy(char *s, int *i, char sep)
 {
 	char	*new_word;
-	int		len; //next_word_len, next_token_len
-	while (*(s + *i) == sep && !is_in_quote(s, *i, 1))
+	int		len;
+	while (s[*i]== sep && !is_in_quote(s, *i, 1))
         (*i)++;
-	 if (*(s + *i))
+	 if (s[*i])
 	{
-		len = countchar(s + *i, sep);
-		new_word = strldup(s + *i, len);
-		if (!new_word)
-			return (NULL);
+		len = countchar(&s[*i], sep);
+		new_word = strldup(&s[*i], len);
+		// if (!new_word)
+		// 	return (NULL);
 		*i += len;
 	}
 	return (new_word);
@@ -141,10 +141,10 @@ static char	*word_copy(char *s, int *i, char sep)
  */
 char	**shell_split(char *s, char sep)
 {
+	int		counter;
 	char	**res;
 	int		i;
 	int		j;
-	int		counter;
 
 
 	if (!s)
@@ -158,10 +158,35 @@ char	**shell_split(char *s, char sep)
 	while (j < counter)
 	{
 		res[j] = word_copy(s, &i, sep);
-		if (!res[j])
-			return (split_free(res, j), NULL);
+		// if (!res[j])
+		// 	return (split_free(res, j), NULL);
 		j++;
 	}
 	res[j] = NULL;
 	return (res);
 }
+
+//
+
+// int	ft_count_args(char *line)
+// {
+// 	int	args;
+// 	int	i;
+
+// 	i = 0;
+// 	args = 0;
+// 	while (line[i])
+// 	{
+// 		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13)) // whitespace
+// 			i++;
+// 		while ((line[i] == 34 && line[i + 1] == 34) // '"' 34 ''' 39
+// 			|| (line[i] == 39 && line[i + 1] == 39))
+// 			i += 2;
+// 		if (line[i] && line[i] != 32 && (line[i] < 9 || line[i] > 13))
+// 		{
+// 			i = ft_skip_arg(line, i);
+// 			args++;
+// 		}
+// 	}
+// 	return (args);
+// }
