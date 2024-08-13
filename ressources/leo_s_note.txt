@@ -32,7 +32,9 @@ verif erreur exit
 	- gestion des unclosed quotes
 
 
-- Faire creation de liste avec check des built-in
+- Faire creation de liste avec check des built-in (arg[0] selon si built-in ou exec).
 - Parse pipe -> puis parse arg, avant puis apres pipe
+- Gerer le remplacement des var environnement
+- 
 
 
