@@ -83,7 +83,7 @@ void	ft_prompt_loop(t_all *all)
 			ft_exit(all);
 		all->data = parse_args(line, all->data);
 		//data = parsing(line); //the parsing will return command table that you can une in the exec. TODO
-		ft_builtins(all);
+		ft_exec(all);
 		ft_reset_env(all);
 		free(line);
 		line = NULL;

@@ -9,9 +9,8 @@ GROUP TODO :
 
 // Livane specific roadmap
 
-
-- UNSET - ok - need further testing
-- ENV - ok -
+- ERROR : cd (no such file, access denied..)
+- ERROR : retour err exec, cd ?
 
 - gestion erreur des builtin (prendre info supsur la notion)
 

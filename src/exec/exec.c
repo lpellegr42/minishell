@@ -17,32 +17,45 @@
 void	ft_docmd(t_all *all)
 {
 	char	*path;
+	int		pid;
 
+	pid = 0;	
 	path = ft_getpath(all->data->cmd, all->env_cpy);
-	if (execve(path, all->data->arg, all->env_cpy) == -1)
+	if (!path)
 	{
-		write(2, "Error\n", 7);
-		exit(EXIT_FAILURE);
+		red();
+		printf("-Minishell: %s: ", all->data->cmd);
+		ft_display_err("No such file or directory\n", all, 127);
+		return ;
 	}
+	pid = fork();
+	if (pid == 0)
+	{
+		if (execve(path, all->data->arg, all->env_cpy) == -1)
+		{
+			write(2, "Error\n", 7);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+		waitpid(pid, &all->err, 0);
 
 }
 
 void	ft_exec(t_all *all)
 {
-	pid_t	pid;
-	int		pipe_fd[2];
+	// int	pid;
 
-	pid = 0;
-	if (pipe(pipe_fd) == -1)
-	{
-		write(2, "Error\n", 7);
-		exit(EXIT_FAILURE);
-	}
-	pid = fork();
-	if (pid == 0)
-		ft_docmd(all);
-	else
-		wait(NULL);
+	// pid = 0;
+	if (all->data->next == NULL)
+		ft_builtins(all);
+	// else
+	// {
+	// 	while (all->data)
+	// 	{
+
+	// 	}
+	// }
 }
 
 

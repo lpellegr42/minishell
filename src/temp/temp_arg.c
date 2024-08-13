@@ -1,6 +1,6 @@
 #include "../../includes/minishell.h"
 
-void free_tab(char **tab)
+void ft_free_tab(char **tab)
 {
 	int i;
 
@@ -64,6 +64,6 @@ t_data	*parse_args(char *line, t_data *data)
 	data->flag_out = 0;
 	data->here_doc = NULL;
 	data->next = NULL; 
-	free_tab(res);
+	ft_free_tab(res);
 	return(data);
 }
