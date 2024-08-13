@@ -25,3 +25,14 @@ part1	part2  part1	part2
 only 1 arg for exit and only digit
 verif erreur exit
 
+/// GUIDELINE DU 13/08/24
+
+- Check des error 
+	- fct exit et only digit
+	- gestion des unclosed quotes
+
+
+- Faire creation de liste avec check des built-in
+- Parse pipe -> puis parse arg, avant puis apres pipe
+
+
