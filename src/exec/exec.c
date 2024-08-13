@@ -1,19 +1,6 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
-// void	ft_exec(t_all *all)
-// {
-// 	t_data	*tmp_d;
-
-// 	tmp_d = all->data;
-// 	if (all->data->here_doc)
-// 	{
-// 		printf("heredoc");
-// 		return ;
-// 	}
-// 	// while (tmp->d)
-// }
-
 void	ft_docmd(t_all *all)
 {
 	char	*path;
@@ -33,13 +20,15 @@ void	ft_docmd(t_all *all)
 	{
 		if (execve(path, all->data->arg, all->env_cpy) == -1)
 		{
-			write(2, "Error\n", 7);
-			exit(EXIT_FAILURE);
+			red();
+			printf("-Minishell: %s: ", all->data->cmd);
+			ft_display_err("command not found\n", all, 127);
+			exit(all->err);
 		}
 	}
 	else
 		waitpid(pid, &all->err, 0);
-
+	free(path);
 }
 
 void	ft_exec(t_all *all)

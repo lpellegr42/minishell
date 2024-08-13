@@ -77,5 +77,5 @@ char	*ft_getpath(char *cmd, char **envp)
 		free(cmd_path);
 	}
 	ft_free_tab(path_array);
-	return (cmd);
+	return (NULL);
 }

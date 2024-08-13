@@ -110,6 +110,7 @@ int		ft_strlcpy(char *dest, char *src, int size);
 int		ft_strchr(char *s, char c);
 int		ft_atoi(char *str);
 char	*ft_strjoin(char *s1, char *s2);
+char	*ft_join(char *s1, char *s2);
 char	*ft_itoa(int n);
 char	*ft_strdup(char *s);
 void	ft_free_tab(char **tab);
