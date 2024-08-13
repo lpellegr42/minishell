@@ -107,15 +107,3 @@ int is_unclosed_quotes(char *str)
         return 1;
     return 0;
 }
-
-/* ANCIEN */
-
-// int	is_unclosed_quotes(char *line)
-// {
-// 	int	double_quote_counter;
-// 	int single_quote_counter;
-
-// 	if (double_quotes_counter(line) % 2 == 0 && single_quotes_counter(line) % 2 == 0)
-// 		return (0);
-// 	return (1);
-// }

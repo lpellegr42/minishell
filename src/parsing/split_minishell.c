@@ -26,7 +26,7 @@ void	split_free(char **res, int count)
  *         If a redirection symbol is found not at the start and outside of quotes, the count
  *         up to (but not including) the redirection is returned.
  */
-static int	countchar(char *s, char sep) //next_word_len, next_token_len
+static int	countchar(char *s, char sep)
 {
 	int	i;
 
@@ -165,28 +165,3 @@ char	**shell_split(char *s, char sep)
 	res[j] = NULL;
 	return (res);
 }
-
-//
-
-// int	ft_count_args(char *line)
-// {
-// 	int	args;
-// 	int	i;
-
-// 	i = 0;
-// 	args = 0;
-// 	while (line[i])
-// 	{
-// 		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13)) // whitespace
-// 			i++;
-// 		while ((line[i] == 34 && line[i + 1] == 34) // '"' 34 ''' 39
-// 			|| (line[i] == 39 && line[i + 1] == 39))
-// 			i += 2;
-// 		if (line[i] && line[i] != 32 && (line[i] < 9 || line[i] > 13))
-// 		{
-// 			i = ft_skip_arg(line, i);
-// 			args++;
-// 		}
-// 	}
-// 	return (args);
-// }
