@@ -87,7 +87,7 @@ void	ft_builtins(t_all *all);
 void	ft_export(t_all *all);
 void	ft_print_export(t_env *env);
 char	**ft_split_export(char *s, char sep);
-int	ft_check_node(char *s1, char *s2);
+int		ft_check_node(char *s1, char *s2);
 void	ft_env(t_env *env);
 void	ft_unset(t_data *data, t_env *env);
 void	ft_echo(t_all *all);
@@ -97,6 +97,7 @@ void	ft_exit(t_all *all);
 
 /* *********************************EXEC************************************* */
 void	ft_exec(t_all *all);
+void	ft_docmd(t_all *all);
 char	*ft_getpath(char *cmd, char **envp);
 char	*ft_getenv_tab(char *name, char **envp);
 char	*ft_substr(char *s, unsigned int start, size_t len);
@@ -109,9 +110,10 @@ int		ft_strlcpy(char *dest, char *src, int size);
 int		ft_strchr(char *s, char c);
 int		ft_atoi(char *str);
 char	*ft_strjoin(char *s1, char *s2);
+char	*ft_join(char *s1, char *s2);
 char	*ft_itoa(int n);
 char	*ft_strdup(char *s);
-void	free_tab(char **tab);
+void	ft_free_tab(char **tab);
 void	ft_display_err(char *s, t_all *all, int err_status);
 
 /* *******************************UTILS_LST********************************** */

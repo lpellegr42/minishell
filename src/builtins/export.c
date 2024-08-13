@@ -71,7 +71,7 @@ void	ft_parse_export(t_env *env, char *str)
 	}
 	if (!tmp)
 		tmp = ft_append_env(env, pars);
-	free_tab(pars);
+	ft_free_tab(pars);
 }
 
 /* @brief Prints env variables in ascii order

@@ -103,20 +103,23 @@ void	ft_reset_env(t_all *all)
 	t_env	*tmp;
 
 	if (all->env_cpy)
-		free_tab(all->env_cpy);
+		ft_free_tab(all->env_cpy);
 	all->env_cpy = malloc(sizeof(char *) * (ft_lstsize(all->env) + 1));
 	i = 0;
 	tmp = all->env;
 	while (tmp)
 	{
-		all->env_cpy[i] = ft_strdup(tmp->key);
-		if (tmp->val)
+		if (tmp->set == 1)
 		{
-			all->env_cpy[i] = ft_join(all->env_cpy[i], "=");
-			all->env_cpy[i] = ft_join(all->env_cpy[i], tmp->val);
+			all->env_cpy[i] = ft_strdup(tmp->key);
+			if (tmp->val)
+			{
+				all->env_cpy[i] = ft_join(all->env_cpy[i], "=");
+				all->env_cpy[i] = ft_join(all->env_cpy[i], tmp->val);
+			}
+			i++;
 		}
 		tmp = tmp->next;
-		i++;
 	}
 	all->env_cpy[i] = NULL;
 }

@@ -20,6 +20,7 @@ void	ft_unset(t_data *data, t_env *env)
 		{
 			if (ft_strncmp(tmp->key, data->arg[i], ft_strlen(tmp->key)) == 0)
 			{
+				free(tmp->val);
 				tmp->val = NULL;
 				tmp->set = 0;
 			}
