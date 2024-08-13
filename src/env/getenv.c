@@ -1,6 +1,9 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+/* @brief Strjoin with free the first string
+ * @return A string (char *)
+*/
 char	*ft_join(char *s1, char *s2)
 {
 	char	*newstr;
@@ -28,7 +31,9 @@ char	*ft_join(char *s1, char *s2)
 	newstr[i] = '\0';
 	return (free(s1), newstr);
 }
-
+/* @brief Creates a new node to the environment
+ * @return A pointer to the first node
+*/
 t_env	*ft_append_env(t_env *env, char **str)
 {
 	t_env	*new;
@@ -54,7 +59,9 @@ t_env	*ft_append_env(t_env *env, char **str)
 	last->next = new;
 	return (env);
 }
-
+/* @brief Modifies the value of an environment variable
+ * @return Nothing
+*/
 void	ft_modify_env(char *s1, char *s2, t_env *env)
 {
 	t_env	*tmp;
@@ -71,7 +78,9 @@ void	ft_modify_env(char *s1, char *s2, t_env *env)
 		tmp = tmp->next;
 	}
 }
-
+/* @brief Gets the value of an environment variable
+ * @return The value in a string (char *)
+*/
 char	*ft_getenv(char *str, t_env *env)
 {
 	t_env	*tmp;
@@ -85,7 +94,9 @@ char	*ft_getenv(char *str, t_env *env)
 	}
 	return (NULL);
 }
-
+/* @brief Creates and resets an env copy in a char **
+ * @return Nothing
+*/
 void	ft_reset_env(t_all *all)
 {
 	int		i;

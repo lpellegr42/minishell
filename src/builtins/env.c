@@ -1,6 +1,10 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+/* @brief Prints environment variables
+ * @return Nothing
+*/
+
 void	ft_env(t_env *env)
 {
 	while (env)

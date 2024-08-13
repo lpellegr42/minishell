@@ -30,6 +30,9 @@ int	g_signum = 0;
 // 	return (new);
 // }
 
+/* @brief Handles signals (ctrl -C | ctrl-\)
+ * @return Nothing
+*/
 void	ft_handler(int sig, siginfo_t *s_info, void *context)
 {
 	(void)context;
@@ -43,7 +46,9 @@ void	ft_handler(int sig, siginfo_t *s_info, void *context)
 		g_signum = sig;
 	}
 }
-
+/* @brief Inits signals handler with struc sigaction
+ * @return Nothing
+*/
 void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *))
 {
 	struct sigaction	susr;
@@ -56,7 +61,9 @@ void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *))
 	else if (sig == SIGQUIT)
 		sigaction(SIGQUIT, &susr, 0);
 }
-
+/* @brief Real main of the project. Prints the prompt and read STDIN.
+ * @return Nothing
+*/
 void	ft_prompt_loop(t_all *all)
 {
 	char	*line;
@@ -72,13 +79,14 @@ void	ft_prompt_loop(t_all *all)
 			all->err = 128 + g_signum;
 			g_signum = 0;
 		}
-		all->data = parse_args(line, all->data);
-		if (!line)
+		if (line == NULL)
 			ft_exit(all);
+		all->data = parse_args(line, all->data);
 		//data = parsing(line); //the parsing will return command table that you can une in the exec. TODO
 		ft_builtins(all);
 		ft_reset_env(all);
 		free(line);
+		line = NULL;
 	}
 }
 
@@ -94,9 +102,11 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	}
 	all.err = 0;
+	all.data = NULL;
 	all.env = NULL;
 	all.env_cpy = NULL;
 	all.env = ft_copy_env(all.env, envp);
+	ft_reset_env(&all);
 	init_sig(SIGINT, &ft_handler);
 	signal(SIGQUIT, SIG_IGN);
 	ft_prompt_loop(&all);

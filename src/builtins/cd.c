@@ -1,6 +1,9 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+/* @brief Changes the working directory to home
+ * @return Nothing
+*/
 void	ft_cd_home(t_all *all)
 {
 	char	**buf;
@@ -17,7 +20,9 @@ void	ft_cd_home(t_all *all)
 	free(buf[0]);
 	free(buf);
 }
-
+/* @brief Changes the working directory
+ * @return Nothing
+*/
 void	ft_cd(t_all *all)
 {
 	char	**buf;

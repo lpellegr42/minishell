@@ -1,6 +1,9 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+/* @brief Frees the data nodes.
+ * @return Nothing
+*/
 void	ft_free_data(t_data *data)
 {
 	int	i;
@@ -26,6 +29,9 @@ void	ft_free_data(t_data *data)
 	// }
 }
 
+/* @brief Frees environments nodes
+ * @return Nothing
+*/
 void	ft_free_env(t_env *env)
 {
 	t_env	*tmp;
@@ -42,16 +48,25 @@ void	ft_free_env(t_env *env)
 		env = tmp;
 	}
 }
-
+/* @brief Exits properly the program. Free the structs.
+ * @return Nothing
+*/
 void	ft_exit(t_all *all)
 {
+	int	ret;
+
+	ret = 0;
 	if (all->data)
+	{
+		if (all->data->arg)
+			ret = ft_atoi(all->data->arg[0]);
 		ft_free_data(all->data);
+	}
 	if (all->env)
 		ft_free_env(all->env);
 	if (all->env_cpy)
 		free_tab(all->env_cpy);
 	rl_clear_history();
 	printf("exit\n");
-	exit(EXIT_SUCCESS);
+	exit(ret);
 }
