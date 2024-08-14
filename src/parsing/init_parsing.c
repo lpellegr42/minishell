@@ -61,6 +61,7 @@ t_data	*init_node(char *str)
 	new_node->fd_in = -1; //voir pour fd val par defaut
 	new_node->fd_out = -1;
 	new_node->flag_out = -1;
+	new_node->here_doc = NULL;
 	
 	new_node->next = NULL;
 	return (new_node);
@@ -85,7 +86,6 @@ int	is_builtin(char **res)
 	else
 		return (0);
 }
-
 
 t_data	*fill_args(char *line, t_data *data)
 {
