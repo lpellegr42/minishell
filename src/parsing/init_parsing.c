@@ -86,39 +86,22 @@ int	is_builtin(char **res)
 		return (0);
 }
 
-/**
- * 0 = builtin
- * 1 = exec
- */
-int	builtin_or_exec(t_data *data, char **res, int i, int flag)
-{
-	data->cmd = my_strdup(res[i]);
-	if (flag)
-	{
-		data->arg[i] = my_strdup(res[i]);
-	}
-	i++;
-	return (i);
-}
-
 
 t_data	*fill_args(char *line, t_data *data)
 {
 	char **res;
 	int i;
-	int j;
+	int	j;
 
-	i = 0;
-	j = 0;
 	if (!line)
 		return (NULL);
 	res = shell_split(line, ' ');
-	data->arg = malloc(sizeof(char *) * (tab_len(res) + 1));
-	if (is_builtin(res))
-		i = builtin_or_exec(data, res, i, 0);
-	else
-		j = builtin_or_exec(data, res, i, 1);
-	printf("arg[0]%s\narg[1]%s\n", data->cmd, data->arg[1]);
+	data->cmd = my_strdup(res[i]);
+	i = 1;
+	j = 0;
+	data->arg = malloc(sizeof(char *) * (arg_tab_len(res) + 1));
+	if (!data->arg)
+		return (data);
 	while (res[i] != NULL)
 	{
 		data->arg[j] = my_strdup(res[i]);
@@ -129,6 +112,10 @@ t_data	*fill_args(char *line, t_data *data)
 	return(free_tab_tab(res), data);
 }
 
+// t_data	*fill_tab_exec(t_data *line)
+// {
+
+// }
 
 
 // // FOR REFERENCE
@@ -174,6 +161,21 @@ t_data	*fill_args(char *line, t_data *data)
 // 		data->arg[0] = my_strdup(res[0]);
 // 		i++;
 // 	}
+// 	return (i);
+// }
+
+/**
+//  * 0 = builtin
+//  * 1 = exec
+//  */
+// int	builtin_or_exec(t_data *data, char **res, int i, int flag)
+// {
+// 	data->cmd = my_strdup(res[i]);
+// 	if (flag)
+// 	{
+// 		data->arg[i] = my_strdup(res[i]);
+// 	}
+// 	i++;
 // 	return (i);
 // }
 
