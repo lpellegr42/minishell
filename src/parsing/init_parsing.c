@@ -93,15 +93,16 @@ t_data	*fill_args(char *line, t_data *data)
 	int i;
 	int	j;
 
+	i = 0;
+	j = 0;
 	if (!line)
 		return (NULL);
 	res = shell_split(line, ' ');
-	data->cmd = my_strdup(res[i]);
-	i = 1;
-	j = 0;
+	data->cmd = my_strdup(res[i++]);
 	data->arg = malloc(sizeof(char *) * (arg_tab_len(res) + 1));
 	if (!data->arg)
 		return (data);
+	printf("%d\n", i);
 	while (res[i] != NULL)
 	{
 		data->arg[j] = my_strdup(res[i]);
@@ -112,10 +113,6 @@ t_data	*fill_args(char *line, t_data *data)
 	return(free_tab_tab(res), data);
 }
 
-// t_data	*fill_tab_exec(t_data *line)
-// {
-
-// }
 
 
 // // FOR REFERENCE
