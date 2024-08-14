@@ -13,11 +13,11 @@ int	initial_check(char *line, t_all *all)
 {
 		
 	if (empty_line_check(line) == 1)
-		exit (127);
+		return (0);
 	if (is_unclosed_quotes(line) == 1)
 	{
 		ft_display_err("minishell: unclosed quote error\n", all, 0);		
-		exit(all->err);
+		return (0);
 	}
 	// if (/* VERIF PIPE FIN PIPE DEBUT*/)
 	// if (/* VERIF REDIR VIDE */)

@@ -79,13 +79,14 @@ void	ft_prompt_loop(t_all *all)
 			all->err = 128 + g_signum;
 			g_signum = 0;
 		}
-		if (line == NULL)
-			ft_exit(all);
-		//all->data = parse_args(line, all->data);
-		// printf("test : %s, %s\n", all->data->arg[0], all->data->arg[1]);
-		all = parsing(line, all); //the parsing will return command table that you can une in the exec. TODO
-		ft_exec(all);
-		ft_reset_env(all);
+		// if (line == NULL)
+		// 	ft_exit(all);
+		all = parsing(line, all);
+		if (all)
+		{
+			ft_exec(all);
+			ft_reset_env(all);
+		}
 		free(line);
 		line = NULL;
 	}
