@@ -33,11 +33,11 @@ t_all	*parsing(char *line, t_all *all)
 		return (NULL);
 	node = init_node(line);
 	root_node = node;
+	//node = parse_pipe(node);
+		// securité si pas de pipe a verif - faire fct de trim de pipe fin et pipe debut.
+	//node = parse_redir(node);
 	node = fill_args(line, node);
 	
-	//node = parse_pipe(node);
-		// securité si pas de pipe
-	//node = parse_redir(node);
 
 	all->data = root_node;
 	return(all);
@@ -54,7 +54,7 @@ t_data	*init_node(char *str)
 	if (!new_node)
 		return (NULL);
 	new_node->type = DEFAULT;
-	new_node->str = my_strdup(str); //malloc'd
+	new_node->str = my_strdup(str);
 	new_node->cmd = NULL;
 	new_node->arg = NULL;
 	
@@ -102,7 +102,6 @@ t_data	*fill_args(char *line, t_data *data)
 	data->arg = malloc(sizeof(char *) * (arg_tab_len(res) + 1));
 	if (!data->arg)
 		return (data);
-	printf("%d\n", i);
 	while (res[i] != NULL)
 	{
 		data->arg[j] = my_strdup(res[i]);
@@ -112,91 +111,3 @@ t_data	*fill_args(char *line, t_data *data)
 	data->arg[j] = NULL;
 	return(free_tab_tab(res), data);
 }
-
-
-
-// // FOR REFERENCE
-
-// /* @brief Real main of the project. Prints the prompt and read STDIN.
-//  * @return Nothing
-// */
-// void	ft_prompt_loop(t_all *all)
-// {
-// 	char	*line;
-
-// 	while (1)
-// 	{
-// 		blue();
-// 		line = readline("Minishell > ");
-// 		reset();
-// 		add_history(line);
-// 		if (g_signum)
-// 		{
-// 			all->err = 128 + g_signum;
-// 			g_signum = 0;
-// 		}
-// 		if (line == NULL)
-// 			ft_exit(all);
-// 		//all->data = parse_args(line, all->data);
-// 		all->data = parsing(line, all->data);
-// 		ft_builtins(all);
-// 		ft_reset_env(all);
-// 		free(line);
-// 		line = NULL;
-// 	}
-// }
-
-// /**
-//  * 0 = builtin
-//  * 1 = exec
-//  */
-// int	builtin_or_exec(t_data *data, char **res, int i, int flag)
-// {
-// 	data->cmd = my_strdup(res[0]);
-// 	if (flag)
-// 	{
-// 		data->arg[0] = my_strdup(res[0]);
-// 		i++;
-// 	}
-// 	return (i);
-// }
-
-/**
-//  * 0 = builtin
-//  * 1 = exec
-//  */
-// int	builtin_or_exec(t_data *data, char **res, int i, int flag)
-// {
-// 	data->cmd = my_strdup(res[i]);
-// 	if (flag)
-// 	{
-// 		data->arg[i] = my_strdup(res[i]);
-// 	}
-// 	i++;
-// 	return (i);
-// }
-
-
-// t_data	*fill_args(char *line, t_data *data)
-// {
-// 	char **res;
-// 	int i;
-
-// 	i = 0;
-// 	if (!line)
-// 		return (NULL);
-// 	res = shell_split(line, ' ');
-// 	data->arg = malloc(sizeof(char *) * (tab_len(res) + 1));
-// 	if (is_builtin(res))
-// 		i = builtin_or_exec(data, res, i, 0);
-// 	else
-// 		i = builtin_or_exec(data, res, i, 1);
-// 	while (res[i] != NULL)
-// 	{
-// 		data->arg[i] = my_strdup(res[i]);
-// 		i++;
-// 	}
-// 	data->arg[i] = NULL;
-// 	free_tab_tab(res);
-// 	return(data);
-// }
