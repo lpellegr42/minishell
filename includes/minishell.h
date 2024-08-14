@@ -81,6 +81,7 @@ void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *));
 t_env	*ft_copy_env(t_env *env, char **envp);
 t_env	*ft_append_env(t_env *env, char **str);
 char	*ft_getenv(char *str, t_env *env);
+void	ft_free_env(t_env *env);
 void	ft_modify_env(char *s1, char *s2, t_env *env);
 void	ft_reset_env(t_all *all);
 
