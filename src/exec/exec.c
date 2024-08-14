@@ -1,24 +1,22 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
-char	**ft_get_args(char *path, char **arg)
+void	ft_minishell(t_all *all, char *path, char **arg, char **env)
 {
-	char	**tab;
-	int	i;
-	int	j;
+	pid_t	pid;
 
-	tab = malloc(sizeof(char *) * (ft_tab_len(arg) + 2));
-	tab[0] = ft_strdup(path);
-	i = 0;
-	j = 1;
-	while (arg && arg[i])
+	pid = fork();
+	if (pid == 0)
 	{
-		tab[j] = ft_strdup(arg[i]);
-		i++;
-		j++;
+		if (execve(path, arg, env) == -1)
+		{
+			printf("-Minishell: %s: ", all->data->cmd);
+			ft_display_err("command not found\n", all, 127);
+			exit(all->err);
+		}
 	}
-	tab[j] = NULL;
-	return (tab);	
+	else
+		waitpid(pid, &all->err, 0);
 }
 
 void	ft_docmd(t_all *all)
@@ -37,7 +35,6 @@ void	ft_docmd(t_all *all)
 		return ;
 	}
 	args = ft_get_args(path, all->data->arg);
-	// printf("%s, %s\n", args[0], args[1]);
 	pid = fork();
 	if (pid == 0)
 	{
