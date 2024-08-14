@@ -95,3 +95,31 @@ void	ft_putstr(char *str)
 		str++;
 	}
 }
+
+int	tab_len(char **tab)
+{
+	int i;
+
+	i = 0;
+	while(tab[i])
+	{
+		i++;
+	}
+	return(i);
+}
+/**
+ * @brief Count the number of element in char ** array, skiping the first element.
+ * @return The number of element in the array - 1, 0 if there's is only one.
+ */
+int arg_tab_len(char **tab) 
+{
+    int count = 0;
+
+	tab++;
+	while (*tab != NULL)
+	{
+		count++;
+		tab++;
+    }
+	return (count);
+}

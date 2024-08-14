@@ -147,13 +147,13 @@ int	initial_check(char *line, t_all *all);
 t_all	*parsing(char *line, t_all *all);
 t_data	*init_node(char *str);
 int	is_builtin(char **res);
-void	builtin_or_exec(t_data *data, char **res, int *i, int flag);
+int	builtin_or_exec(t_data *data, char **res, int i, int flag);
 t_data	*fill_args(char *line, t_data *data);
 
 
 //	parsing/pipe_parsing.c
 
-t_cmdtree	*parse_pipe(t_cmdtree *node);
+//t_cmdtree	*parse_pipe(t_cmdtree *node);
 int	search_pipe(char *str);
 
 //	parsing/split_minishell.c
@@ -175,6 +175,8 @@ char	*my_substr(char const *s, unsigned int start, size_t len);
 char	*my_strdup(const char *s);
 size_t	my_strlen(const char *s);
 void	ft_putstr(char *str);
+int		tab_len(char **tab);
+int		arg_tab_len(char **tab);
 
 // parsing/content_checking_utils.c
 
@@ -191,11 +193,12 @@ int	is_redir(char c);
 //	temp/test.c
 
 char* 	enum_to_str(int spec_enum); //can be removed from .h for now
-void	print_tree(t_cmdtree *node);
 char	**ft_split(char const *s, char sep);
-//void	test_parsing(char *line);
 void	free_tab_tab(char **tab);
 void	quote_checker_verif(char *str);
 void	print_split(char **res);
+//void	test_parsing(char *line);
 
 #endif
+
+//void	print_tree(t_cmdtree *node);

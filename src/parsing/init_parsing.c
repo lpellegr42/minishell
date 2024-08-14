@@ -58,9 +58,9 @@ t_data	*init_node(char *str)
 	new_node->cmd = NULL;
 	new_node->arg = NULL;
 	
-	new_node->fd_in = NULL; //voir pour fd val par defaut
-	new_node->fd_out = NULL;
-	new_node->flag_out = NULL;
+	new_node->fd_in = -1; //voir pour fd val par defaut
+	new_node->fd_out = -1;
+	new_node->flag_out = -1;
 	
 	new_node->next = NULL;
 	return (new_node);
@@ -90,43 +90,45 @@ int	is_builtin(char **res)
  * 0 = builtin
  * 1 = exec
  */
-void	builtin_or_exec(t_data *data, char **res, int *i, int flag)
+int	builtin_or_exec(t_data *data, char **res, int i, int flag)
 {
-	if (flag == 0)
+	data->cmd = my_strdup(res[i]);
+	if (flag)
 	{
-		data->cmd = res[*i];
+		data->arg[i] = my_strdup(res[i]);
 	}
-	else if (flag == 1)
-	{
-		data->cmd = NULL;
-		data->arg[*i] = res[*i];
-	}
-	*i++;
+	i++;
+	return (i);
 }
+
 
 t_data	*fill_args(char *line, t_data *data)
 {
 	char **res;
 	int i;
+	int j;
 
 	i = 0;
+	j = 0;
 	if (!line)
 		return (NULL);
-	data = malloc(sizeof(t_data));
-	res = split_shell(line, ' ');
+	res = shell_split(line, ' ');
+	data->arg = malloc(sizeof(char *) * (tab_len(res) + 1));
 	if (is_builtin(res))
-		builtin_or_exec(data, res, &i, 0);
+		i = builtin_or_exec(data, res, i, 0);
 	else
-		builtin_or_exec(data, res, &i, 1);
-	while (res[i])
+		j = builtin_or_exec(data, res, i, 1);
+	printf("arg[0]%s\narg[1]%s\n", data->cmd, data->arg[1]);
+	while (res[i] != NULL)
 	{
-		data->arg[i] = my_strdup(res[i]);
+		data->arg[j] = my_strdup(res[i]);
 		i++;
+		j++;
 	}
-	data->arg[i] = NULL;
-	free_tab_tab(res);
-	return(data);
+	data->arg[j] = NULL;
+	return(free_tab_tab(res), data);
 }
+
 
 
 // // FOR REFERENCE
@@ -158,4 +160,44 @@ t_data	*fill_args(char *line, t_data *data)
 // 		free(line);
 // 		line = NULL;
 // 	}
+// }
+
+// /**
+//  * 0 = builtin
+//  * 1 = exec
+//  */
+// int	builtin_or_exec(t_data *data, char **res, int i, int flag)
+// {
+// 	data->cmd = my_strdup(res[0]);
+// 	if (flag)
+// 	{
+// 		data->arg[0] = my_strdup(res[0]);
+// 		i++;
+// 	}
+// 	return (i);
+// }
+
+
+// t_data	*fill_args(char *line, t_data *data)
+// {
+// 	char **res;
+// 	int i;
+
+// 	i = 0;
+// 	if (!line)
+// 		return (NULL);
+// 	res = shell_split(line, ' ');
+// 	data->arg = malloc(sizeof(char *) * (tab_len(res) + 1));
+// 	if (is_builtin(res))
+// 		i = builtin_or_exec(data, res, i, 0);
+// 	else
+// 		i = builtin_or_exec(data, res, i, 1);
+// 	while (res[i] != NULL)
+// 	{
+// 		data->arg[i] = my_strdup(res[i]);
+// 		i++;
+// 	}
+// 	data->arg[i] = NULL;
+// 	free_tab_tab(res);
+// 	return(data);
 // }

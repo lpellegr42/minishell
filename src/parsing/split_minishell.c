@@ -123,8 +123,8 @@ static char	*word_copy(char *s, int *i, char sep)
 	{
 		len = countchar(&s[*i], sep);
 		new_word = strldup(&s[*i], len);
-		// if (!new_word)
-		// 	return (NULL);
+		if (!new_word)
+			return (NULL);
 		*i += len;
 	}
 	return (new_word);
@@ -158,8 +158,8 @@ char	**shell_split(char *s, char sep)
 	while (j < counter)
 	{
 		res[j] = word_copy(s, &i, sep);
-		// if (!res[j])
-		// 	return (split_free(res, j), NULL);
+		if (!res[j])
+			return (split_free(res, j), NULL);
 		j++;
 	}
 	res[j] = NULL;

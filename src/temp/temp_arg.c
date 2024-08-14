@@ -13,18 +13,6 @@ void free_tab(char **tab)
 	free(tab);
 }
 
-int	tab_len(char **tab)
-{
-	int i;
-
-	i = 0;
-	while(tab[i])
-	{
-		i++;
-	}
-	return(i);
-}
-
 t_data	*parse_args(char *line, t_data *data)
 {
 	char **res;

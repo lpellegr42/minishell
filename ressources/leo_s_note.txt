@@ -39,3 +39,4 @@ verif erreur exit
  >faire une fonction de clean de ce qu'il y apres le = dans le cas de export
 
 
+echo $"PATH" = PATH fdp

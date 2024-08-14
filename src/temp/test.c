@@ -8,9 +8,9 @@
 */
 char* enum_to_str(int spec_enum)
 {
-	if (spec_enum ==  EXEC)
-		return ("EXEC");
-	else if (spec_enum == PIPE)
+	// if (spec_enum ==  EXEC)
+	// 	return ("EXEC");
+	if (spec_enum == PIPE)
 		return ("PIPE");
 	else if (spec_enum == IN_REDIR)
 		return ("IN_REDIR");
@@ -22,18 +22,6 @@ char* enum_to_str(int spec_enum)
 		return ("DEFAULT");
 	else
 		return("Error");
-}
-
-/*
- * @brief Print a abstract syntax tree recursively.
-*/
-void	print_tree(t_cmdtree *node)
-{
-	if (!node)
-		return ;
-	printf("\n\n/// NEW NODE ///\ntype:	%s\nstr:	$%s$\n", enum_to_str(node->type), node->str);
-	print_tree(node->part1);
-	print_tree(node->part2);
 }
 
 /* Free a char** completely. */
@@ -78,3 +66,17 @@ void	print_split(char **res)
 		i++;
 	}
 }
+
+// BTREE LEGACY PART
+
+// /*
+//  * @brief Print a abstract syntax tree recursively.
+// */
+// void	print_tree(t_cmdtree *node)
+// {
+// 	if (!node)
+// 		return ;
+// 	printf("\n\n/// NEW NODE ///\ntype:	%s\nstr:	$%s$\n", enum_to_str(node->type), node->str);
+// 	print_tree(node->part1);
+// 	print_tree(node->part2);
+// }
