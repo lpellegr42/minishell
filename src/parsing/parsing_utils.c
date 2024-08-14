@@ -123,11 +123,3 @@ int arg_tab_len(char **tab)
     }
 	return (count);
 }
-/*
-
-res[split] = cmd, arg0, arg1, arg2; arg3;
-
-cmd = cmd
-
-arg = arg0, arg
-*/
