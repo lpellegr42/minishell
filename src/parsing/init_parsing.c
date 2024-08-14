@@ -11,7 +11,8 @@
 
 int	initial_check(char *line, t_all *all)
 {
-		
+	if (line == NULL)
+		return(0);
 	if (empty_line_check(line) == 1)
 		return (0);
 	if (is_unclosed_quotes(line) == 1)
@@ -67,6 +68,11 @@ t_data	*init_node(char *str)
 	return (new_node);
 }
 
+// void	free_t_data(t_data *data)
+// {
+
+// }
+
 int	is_builtin(char **res)
 {
 	if (ft_strncmp(res[0], "env", 3) == 0)
@@ -102,7 +108,7 @@ t_data	*fill_args(char *line, t_data *data)
 	if (arg_tab_len(res) > 0)
 		data->arg = malloc(sizeof(char *) * (arg_tab_len(res) + 1));
 	if (!data->arg)
-		return (data);
+		return (free_tab_tab(res), data);
 	while (res[i] != NULL)
 	{
 		data->arg[j] = my_strdup(res[i]);

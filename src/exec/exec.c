@@ -53,6 +53,8 @@ void	ft_docmd(t_all *all)
 
 void	ft_exec(t_all *all)
 {
+	if (!all->data->cmd)
+		return ;
 	if (all->data->next == NULL)
 		ft_builtins(all);
 	// else
