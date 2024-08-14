@@ -118,7 +118,6 @@ void	ft_export(t_all *all)
 		{
 			if (!ft_isvalid(all->data->arg[i]))
 			{
-				red();
 				printf("bash: export : '%s'", all->data->arg[i]);
 				ft_display_err(": not a valid identifier\n", all, 1);
 			}

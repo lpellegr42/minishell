@@ -1,26 +1,48 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+char	**ft_get_args(char *path, char **arg)
+{
+	char	**tab;
+	int	i;
+	int	j;
+
+	tab = malloc(sizeof(char *) * (ft_tab_len(arg) + 2));
+	tab[0] = ft_strdup(path);
+	i = 0;
+	j = 1;
+	while (arg && arg[i])
+	{
+		tab[j] = ft_strdup(arg[i]);
+		i++;
+		j++;
+	}
+	tab[j] = NULL;
+	return (tab);	
+}
+
 void	ft_docmd(t_all *all)
 {
 	char	*path;
-	int		pid;
+	char	**args;
+
+	pid_t	pid;
 
 	pid = 0;	
 	path = ft_getpath(all->data->cmd, all->env_cpy);
 	if (!path)
 	{
-		red();
 		printf("-Minishell: %s: ", all->data->cmd);
 		ft_display_err("No such file or directory\n", all, 127);
 		return ;
 	}
+	args = ft_get_args(path, all->data->arg);
+	// printf("%s, %s\n", args[0], args[1]);
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(path, all->data->arg, all->env_cpy) == -1)
+		if (execve(path, args, all->env_cpy) == -1)
 		{
-			red();
 			printf("-Minishell: %s: ", all->data->cmd);
 			ft_display_err("command not found\n", all, 127);
 			exit(all->err);
@@ -29,24 +51,16 @@ void	ft_docmd(t_all *all)
 	else
 		waitpid(pid, &all->err, 0);
 	free(path);
+	ft_free_tab(args);
 }
 
 void	ft_exec(t_all *all)
 {
-	// int	pid;
-
-	// pid = 0;
 	if (all->data->next == NULL)
 		ft_builtins(all);
 	// else
-	// {
-	// 	while (all->data)
-	// 	{
-
-	// 	}
-	// }
+	// 	ft_do_pipe(all);
 }
-
 
 // Comprendre les forks
 // Apprendre la différence entre parents et enfants 

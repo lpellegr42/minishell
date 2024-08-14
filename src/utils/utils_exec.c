@@ -79,3 +79,15 @@ char	*ft_getpath(char *cmd, char **envp)
 	ft_free_tab(path_array);
 	return (NULL);
 }
+
+int	ft_tab_len(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return (0);
+	while (tab[i])
+		i++;
+	return (i);
+}

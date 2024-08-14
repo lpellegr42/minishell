@@ -58,7 +58,7 @@ void	ft_exit(t_all *all)
 	ret = 0;
 	if (all->data)
 	{
-		if (all->data->arg)
+		if (ft_strncmp(all->data->cmd, "exit", 5) == 0 && all->data->arg)
 			ret = ft_atoi(all->data->arg[0]);
 		ft_free_data(all->data);
 	}

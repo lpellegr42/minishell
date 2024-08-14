@@ -101,6 +101,8 @@ void	ft_docmd(t_all *all);
 char	*ft_getpath(char *cmd, char **envp);
 char	*ft_getenv_tab(char *name, char **envp);
 char	*ft_substr(char *s, unsigned int start, size_t len);
+char	**ft_get_args(char *path, char **args);
+int	ft_tab_len(char **tab);
 
 /* ******************************UTILS_LIBFT********************************* */
 int		ft_strlen(char *str);
