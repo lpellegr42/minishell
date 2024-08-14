@@ -71,7 +71,7 @@ void	ft_parse_export(t_env *env, char *str)
 	}
 	if (!tmp)
 		tmp = ft_append_env(env, pars);
-	free_tab(pars);
+	ft_free_tab(pars);
 }
 
 /* @brief Prints env variables in ascii order
@@ -118,7 +118,6 @@ void	ft_export(t_all *all)
 		{
 			if (!ft_isvalid(all->data->arg[i]))
 			{
-				red();
 				printf("bash: export : '%s'", all->data->arg[i]);
 				ft_display_err(": not a valid identifier\n", all, 1);
 			}

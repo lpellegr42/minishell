@@ -61,6 +61,8 @@ char	*ft_getpath(char *cmd, char **envp)
 	char	*path_slash;
 
 	i = -1;
+	if (!ft_getenv_tab("PATH", envp))
+		return (NULL);
 	path_array = ft_split(ft_getenv_tab("PATH", envp), ':');
 	while (path_array[++i])
 	{
@@ -69,11 +71,23 @@ char	*ft_getpath(char *cmd, char **envp)
 		free(path_slash);
 		if (access(cmd_path, F_OK | X_OK) == 0)
 		{
-			free_tab(path_array);
+			ft_free_tab(path_array);
 			return (cmd_path);
 		}
 		free(cmd_path);
 	}
-	free_tab(path_array);
-	return (cmd);
+	ft_free_tab(path_array);
+	return (NULL);
+}
+
+int	ft_tab_len(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return (0);
+	while (tab[i])
+		i++;
+	return (i);
 }

@@ -6,6 +6,7 @@
 */
 void	ft_builtins(t_all *all)
 {
+	ft_reset_env(all);
 	if (ft_strncmp(all->data->cmd, "env", 3) == 0)
 		ft_env(all->env);
 	else if (ft_strncmp(all->data->cmd, "unset", 5) == 0)
@@ -21,5 +22,5 @@ void	ft_builtins(t_all *all)
 	else if (ft_strncmp(all->data->cmd, "exit", 4) == 0)
 		ft_exit(all);
 	else
-		ft_exec(all);
+		ft_docmd(all);
 }
