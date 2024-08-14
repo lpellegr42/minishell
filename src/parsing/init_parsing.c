@@ -99,7 +99,8 @@ t_data	*fill_args(char *line, t_data *data)
 		return (NULL);
 	res = shell_split(line, ' ');
 	data->cmd = my_strdup(res[i++]);
-	data->arg = malloc(sizeof(char *) * (arg_tab_len(res) + 1));
+	if (arg_tab_len(res) > 0)
+		data->arg = malloc(sizeof(char *) * (arg_tab_len(res) + 1));
 	if (!data->arg)
 		return (data);
 	while (res[i] != NULL)
