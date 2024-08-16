@@ -163,7 +163,7 @@ int	search_pipe(char *str);
 
 //	parsing/split_minishell.c
 
-void	split_free(char **res, int count); //need to be put in another function, cause there's too many
+void	split_free(char **res, int count); //6th funct in file
 char	**shell_split(char *s, char sep);
 
 //	parsing/quote_parsing.c
