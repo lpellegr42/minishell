@@ -11,10 +11,6 @@
 
 int	initial_check(char *line, t_all *all)
 {
-	if (line == NULL)
-		return(0);
-	if (empty_line_check(line) == 1)
-		return (0);
 	if (is_unclosed_quotes(line) == 1)
 	{
 		ft_display_err("minishell: unclosed quote error\n", all, 0);		
@@ -28,19 +24,20 @@ int	initial_check(char *line, t_all *all)
 t_all	*parsing(char *line, t_all *all)
 {
 	t_data	*node;
-	t_data	*root_node;
+	//t_data	*root_node; //when pipe's working
 
 	if (!initial_check(line, all))
 		return (NULL);
-	node = init_node(line);
-	root_node = node;
+	node = init_node();
+	//root_node = node; //when pipe's working
 	//node = parse_pipe(node);
 		// securité si pas de pipe a verif - faire fct de trim de pipe fin et pipe debut.
 	//node = parse_redir(node);
-	node = fill_args(line, node);
+	if (line && !empty_line_check(line))
+		node = fill_args(line, node);
 	
-
-	all->data = root_node;
+	all->data = node;
+	//all->data = root_node; //when pipe's working
 	return(all);
 }
 
@@ -48,7 +45,7 @@ t_all	*parsing(char *line, t_all *all)
 /**
  * @brief Create a new node with default value.
  */
-t_data	*init_node(char *str)
+t_data	*init_node(void)
 {
 	t_data	*new_node;
 
@@ -56,7 +53,6 @@ t_data	*init_node(char *str)
 	if (!new_node)
 		return (NULL);
 	new_node->type = DEFAULT;
-	new_node->str = my_strdup(str); //char *
 	new_node->cmd = NULL; //char *
 	new_node->arg = NULL; //char **
 	

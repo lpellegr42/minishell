@@ -6,17 +6,20 @@
 */
 void	ft_free_data(t_data *data)
 {
+	if (!data)
+		return ;
 	// while (data)
 	// {
-		if (data->str)
-			free(data->str);
-		if (data->arg)
-			free_tab_tab(data->arg);
-		if (data->cmd)
-			free(data->cmd);
-		if (data->here_doc)
-			free(data->here_doc);
-		free(data);
+	if (data->str)
+		free(data->str);
+	if (data->arg)
+		free_tab_tab(data->arg);
+	if (data->cmd)
+		free(data->cmd);
+	if (data->here_doc)
+		free(data->here_doc);
+	free(data);
+	data = NULL;
 		// data = data->next;
 	// }
 }
