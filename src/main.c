@@ -61,6 +61,15 @@ void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *))
 	else if (sig == SIGQUIT)
 		sigaction(SIGQUIT, &susr, 0);
 }
+
+void	ft_check_sig(t_all *all)
+{
+	if (g_signum)
+	{
+		all->err = 128 + g_signum;
+		g_signum = 0;
+	}
+}
 /* @brief Real main of the project. Prints the prompt and read STDIN.
  * @return Nothing
 */
@@ -74,11 +83,7 @@ void	ft_prompt_loop(t_all *all)
 		line = readline("Minishell > ");
 		reset();
 		add_history(line);
-		if (g_signum)
-		{
-			all->err = 128 + g_signum;
-			g_signum = 0;
-		}
+		ft_check_sig(all);
 		if (line == NULL)
 		{
 			ft_free_env(all->env);
@@ -88,10 +93,7 @@ void	ft_prompt_loop(t_all *all)
 		}
 		all = parsing(line, all);
 		if (all)
-		{
 			ft_exec(all);
-			ft_reset_env(all);
-		}
 		free(line);
 		line = NULL;
 	}
