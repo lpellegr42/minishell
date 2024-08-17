@@ -69,34 +69,6 @@ t_data	*init_node(char *str)
 	return (new_node);
 }
 
-void	data_delnode(t_data	*data)
-{
-	if (data)
-	{
-		if (data->str)
-			free(data->str);
-		if (data->cmd)
-			free(data->cmd);
-		if (data->arg)
-			free_tab_tab(data->arg);
-		// add some free if i malloc anything else.
-		free(data);
-	}
-
-}
-void data_clear(t_all *all)
-{
-	t_data *tmp;
-
-	while (all->data)
-	{
-		tmp = all->data->next;
-		data_delnode(all->data);
-		all->data = tmp;
-	}
-}
-
-
 int	is_builtin(char **res)
 {
 	if (ft_strncmp(res[0], "env", 3) == 0)

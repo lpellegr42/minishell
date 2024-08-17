@@ -2,34 +2,6 @@
 
 int	g_signum = 0;
 
-// char	*ft_get_prompt(char	*s1, char *s2, int flag)
-// {
-// 	char	*new;
-// 	int	i;
-// 	int	j;
-// 	int	len;
-
-// 	len = ft_strlen(s1) + ft_strlen(s2);
-// 	i = 0;
-// 	j = 0;
-// 	new = malloc(sizeof(char) * (len + 1));
-// 	while (s1 && s1[i])
-// 	{
-// 		new[i] = s1[i];
-// 		i++;
-// 	}
-// 	while (s2 && s2[j])
-// 	{
-// 		new[i] = s2[j];
-// 		i++;
-// 		j++;
-// 	}
-// 	new[i] = '\0';
-// 	if (flag == 1)
-// 		free(s1);
-// 	return (new);
-// }
-
 /* @brief Handles signals (ctrl -C | ctrl-\)
  * @return Nothing
 */
@@ -46,6 +18,7 @@ void	ft_handler(int sig, siginfo_t *s_info, void *context)
 		g_signum = sig;
 	}
 }
+
 /* @brief Inits signals handler with struc sigaction
  * @return Nothing
 */
@@ -70,6 +43,7 @@ void	ft_check_sig(t_all *all)
 		g_signum = 0;
 	}
 }
+
 /* @brief Real main of the project. Prints the prompt and read STDIN.
  * @return Nothing
 */

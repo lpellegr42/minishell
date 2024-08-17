@@ -165,25 +165,3 @@ char	**shell_split(char *s, char sep)
 	res[j] = NULL;
 	return (res);
 }
-
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <stddef.h>
-
-// int main(int argc, char **argv)
-// {
-// 	char **res;
-// 	int i = 0;
-
-// 	if (argc == 2)
-// 	{
-// 		res = shell_split(argv[1]);
-// 		while(1)
-// 		{
-// 			printf("res[%d]:%s\n", i, res[i]);
-// 			if (!res[i])
-// 				break;
-// 		}
-// 	}
-// 	return (0);
-// }
