@@ -6,22 +6,12 @@
 */
 void	ft_free_data(t_data *data)
 {
-	int	i;
-
-	i = 0;
 	// while (data)
 	// {
 		if (data->str)
 			free(data->str);
 		if (data->arg)
-		{
-			while (data->arg[i])
-			{
-				free(data->arg[i]);
-				i++;
-			}
-			free (data->arg);
-		}
+			free_tab_tab(data->arg);
 		if (data->cmd)
 			free(data->cmd);
 		if (data->here_doc)
