@@ -11,6 +11,8 @@ void	ft_free_data(t_data *data)
 	i = 0;
 	// while (data)
 	// {
+		if (data->str)
+			free(data->str);
 		if (data->arg)
 		{
 			while (data->arg[i])

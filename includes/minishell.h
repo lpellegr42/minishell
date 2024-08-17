@@ -98,6 +98,8 @@ void	ft_echo(t_all *all);
 void	ft_pwd(t_all *all);
 void	ft_cd(t_all *all);
 void	ft_exit(t_all *all);
+void	ft_free_all(t_all *all);
+void	ft_free_data(t_data *data);
 
 /* *********************************EXEC************************************* */
 void	ft_exec(t_all *all);
