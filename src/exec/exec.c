@@ -58,7 +58,6 @@ void	ft_exec(t_all *all)
 		return ;
 	if (all->data->next == NULL)
 		ft_builtins(all);
-	data_clear(all);
 	// else
 	// 	ft_do_pipe(all);
 }
