@@ -54,7 +54,7 @@ void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *))
 	struct sigaction	susr;
 
 	susr.sa_sigaction = handler;
-	susr.sa_flags = SA_SIGINFO;
+	susr.sa_flags = SA_RESTART;
 	sigemptyset(&susr.sa_mask);
 	if (sig == SIGINT)
 		sigaction(SIGINT, &susr, 0);
