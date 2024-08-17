@@ -51,16 +51,6 @@ typedef enum s_tokentype //see if usefull
 	DEFAULT
 }			t_tokentype;
 
-// typedef struct s_cmdlist // s_ast_node -> t_ast_node
-// {
-// 	int	type; //default, need to define clearly which type i need.
-// 	char *str; //initial_str
-// 	char *cmd;
-// 	char **arg; //command_args
-// 	int fd; //in case of pipe and redir -> keep only the last fd open
-// 	struct s_cmdtree	*next; //left
-// }	t_cmdlist;
-
 // End parsing struct.
 
 typedef struct s_all
