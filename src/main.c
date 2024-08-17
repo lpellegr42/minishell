@@ -83,6 +83,7 @@ void	ft_prompt_loop(t_all *all)
 		{
 			ft_free_env(all->env);
 			ft_free_tab(all->env_cpy);
+			//data_clear(all);
 			printf("exit\n");
 			return ;
 		}
