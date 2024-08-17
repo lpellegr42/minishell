@@ -37,7 +37,7 @@ void	ft_handler(int sig, siginfo_t *s_info, void *context)
 {
 	(void)context;
 	(void)s_info;
-	if (sig == SIGINT)
+	if (waitpid(-1, NULL, WNOHANG) == -1)
 	{
 		printf("\n");
 		rl_on_new_line();
@@ -80,10 +80,18 @@ void	ft_prompt_loop(t_all *all)
 			g_signum = 0;
 		}
 		if (line == NULL)
-			ft_exit(all);
+		{
+			ft_free_env(all->env);
+			ft_free_tab(all->env_cpy);
+			printf("exit\n");
+			return ;
+		}
 		all = parsing(line, all);
-		ft_exec(all);
-		ft_reset_env(all);
+		if (all)
+		{
+			ft_exec(all);
+			ft_reset_env(all);
+		}
 		free(line);
 		line = NULL;
 	}

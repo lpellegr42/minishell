@@ -11,13 +11,14 @@
 
 int	initial_check(char *line, t_all *all)
 {
-		
+	if (line == NULL)
+		return(0);
 	if (empty_line_check(line) == 1)
-		exit (127);
+		return (0);
 	if (is_unclosed_quotes(line) == 1)
 	{
 		ft_display_err("minishell: unclosed quote error\n", all, 0);		
-		exit(all->err);
+		return (0);
 	}
 	// if (/* VERIF PIPE FIN PIPE DEBUT*/)
 	// if (/* VERIF REDIR VIDE */)
@@ -128,9 +129,10 @@ t_data	*fill_args(char *line, t_data *data)
 		return (NULL);
 	res = shell_split(line, ' ');
 	data->cmd = my_strdup(res[i++]);
-	data->arg = malloc(sizeof(char *) * (arg_tab_len(res) + 1));
+	if (arg_tab_len(res) > 0)
+		data->arg = malloc(sizeof(char *) * (arg_tab_len(res) + 1));
 	if (!data->arg)
-		return (data);
+		return (free_tab_tab(res), data);
 	while (res[i] != NULL)
 	{
 		data->arg[j] = my_strdup(res[i]);

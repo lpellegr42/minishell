@@ -81,6 +81,7 @@ void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *));
 t_env	*ft_copy_env(t_env *env, char **envp);
 t_env	*ft_append_env(t_env *env, char **str);
 char	*ft_getenv(char *str, t_env *env);
+void	ft_free_env(t_env *env);
 void	ft_modify_env(char *s1, char *s2, t_env *env);
 void	ft_reset_env(t_all *all);
 
@@ -105,7 +106,7 @@ char	*ft_getpath(char *cmd, char **envp);
 char	*ft_getenv_tab(char *name, char **envp);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 char	**ft_get_args(char *path, char **args);
-int	ft_tab_len(char **tab);
+int		ft_tab_len(char **tab);
 
 /* ******************************UTILS_LIBFT********************************* */
 int		ft_strlen(char *str);
@@ -164,7 +165,7 @@ int	search_pipe(char *str);
 
 //	parsing/split_minishell.c
 
-void	split_free(char **res, int count); //need to be put in another function, cause there's too many
+void	split_free(char **res, int count); //6th funct in file
 char	**shell_split(char *s, char sep);
 
 //	parsing/quote_parsing.c

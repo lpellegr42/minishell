@@ -63,6 +63,11 @@ char	*ft_getpath(char *cmd, char **envp)
 	i = -1;
 	if (!ft_getenv_tab("PATH", envp))
 		return (NULL);
+	if (ft_strncmp(cmd, "./", 2) == 0)
+	{
+		cmd_path = ft_strdup(cmd);
+		return (cmd_path);
+	}
 	path_array = ft_split(ft_getenv_tab("PATH", envp), ':');
 	while (path_array[++i])
 	{
@@ -91,3 +96,24 @@ int	ft_tab_len(char **tab)
 		i++;
 	return (i);
 }
+
+char	**ft_get_args(char *path, char **arg)
+{
+	char	**tab;
+	int	i;
+	int	j;
+
+	tab = malloc(sizeof(char *) * (ft_tab_len(arg) + 2));
+	tab[0] = ft_strdup(path);
+	i = 0;
+	j = 1;
+	while (arg && arg[i])
+	{
+		tab[j] = ft_strdup(arg[i]);
+		i++;
+		j++;
+	}
+	tab[j] = NULL;
+	return (tab);	
+}
+
