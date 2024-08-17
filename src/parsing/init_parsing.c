@@ -44,6 +44,7 @@ t_all	*parsing(char *line, t_all *all)
 	return(all);
 }
 
+
 /**
  * @brief Create a new node with default value.
  */
@@ -55,9 +56,9 @@ t_data	*init_node(char *str)
 	if (!new_node)
 		return (NULL);
 	new_node->type = DEFAULT;
-	new_node->str = my_strdup(str);
-	new_node->cmd = NULL;
-	new_node->arg = NULL;
+	new_node->str = my_strdup(str); //char *
+	new_node->cmd = NULL; //char *
+	new_node->arg = NULL; //char **
 	
 	new_node->fd_in = -1; //voir pour fd val par defaut
 	new_node->fd_out = -1;
@@ -68,10 +69,33 @@ t_data	*init_node(char *str)
 	return (new_node);
 }
 
-// void	free_t_data(t_data *data)
-// {
+void	data_delnode(t_data	*data)
+{
+	if (data)
+	{
+		if (data->str)
+			free(data->str);
+		if (data->cmd)
+			free(data->cmd);
+		if (data->arg)
+			free_tab_tab(data->arg);
+		// add some free if i malloc anything else.
+		free(data);
+	}
 
-// }
+}
+void data_clear(t_all *all)
+{
+	t_data *tmp;
+
+	while (all->data)
+	{
+		tmp = all->data->next;
+		data_delnode(all->data);
+		all->data = tmp;
+	}
+}
+
 
 int	is_builtin(char **res)
 {

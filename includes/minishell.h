@@ -150,11 +150,13 @@ t_data	*parse_args(char *line, t_data *data);
 
 // 	parsing/init_parsing.c
 
-int	initial_check(char *line, t_all *all);
+int		initial_check(char *line, t_all *all);
 t_all	*parsing(char *line, t_all *all);
 t_data	*init_node(char *str);
-int	is_builtin(char **res);
-int	builtin_or_exec(t_data *data, char **res, int i, int flag);
+void	data_delnode(t_data	*data);
+void	data_clear(t_all *all);
+int		is_builtin(char **res);
+int		builtin_or_exec(t_data *data, char **res, int i, int flag);
 t_data	*fill_args(char *line, t_data *data);
 
 
