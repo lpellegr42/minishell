@@ -23,6 +23,7 @@ $(DIR_OBJ)%.o: $(DIR_SRC)%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS)
 
