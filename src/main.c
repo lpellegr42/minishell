@@ -81,9 +81,7 @@ void	ft_prompt_loop(t_all *all)
 		}
 		if (line == NULL)
 			ft_exit(all);
-		//all->data = parse_args(line, all->data);
-		// printf("test : %s, %s\n", all->data->arg[0], all->data->arg[1]);
-		all = parsing(line, all); //the parsing will return command table that you can une in the exec. TODO
+		all = parsing(line, all);
 		ft_exec(all);
 		ft_reset_env(all);
 		free(line);

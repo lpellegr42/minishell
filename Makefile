@@ -17,10 +17,12 @@ SRCS =  $(wildcard $(DIR_SRC)*.c) \
 OBJS = $(SRCS:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 
 all: $(NAME)
+	@clear
 
 $(DIR_OBJ)%.o: $(DIR_SRC)%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS)
