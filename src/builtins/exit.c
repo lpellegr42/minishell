@@ -10,8 +10,8 @@ void	ft_free_data(t_data *data)
 		return ;
 	// while (data)
 	// {
-	if (data->str)
-		free(data->str);
+	// if (data->str)
+	// 	free(data->str);
 	if (data->arg)
 		free_tab_tab(data->arg);
 	if (data->cmd)
@@ -43,6 +43,7 @@ void	ft_free_env(t_env *env)
 		env = tmp;
 	}
 }
+
 /* @brief Exits properly the program. Free the structs.
  * @return Nothing
 */

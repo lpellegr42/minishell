@@ -28,17 +28,16 @@ typedef struct s_env
 
 typedef struct s_data
 {
-	int			type;
-	char		*str;
-
-	char		*cmd;
-	char		**arg; //const ? premier argument est le nom du programme ds cas de EXECVE, dernier est NULL
-	int			fd_out; //fd_out et in same thing - to check
-	int			fd_in;
-	int			flag_out; //simple ou double redir; > O_CREATE ou >> O_APPEND
-	char 		*here_doc; //change for int fd
-	struct s_data		*next;
-} 	t_data; //fill en * simple (ptr simple) pour l'exec
+	int				type;
+	char			*str;
+	char			*cmd;
+	char			**arg;//const ? premier argument est le nom du programme ds cas de EXECVE, dernier est NULL
+	int				fd_out;//fd_out et in same thing - to check
+	int				fd_in;
+	int				flag_out; //simple ou double redir; > O_CREATE ou >> O_APPEND
+	char			*here_doc; //change for int fd
+	struct s_data	*next;
+}		t_data; //fill en * simple (ptr simple) pour l'exec
 
 // my enum
 typedef enum s_tokentype //see if usefull
@@ -94,6 +93,7 @@ void	ft_free_data(t_data *data);
 /* *********************************EXEC************************************* */
 void	ft_exec(t_all *all);
 void	ft_docmd(t_all *all);
+void	ft_do_pipes(t_all *all);
 char	*ft_getpath(char *cmd, char **envp);
 char	*ft_getenv_tab(char *name, char **envp);
 char	*ft_substr(char *s, unsigned int start, size_t len);
@@ -147,11 +147,10 @@ int		is_builtin(char **res);
 int		builtin_or_exec(t_data *data, char **res, int i, int flag);
 t_data	*fill_args(char *line, t_data *data);
 
-
 //	parsing/pipe_parsing.c
 
 //t_cmdtree	*parse_pipe(t_cmdtree *node);
-int	search_pipe(char *str);
+int		search_pipe(char *str);
 
 //	parsing/split_minishell.c
 
@@ -177,19 +176,19 @@ int		arg_tab_len(char **tab);
 
 // parsing/content_checking_utils.c
 
-int	is_sep(char c);
-int is_digit(char c);
-int is_only_digit(char *str);
-int is_whitespace(char c);
-int	is_only_whitespace(char *str);
-int	empty_line_check(char *line);
-int	is_redir(char c);
+int		is_sep(char c);
+int		is_digit(char c);
+int		is_only_digit(char *str);
+int		is_whitespace(char c);
+int		is_only_whitespace(char *str);
+int		empty_line_check(char *line);
+int		is_redir(char c);
 
 	// Temp
 
 //	temp/test.c
 
-char* 	enum_to_str(int spec_enum); //can be removed from .h for now
+char	*enum_to_str(int spec_enum); //can be removed from .h for now
 char	**ft_split(char const *s, char sep);
 void	free_tab_tab(char **tab);
 void	quote_checker_verif(char *str);

@@ -46,6 +46,7 @@ char	*ft_val_copy(t_env *env, char *envp)
 	env->val[j] = '\0';
 	return (env->val);
 }
+
 /* @brief Append a node at the back of the linked list
  * @return Nothing
 */
@@ -72,6 +73,7 @@ t_env	*ft_append_node(t_env *env, char *envp)
 	}
 	return (env);
 }
+
 /* @brief Increases shlvl
  * @return Nothing
 */
@@ -94,6 +96,7 @@ void	ft_shlvl(t_env *env)
 		tmp = tmp->next;
 	}
 }
+
 /* @brief Copies environment variables in a linked list. 
  * @return Nothing
 */

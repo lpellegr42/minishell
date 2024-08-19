@@ -20,6 +20,7 @@ void	ft_cd_home(t_all *all)
 	free(buf[0]);
 	free(buf);
 }
+
 /* @brief Changes the working directory
  * @return Nothing
 */

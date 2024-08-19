@@ -5,7 +5,7 @@ void ft_free_tab(char **tab)
 	int i;
 
 	i = 0;
-	while(tab[i])
+	while(tab[i] && tab[i][0] != '\0')
 	{
 		free(tab[i]);
 		i++;

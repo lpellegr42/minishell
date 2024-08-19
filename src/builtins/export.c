@@ -15,6 +15,7 @@ void	ft_reset_pos(t_env *env)
 		tmp = tmp->next;
 	}
 }
+
 /* @brief Sets positions in ascii order
  * @return Nothing
 */
@@ -44,6 +45,7 @@ void	ft_set_pos(t_env *env)
 		tmp = tmp->next;
 	}
 }
+
 /* @brief Splits the string and create the key and the val for the env variable
  * @return Nothing
 */
@@ -99,6 +101,7 @@ void	ft_print_export(t_env *env)
 			tmp = tmp->next;
 	}
 }
+
 /* @brief Prints environment variables in ascii order if no arguments given 
 	or creates new env variables
  * @return Nothing

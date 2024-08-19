@@ -100,8 +100,8 @@ int	ft_tab_len(char **tab)
 char	**ft_get_args(char *path, char **arg)
 {
 	char	**tab;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	tab = malloc(sizeof(char *) * (ft_tab_len(arg) + 2));
 	tab[0] = ft_strdup(path);
@@ -114,6 +114,6 @@ char	**ft_get_args(char *path, char **arg)
 		j++;
 	}
 	tab[j] = NULL;
-	return (tab);	
+	return (tab);
 }
 

@@ -16,6 +16,7 @@ int	ft_check_echo(char	*str)
 	}
 	return (1);
 }
+
 /* @brief Prints the arguments
  * @return Nothing
 */
@@ -42,6 +43,7 @@ void	ft_print_echo(t_all *all)
 			printf("\n");
 	}
 }
+
 /* @brief Displays the string given in parameters
  * @return Nothing
 */
