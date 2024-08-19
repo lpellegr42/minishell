@@ -33,8 +33,7 @@ t_all	*parsing(char *line, t_all *all)
 	//node = parse_pipe(node);
 		// securité si pas de pipe a verif - faire fct de trim de pipe fin et pipe debut.
 	//node = parse_redir(node);
-	if (line && !empty_line_check(line))
-		node = fill_args(line, node);
+	node = fill_args(line, node);
 	all->data = node;
 	//all->data = root_node; //when pipe's working
 	return(all);

@@ -47,4 +47,6 @@ void	ft_exec(t_all *all)
 		ft_builtins(all);
 	// else
 	// 	ft_do_pipe(all);
+	if (all->data)
+		ft_free_data(all->data);
 }

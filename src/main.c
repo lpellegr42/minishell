@@ -62,15 +62,14 @@ void	ft_prompt_loop(t_all *all)
 		{
 			ft_free_env(all->env);
 			ft_free_tab(all->env_cpy);
-			ft_free_data(all->data);
 			clear_history();
 			printf("exit\n");
 			return ;
 		}
-		all = parsing(line, all);
-		if (all)
+		if (!empty_line_check(line))
+			all = parsing(line, all);
+		if (all->data)
 			ft_exec(all);
-		ft_free_data(all->data);
 		free(line);
 		line = NULL;
 	}
