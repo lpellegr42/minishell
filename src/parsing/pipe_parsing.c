@@ -41,3 +41,5 @@ int	search_pipe(char *str)
 	return (-1); //no pipe in the str.
 }
 
+
+

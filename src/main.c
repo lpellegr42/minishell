@@ -70,6 +70,7 @@ void	ft_prompt_loop(t_all *all)
 		all = parsing(line, all);
 		if (all)
 			ft_exec(all);
+		ft_free_data(all->data);
 		free(line);
 		line = NULL;
 	}

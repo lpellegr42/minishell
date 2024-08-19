@@ -35,7 +35,6 @@ t_all	*parsing(char *line, t_all *all)
 	//node = parse_redir(node);
 	if (line && !empty_line_check(line))
 		node = fill_args(line, node);
-	
 	all->data = node;
 	//all->data = root_node; //when pipe's working
 	return(all);
@@ -60,7 +59,6 @@ t_data	*init_node(void)
 	new_node->fd_out = -1;
 	new_node->flag_out = -1;
 	new_node->here_doc = NULL;
-	
 	new_node->next = NULL;
 	return (new_node);
 }

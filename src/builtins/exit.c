@@ -10,8 +10,6 @@ void	ft_free_data(t_data *data)
 		return ;
 	// while (data)
 	// {
-	if (data->str)
-		free(data->str);
 	if (data->arg)
 		free_tab_tab(data->arg);
 	if (data->cmd)

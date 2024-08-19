@@ -76,7 +76,6 @@ void	ft_modify_env(char *s1, char *s2, t_env *env);
 void	ft_reset_env(t_all *all);
 
 /* *******************************BUILTINS*********************************** */
-
 void	ft_builtins(t_all *all);
 void	ft_export(t_all *all);
 void	ft_print_export(t_env *env);
