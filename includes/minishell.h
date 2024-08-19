@@ -79,6 +79,7 @@ void	ft_reset_env(t_all *all);
 void	ft_builtins(t_all *all);
 void	ft_export(t_all *all);
 void	ft_print_export(t_env *env);
+char	**ft_malloc_tab(int len, char *s, char sep);
 char	**ft_split_export(char *s, char sep);
 int		ft_check_node(char *s1, char *s2);
 void	ft_env(t_env *env);

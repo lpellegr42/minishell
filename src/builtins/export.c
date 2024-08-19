@@ -62,6 +62,8 @@ void	ft_parse_export(t_env *env, char *str)
 		{
 			if (pars[1])
 			{
+				if (tmp->val)
+					free(tmp->val);
 				tmp->val = ft_strdup(pars[1]);
 				tmp->set = 1;
 			}

@@ -89,19 +89,16 @@ char	**ft_split_export(char *s, char sep)
 	int		j;
 
 	len = ft_count_words(s, sep);
-	if (len)
-	{
-		j = 0;
-		res = malloc(sizeof(char *) * (len + 1));
-		if (!res)
-			return (NULL);
-		res[j] = ft_key(s, sep);
-		if (len > 1)
-			res[++j] = ft_val(s, sep);
-		else if (len <= 1 && ft_strchr(s, sep))
+	res = ft_malloc_tab(len, s, sep);
+	if (!res)
+		return (NULL);
+	j = 0;
+	res[j] = ft_key(s, sep);
+	if (len > 1)
+		res[++j] = ft_val(s, sep);
+	else if (len == 1 && ft_strchr(s, sep))
 			res[++j] = ft_strdup("");
-	}
-	if (res[j][0])
+	if (res[j])
 		res[j + 1] = NULL;
 	return (res);
 }
