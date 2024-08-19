@@ -41,6 +41,7 @@ void	ft_free_env(t_env *env)
 		env = tmp;
 	}
 }
+
 /* @brief Exits properly the program. Free the structs.
  * @return Nothing
 */

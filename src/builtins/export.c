@@ -15,6 +15,7 @@ void	ft_reset_pos(t_env *env)
 		tmp = tmp->next;
 	}
 }
+
 /* @brief Sets positions in ascii order
  * @return Nothing
 */
@@ -44,6 +45,7 @@ void	ft_set_pos(t_env *env)
 		tmp = tmp->next;
 	}
 }
+
 /* @brief Splits the string and create the key and the val for the env variable
  * @return Nothing
 */
@@ -60,6 +62,8 @@ void	ft_parse_export(t_env *env, char *str)
 		{
 			if (pars[1])
 			{
+				if (tmp->val)
+					free(tmp->val);
 				tmp->val = ft_strdup(pars[1]);
 				tmp->set = 1;
 			}
@@ -99,6 +103,7 @@ void	ft_print_export(t_env *env)
 			tmp = tmp->next;
 	}
 }
+
 /* @brief Prints environment variables in ascii order if no arguments given 
 	or creates new env variables
  * @return Nothing

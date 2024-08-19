@@ -39,3 +39,19 @@ int	ft_check_node(char *s1, char *s2)
 		return (0);
 	return (1);
 }
+
+char	**ft_malloc_tab(int len, char *s, char sep)
+{
+	char **res;
+
+	if (len > 1)
+		res = malloc(sizeof(char *) * (len + 1));
+	else if (len == 1)
+	{
+		if (ft_strchr(s, sep))
+			res = malloc(sizeof(char *) * 3);
+		else
+			res = malloc(sizeof(char *) * (len + 1));
+	}
+	return (res);
+}
