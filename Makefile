@@ -1,7 +1,7 @@
 NAME = minishell
 DIR_SRC = src/
 DIR_OBJ = obj/
-CC = cc 
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror -ggdb
 LDFLAGS = -lreadline
 RM = rm -f
