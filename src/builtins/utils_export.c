@@ -44,6 +44,7 @@ char	**ft_malloc_tab(int len, char *s, char sep)
 {
 	char **res;
 
+	res = NULL;
 	if (len > 1)
 		res = malloc(sizeof(char *) * (len + 1));
 	else if (len == 1)
