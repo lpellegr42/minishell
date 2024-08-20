@@ -68,7 +68,7 @@ void	ft_prompt_loop(t_all *all)
 		}
 		if (!empty_line_check(line))
 			all = parsing(line, all);
-		if (all->data)
+		if (!empty_line_check(line) && all->data)
 			ft_exec(all);
 		free(line);
 		line = NULL;

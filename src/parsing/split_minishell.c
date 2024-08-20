@@ -118,7 +118,7 @@ static char	*word_copy(char *s, int *i, char sep)
 	char	*new_word;
 	int		len;
 
-	new_word = NULL;
+	//new_word = NULL;
 	while (s[*i] == sep && !is_in_quote(s, *i, 1))
         (*i)++;
 	 if (s[*i])

@@ -13,9 +13,15 @@ void	ft_free_data(t_data *data)
 	if (data->arg)
 		free_tab_tab(data->arg);
 	if (data->cmd)
+	{
 		free(data->cmd);
+		data->cmd = NULL;
+	}
 	if (data->here_doc)
+	{
 		free(data->here_doc);
+		data->here_doc = NULL;
+	}
 	free(data);
 	data = NULL;
 		// data = data->next;

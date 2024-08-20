@@ -40,13 +40,21 @@ void	ft_docmd(t_all *all)
 
 void	ft_exec(t_all *all)
 {
+
 	ft_reset_env(all);
+	// printf("test %p\n", all->data->cmd);
 	if (!all->data->cmd)
 		return ;
-	if (all->data->next == NULL)
+	if (all->data->cmd != NULL && all->data->next == NULL)
+	{
 		ft_builtins(all);
+	}
 	// else
 	// 	ft_do_pipe(all);
-	if (all->data)
+	// printf("test\n");
+	if (all->data->cmd != NULL)
+	{
 		ft_free_data(all->data);
+	}
+
 }
