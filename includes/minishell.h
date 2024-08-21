@@ -29,9 +29,9 @@ typedef struct s_env
 typedef struct s_data
 {
 	int				type;
-	char			*str;
+	char			*str; //rename line
 	char			*cmd;
-	char			**arg;//const ? premier argument est le nom du programme ds cas de EXECVE, dernier est NULL
+	char			**arg; //const ? premier argument est le nom du programme ds cas de EXECVE, dernier est NULL
 	int				fd_out;//fd_out et in same thing - to check
 	int				fd_in;
 	int				flag_out; //simple ou double redir; > O_CREATE ou >> O_APPEND
