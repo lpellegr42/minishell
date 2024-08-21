@@ -126,16 +126,6 @@ void	blue(void);
 void	green(void);
 void	red(void);
 
-// 	temp
-
-// temp/ft_split.c
-
-char	**ft_split(char const *s, char sep);
-void	ft_print_data(t_data *lst);
-
-// temp/temp_arg.c
-t_data	*parse_args(char *line, t_data *data);
-
 //								Parsing
 
 // 	parsing/init_parsing.c
@@ -186,17 +176,19 @@ int		is_only_whitespace(char *str, int i, int len);
 int		empty_line_check(char *line);
 int		is_redir(char c);
 
-	// Temp
+	// 							Temp
+
+// temp/ft_split.c
+
+char	**ft_split(char const *s, char sep);
 
 //	temp/test.c
 
-char	*enum_to_str(int spec_enum); //can be removed from .h for now
-char	**ft_split(char const *s, char sep);
 void	free_tab_tab(char **tab);
-void	quote_checker_verif(char *str);
 void	print_split(char **res);
 void	print_parsing(t_all *all);
 
+//void	quote_checker_verif(char *str);
 //void	test_parsing(char *line);
 
 #endif
