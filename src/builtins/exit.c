@@ -53,13 +53,16 @@ void	ft_free_env(t_env *env)
 */
 void	ft_exit(t_all *all)
 {
-	int	ret;
-
-	ret = 0;
+	int ret;
 	if (all->data)
 	{
 		if (ft_strncmp(all->data->cmd, "exit", 5) == 0 && all->data->arg)
+		{
 			ret = ft_atoi(all->data->arg[0]);
+			if (ret > 256)
+				ret = ret % 256;
+			all->err = ret;
+		}
 		ft_free_data(all->data);
 	}
 	if (all->env)
@@ -68,5 +71,5 @@ void	ft_exit(t_all *all)
 		ft_free_tab(all->env_cpy);
 	rl_clear_history();
 	printf("exit\n");
-	exit(ret);
+	exit(all->err);
 }

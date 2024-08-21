@@ -3,9 +3,11 @@
 
 void	ft_exec_cmd(char *path, char **args, t_all *all)
 {
+	int		ret;
 	pid_t	pid;
 
 	pid = 0;
+	ret = 0;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -17,7 +19,10 @@ void	ft_exec_cmd(char *path, char **args, t_all *all)
 		}
 	}
 	else
-		waitpid(pid, &all->err, 0);
+	{
+		waitpid(pid, &ret, 0);
+		all->err = (ret >> 8);
+	}
 }
 
 void	ft_docmd(t_all *all)
@@ -29,7 +34,7 @@ void	ft_docmd(t_all *all)
 	if (!path)
 	{
 		printf("-Minishell: %s: ", all->data->cmd);
-		ft_display_err("No such file or directory\n", all, 127);
+		ft_display_err("Command not found\n", all, 127);
 		return ;
 	}
 	args = ft_get_args(path, all->data->arg);
