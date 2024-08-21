@@ -6,26 +6,34 @@
 */
 void	ft_free_data(t_data *data)
 {
+	t_data	*temp;
+
 	if (!data)
 		return ;
-	// while (data)
-	// {
-	if (data->arg)
-		free_tab_tab(data->arg);
-	if (data->cmd)
+	while (data)
 	{
-		free(data->cmd);
-		data->cmd = NULL;
+		temp = data->next;
+		if (data->line)
+		{
+			free(data->line);
+			data->line = NULL;
+		}
+		if (data->arg)
+			free_tab_tab(data->arg);
+		if (data->cmd)
+		{
+			free(data->cmd);
+			data->cmd = NULL;
+		}
+		if (data->here_doc)
+		{
+			free(data->here_doc);
+			data->here_doc = NULL;
+		}
+		free(data);
+		data = NULL;
+		data = temp;
 	}
-	if (data->here_doc)
-	{
-		free(data->here_doc);
-		data->here_doc = NULL;
-	}
-	free(data);
-	data = NULL;
-		// data = data->next;
-	// }
 }
 
 /* @brief Frees environments nodes

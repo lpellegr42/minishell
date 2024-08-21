@@ -24,30 +24,58 @@
 // 	}
 // }
 
-void	parse_pipe(t_data *node)
-{
-	char *temp;
-	int pipe_pos;
+// void	parse_pipe(t_data *node)
+// {
+// 	char *temp;
+// 	int pipe_pos;
 
-	temp = NULL;
-	pipe_pos = search_pipe(node->line);
+// 	temp = NULL;
+// 	pipe_pos = search_pipe(node->line);
+// 	if (pipe_pos == -1)
+// 	{
+// 		if (temp)
+// 			free(temp);
+// 		return ;
+// 	}
+// 	else //tester dans cas ou str[0] est un pipe -> should work with split
+// 	{
+// 		temp = my_strdup(node->line);
+// 		//node->type = PIPE;
+// 		free(node->line);
+// 		node->line = my_substr(temp, 0, pipe_pos);
+// 		node->next = init_node();
+// 		node->next->line = my_substr(temp, pipe_pos + 1, my_strlen(temp) - pipe_pos - 1);
+// 		//HANDLE FD
+// 		free (temp);
+// 		return ;
+// 	}
+// }
+
+void	parse_pipe(t_data *data)
+{
+	char	**parsed_line;
+	int		pipe_pos;
+	int		i;
+
+	i = 0;
+	pipe_pos = search_pipe(data->line);
 	if (pipe_pos == -1)
-	{
-		if (temp)
-			free(temp);
 		return ;
-	}
 	else //tester dans cas ou str[0] est un pipe -> should work with split
 	{
-		temp = my_strdup(node->line);
-		//node->type = PIPE;
-		free(node->line);
-		node->line = my_substr(temp, 0, pipe_pos);
-		node->next = init_node();
-		node->next->line = my_substr(temp, pipe_pos + 1, my_strlen(temp) - pipe_pos - 1);
-		//HANDLE FD
-		free (temp);
-		return ;
+		parsed_line = shell_split(data->line, '|'); 
+		while(parsed_line[i])
+		{
+			free(data->line);
+			data->line = my_strdup(parsed_line[i]);
+			i++;
+			if (parsed_line[i] != NULL)
+			{
+				data->next = init_node();
+				data = data->next;
+			}
+		}
+		free_tab_tab(parsed_line);
 	}
 }
 

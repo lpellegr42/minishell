@@ -11,6 +11,8 @@
 
 int	initial_check(char *line, t_all *all)
 {
+	if (empty_line_check(line) == 1)
+		return (0);
 	if (is_unclosed_quotes(line) == 1)
 	{
 		ft_display_err("minishell: unclosed quote error\n", all, 0);		
@@ -23,23 +25,20 @@ int	initial_check(char *line, t_all *all)
 
 t_all	*parsing(char *line, t_all *all)
 {
-	t_data	*root_node = NULL; //when pipe's working
-	t_data	*node = NULL;
+	t_data	*root_node;
+	t_data	*node;
 
-	if (!initial_check(line, all))
-		return (NULL);
 	node = init_node();
-	root_node = node; //when pipe's working
+	root_node = node;
 	node->line = my_strdup(line);
+	parse_pipe(node); // securité si pas de pipe a verif - faire fct de trim de pipe fin et pipe debut.
 	while (node)
 	{
-		parse_pipe(node); // securité si pas de pipe a verif - faire fct de trim de pipe fin et pipe debut.
-		//node = parse_redir(node);
 		node = fill_args(node);
 		node = node->next;
 	}
-	all->data = root_node; //when pipe's working
-	return(all);
+	all->data = root_node;
+	return (all);
 }
 
 

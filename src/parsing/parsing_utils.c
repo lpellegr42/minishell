@@ -58,12 +58,10 @@ char	*my_strdup(const char *s)
 	int		i;
 	char	*dest;
 
-	i = 0;
-	if (!s)
-		return NULL;
-	dest = (char *)malloc(sizeof(char) * (my_strlen(s) + 1));
-	if (dest == NULL)
+	dest = malloc(sizeof(char) * (my_strlen(s) + 1));
+	if (!dest)
 		return (NULL);
+	i = 0;
 	while (s[i])
 	{
 		dest[i] = s[i];

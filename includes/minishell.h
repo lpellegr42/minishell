@@ -29,7 +29,7 @@ typedef struct s_env
 typedef struct s_data
 {
 	int				type; //useless, gérer autrement.
-	char			*line;
+	char			*line; //rename line
 	char			*cmd;
 	char			**arg; //const ? premier argument est le nom du programme ds cas de EXECVE, dernier est NULL
 	int				fd_out;//fd_out et in same thing - to check
