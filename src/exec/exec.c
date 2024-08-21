@@ -52,7 +52,7 @@ void	ft_exec(t_all *all)
 		return ;
 	if (all->data->cmd != NULL && all->data->next == NULL)
 	{
-		ft_builtins(all);
+		ft_choose_cmd(all);
 	}
 	// else
 	// 	ft_do_pipe(all);
