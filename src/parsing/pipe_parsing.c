@@ -47,7 +47,8 @@ int	search_pipe(char *str)
 	return (-1); //no pipe in the str.
 }
 
-// WIP
+// //WIP
+
 // /**
 //  * Return 1 on error, 0 if it's ok.
 //  */

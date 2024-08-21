@@ -110,11 +110,12 @@ int	tab_len(char **tab)
 	}
 	return(i);
 }
+
 /**
  * @brief Count the number of element in char ** array, skiping the first element.
  * @return The number of element in the array minus 1, 0 if there's is only one.
  */
-int arg_tab_len(char **tab) 
+int arg_tab_len(char **tab)
 {
     int count = 0;
 
