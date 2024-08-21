@@ -65,7 +65,7 @@ int	is_in_quote(char *str, int pos, int flag)
 	i = 0;
 	s_quote = 0;
 	d_quote = 0;
-	while(str && str[i])
+	while (str && str[i])
 	{
 		if (flag == 0)
 			quote_checker(str, i, &s_quote, &d_quote);

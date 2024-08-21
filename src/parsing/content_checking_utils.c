@@ -50,14 +50,13 @@ int is_whitespace(char c)
  * @brief Check whether the given string contains only whitespace.
  * @return 1 if yes. 0 if not.
 */
-int	is_only_whitespace(char *str)
+int	is_only_whitespace(char *str, int i, int len)
 {
-	int i;
-
-	i = 0;
-	while(str[i] && is_whitespace(str[i]))
+	if (i >= len)
+		return (1);
+	while(str && str[i] && is_whitespace(str[i]) && i < len)
 		i++;
-	if (i == ft_strlen(str))
+	if (i == len)
 		return (1);
 	return (0);
 
@@ -69,7 +68,7 @@ int	is_only_whitespace(char *str)
 */
 int	empty_line_check(char *line)
 {
-	if (*line == '\0' || /* !line ||*/ is_only_whitespace(line))
+	if (*line == '\0' || /* !line ||*/ is_only_whitespace(line, 0, ft_strlen(line)))
 		return (1);
 	return (0);
 }

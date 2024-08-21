@@ -68,6 +68,24 @@ void	print_split(char **res)
 	}
 }
 
+void	print_parsing(t_all *all)
+{
+	int i = 0;
+	while (all->data)
+	{
+		printf("data[%i]:%s\n", i, all->data->line);
+		printf ("	cmd:%s\n", all->data->cmd);
+		int j = 0;
+		while(all->data->arg[j])
+		{
+			printf("		arg[%i]:%s\n", j, all->data->arg[j]);
+			j++;
+		}
+		all->data = all->data->next;
+		i++;
+	}
+}
+
 // BTREE LEGACY PART
 
 // /*

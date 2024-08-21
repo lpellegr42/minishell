@@ -28,8 +28,8 @@ typedef struct s_env
 
 typedef struct s_data
 {
-	int				type;
-	char			*str; //rename line
+	int				type; //useless, gérer autrement.
+	char			*line;
 	char			*cmd;
 	char			**arg; //const ? premier argument est le nom du programme ds cas de EXECVE, dernier est NULL
 	int				fd_out;//fd_out et in same thing - to check
@@ -145,12 +145,14 @@ t_all	*parsing(char *line, t_all *all);
 t_data	*init_node(void);
 int		is_builtin(char **res);
 int		builtin_or_exec(t_data *data, char **res, int i, int flag);
-t_data	*fill_args(char *line, t_data *data);
+t_data	*fill_args(t_data *data);
 
 //	parsing/pipe_parsing.c
 
 //t_cmdtree	*parse_pipe(t_cmdtree *node);
 int		search_pipe(char *str);
+void	parse_pipe(t_data *node);
+
 
 //	parsing/split_minishell.c
 
@@ -180,7 +182,7 @@ int		is_sep(char c);
 int		is_digit(char c);
 int		is_only_digit(char *str);
 int		is_whitespace(char c);
-int		is_only_whitespace(char *str);
+int		is_only_whitespace(char *str, int i, int len);
 int		empty_line_check(char *line);
 int		is_redir(char c);
 
@@ -193,6 +195,8 @@ char	**ft_split(char const *s, char sep);
 void	free_tab_tab(char **tab);
 void	quote_checker_verif(char *str);
 void	print_split(char **res);
+void	print_parsing(t_all *all);
+
 //void	test_parsing(char *line);
 
 #endif

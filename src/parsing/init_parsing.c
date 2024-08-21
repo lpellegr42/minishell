@@ -23,19 +23,22 @@ int	initial_check(char *line, t_all *all)
 
 t_all	*parsing(char *line, t_all *all)
 {
-	t_data	*node;
-	//t_data	*root_node; //when pipe's working
+	t_data	*root_node = NULL; //when pipe's working
+	t_data	*node = NULL;
 
 	if (!initial_check(line, all))
 		return (NULL);
 	node = init_node();
-	//root_node = node; //when pipe's working
-	//node = parse_pipe(node);
-		// securité si pas de pipe a verif - faire fct de trim de pipe fin et pipe debut.
-	//node = parse_redir(node);
-	node = fill_args(line, node);
-	all->data = node;
-	//all->data = root_node; //when pipe's working
+	root_node = node; //when pipe's working
+	node->line = my_strdup(line);
+	while (node)
+	{
+		parse_pipe(node); // securité si pas de pipe a verif - faire fct de trim de pipe fin et pipe debut.
+		//node = parse_redir(node);
+		node = fill_args(node);
+		node = node->next;
+	}
+	all->data = root_node; //when pipe's working
 	return(all);
 }
 
@@ -50,6 +53,7 @@ t_data	*init_node(void)
 	new_node =  malloc(sizeof(t_data));
 	if (!new_node)
 		return (NULL);
+	new_node->line = NULL;
 	new_node->type = DEFAULT;
 	new_node->cmd = NULL; //char *
 	new_node->arg = NULL; //char **
@@ -82,7 +86,7 @@ int	is_builtin(char **res)
 		return (0);
 }
 
-t_data	*fill_args(char *line, t_data *data)
+t_data	*fill_args(t_data *data)
 {
 	char **res;
 	int i;
@@ -90,9 +94,9 @@ t_data	*fill_args(char *line, t_data *data)
 
 	i = 0;
 	j = 0;
-	if (!line)
+	if (!data->line)
 		return (NULL);
-	res = shell_split(line, ' ');
+	res = shell_split(data->line, ' ');
 	data->cmd = my_strdup(res[i++]);
 	if (arg_tab_len(res) > 0)
 		data->arg = malloc(sizeof(char *) * (arg_tab_len(res) + 1));

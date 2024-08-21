@@ -59,7 +59,8 @@ char	*my_strdup(const char *s)
 	char	*dest;
 
 	i = 0;
-
+	if (!s)
+		return NULL;
 	dest = (char *)malloc(sizeof(char) * (my_strlen(s) + 1));
 	if (dest == NULL)
 		return (NULL);
@@ -79,9 +80,9 @@ size_t	my_strlen(const char *s)
 {
 	int	i;
 
-	i = 0;
 	if (!s)
 		return (0);
+	i = 0;
 	while (s[i])
 		i++;
 	return (i);
