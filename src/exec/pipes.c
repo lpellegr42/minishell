@@ -44,8 +44,10 @@ void	ft_do_pipe(t_all *all)
 	int fd[2];
 	pid_t	pid;
 	int prev_fd;
+	t_data	*tmp;
 
 	prev_fd = 0;
+	tmp = all->data;
 	while (all->data)
 	{
 		pipe(fd);
@@ -59,7 +61,7 @@ void	ft_do_pipe(t_all *all)
 			}
 			close(fd[0]);
 			ft_choose_cmd(all);
-			exit (1); // remplacer par code d'erreur type : "execve error" ou something like that.
+			exit(all->err); // remplacer par code d'erreur type : "execve error" ou something like that.
 		}
 		else
 		{
@@ -69,7 +71,10 @@ void	ft_do_pipe(t_all *all)
 			if (all->data->next)
 				all->data = all->data->next;
 			else
+			{
+				all->data = tmp;
 				return ;
+			}
 		}
 	}
 }
