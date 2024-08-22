@@ -1,29 +1,17 @@
 
 GROUP TODO : 
 
-- Important TODO, parler de comment les fork et les pipe (permettant la communication entre processus, et donc différentes partie de notre prompt) va fonctionner.
-	dans les grandes lignes, le parsing doit refleter cela et l'exec doit aussi, basique pour le projet mais important.
-
-
-- Creer la fonction
+Il nous manque : 
+- variables env : "$USER"
+- return value : $? + $?
+- simples et doubles quotes
+- redirections 
+- 'cat | cat | ls'
 
 // Livane specific roadmap
 
-- ERROR : cd (no such file, access denied..)
-- ERROR : retour err exec, cd ?
-
-- gestion erreur des builtin (prendre info supsur la notion)
 
 // Léo specific roadmap
-
-
-- une fonction qui remplit simplement les arguments de la structure
-
-// Léo specific roadmap
-
-- Create a simple between quote verif. done
-- code a minishell adapted split - WIP
-
 
 Ajouter gestion d'erreur simple
 

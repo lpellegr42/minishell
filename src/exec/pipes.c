@@ -41,40 +41,50 @@
 
 void	ft_do_pipe(t_all *all)
 {
-	int fd[2];
+	int		pipe_fd[2];
 	pid_t	pid;
-	int prev_fd;
+	int		input_fd;
 	t_data	*tmp;
+	int		status;
 
-	prev_fd = 0;
+	input_fd = 0;
 	tmp = all->data;
+	status = 0;
 	while (all->data)
 	{
-		pipe(fd);
+		if (pipe(pipe_fd) == -1)
+		{
+			perror("Pipe error");
+			exit(EXIT_FAILURE);
+		}
 		pid = fork();
+		if (pid == -1)
+		{
+			perror("Fork error");
+			exit(EXIT_FAILURE);
+		}
 		if (pid == 0)
 		{
-			dup2(prev_fd, 0);
+			dup2(input_fd, STDIN_FILENO);
 			if (all->data->next != NULL)
-			{
-				dup2(fd[1], 1);
-			}
-			close(fd[0]);
+				dup2(pipe_fd[1], STDOUT_FILENO);
+			close(pipe_fd[0]);
 			ft_choose_cmd(all);
 			exit(all->err); // remplacer par code d'erreur type : "execve error" ou something like that.
 		}
 		else
 		{
-			wait(NULL);
-			close(fd[1]);
-			prev_fd = fd[0];
-			if (all->data->next)
-				all->data = all->data->next;
-			else
+			waitpid(pid, &status, 0);
+			all->err = (status >> 8);
+			close(pipe_fd[1]);
+			input_fd = pipe_fd[0];
+			if (!all->data->next)
 			{
+				close(pipe_fd[0]);
 				all->data = tmp;
 				return ;
 			}
+			all->data = all->data->next;
 		}
 	}
 }
