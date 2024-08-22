@@ -1,27 +1,33 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
-// t_cmdtree	*parse_pipe(t_cmdtree *node)
-// {
-// 	int pipe_pos;
+void	parse_pipe(t_data *data)
+{
+	char	**parsed_line;
+	int		pipe_pos;
+	int		i;
 
-// 	pipe_pos = search_pipe(node->str);
-// 	if (pipe_pos == -1)
-// 	{
-// 		// next_parsing_step (in main parse funct)
-// 		return (NULL);
-// 	}
-// 	else //tester dans cas ou str[0] est un pipe -> should work with split
-// 	{
-// 		node->type = PIPE;
-// 		//(free) la data de base
-// 		node->str = init_node(my_substr(node->str, 0, pipe_pos));
-// 		node->part2 = init_node(my_substr(node->str, pipe_pos + 1, my_strlen(node->str) - pipe_pos - 1)); //+1 ou -1 sur strlen		parse_pipe(node->part2);
-// 		parse_pipe(node->part2);
-// 		return(node);
-// 		//next_parsing_step
-// 	}
-// }
+	i = 0;
+	pipe_pos = search_pipe(data->line);
+	if (pipe_pos == -1)
+		return ;
+	else //tester dans cas ou str[0] est un pipe -> should work with split
+	{
+		parsed_line = shell_split(data->line, '|'); 
+		while(parsed_line[i])
+		{
+			free(data->line);
+			data->line = my_strdup(parsed_line[i]);
+			i++;
+			if (parsed_line[i] != NULL)
+			{
+				data->next = init_node();
+				data = data->next;
+			}
+		}
+		free_tab_tab(parsed_line);
+	}
+}
 
 /**
  * @brief Search for the a pipe char '|' in the given string.
@@ -40,11 +46,3 @@ int	search_pipe(char *str)
 	}
 	return (-1); //no pipe in the str.
 }
-
-// int empty_pipe_check(char *str)
-// {
-
-// }
-
-
-

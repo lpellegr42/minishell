@@ -58,11 +58,10 @@ char	*my_strdup(const char *s)
 	int		i;
 	char	*dest;
 
-	i = 0;
-
-	dest = (char *)malloc(sizeof(char) * (my_strlen(s) + 1));
-	if (dest == NULL)
+	dest = malloc(sizeof(char) * (my_strlen(s) + 1));
+	if (!dest)
 		return (NULL);
+	i = 0;
 	while (s[i])
 	{
 		dest[i] = s[i];
@@ -79,9 +78,9 @@ size_t	my_strlen(const char *s)
 {
 	int	i;
 
-	i = 0;
 	if (!s)
 		return (0);
+	i = 0;
 	while (s[i])
 		i++;
 	return (i);
@@ -96,6 +95,10 @@ void	ft_putstr(char *str)
 	}
 }
 
+/**
+ *  @brief Calculates the length of a string array (array of char pointers).
+ *  @return The number of strings in the array (not including the NULL terminator).
+ */
 int	tab_len(char **tab)
 {
 	int i;
@@ -107,11 +110,12 @@ int	tab_len(char **tab)
 	}
 	return(i);
 }
+
 /**
  * @brief Count the number of element in char ** array, skiping the first element.
- * @return The number of element in the array - 1, 0 if there's is only one.
+ * @return The number of element in the array minus 1, 0 if there's is only one.
  */
-int arg_tab_len(char **tab) 
+int arg_tab_len(char **tab)
 {
     int count = 0;
 

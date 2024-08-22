@@ -66,10 +66,12 @@ void	ft_prompt_loop(t_all *all)
 			printf("exit\n");
 			return ;
 		}
-		if (!empty_line_check(line))
+		if (initial_check(line, all))
+		{
 			all = parsing(line, all);
-		if (!empty_line_check(line) && all->data)
-			ft_exec(all);
+			if (all->data)
+				ft_exec(all);
+		}
 		free(line);
 		line = NULL;
 	}

@@ -11,6 +11,8 @@
 
 int	initial_check(char *line, t_all *all)
 {
+	if (empty_line_check(line) == 1)
+		return (0);
 	if (is_unclosed_quotes(line) == 1)
 	{
 		ft_display_err("minishell: unclosed quote error\n", all, 0);		
@@ -23,20 +25,20 @@ int	initial_check(char *line, t_all *all)
 
 t_all	*parsing(char *line, t_all *all)
 {
+	t_data	*root_node;
 	t_data	*node;
-	//t_data	*root_node; //when pipe's working
 
-	if (!initial_check(line, all))
-		return (NULL);
 	node = init_node();
-	//root_node = node; //when pipe's working
-	//node = parse_pipe(node);
-		// securité si pas de pipe a verif - faire fct de trim de pipe fin et pipe debut.
-	//node = parse_redir(node);
-	node = fill_args(line, node);
-	all->data = node;
-	//all->data = root_node; //when pipe's working
-	return(all);
+	root_node = node;
+	node->line = my_strdup(line);
+	parse_pipe(node); // securité si pas de pipe a verif - faire fct de trim de pipe fin et pipe debut.
+	while (node)
+	{
+		node = fill_args(node);
+		node = node->next;
+	}
+	all->data = root_node;
+	return (all);
 }
 
 
@@ -50,6 +52,7 @@ t_data	*init_node(void)
 	new_node =  malloc(sizeof(t_data));
 	if (!new_node)
 		return (NULL);
+	new_node->line = NULL;
 	new_node->type = DEFAULT;
 	new_node->cmd = NULL; //char *
 	new_node->arg = NULL; //char **
@@ -62,7 +65,7 @@ t_data	*init_node(void)
 	return (new_node);
 }
 
-t_data	*fill_args(char *line, t_data *data)
+t_data	*fill_args(t_data *data)
 {
 	char **res;
 	int i;
@@ -70,9 +73,9 @@ t_data	*fill_args(char *line, t_data *data)
 
 	i = 0;
 	j = 0;
-	if (!line)
+	if (!data->line)
 		return (NULL);
-	res = shell_split(line, ' ');
+	res = shell_split(data->line, ' ');
 	data->cmd = my_strdup(res[i++]);
 	if (arg_tab_len(res) > 0)
 		data->arg = malloc(sizeof(char *) * (arg_tab_len(res) + 1));
@@ -85,5 +88,5 @@ t_data	*fill_args(char *line, t_data *data)
 		j++;
 	}
 	data->arg[j] = NULL;
-	return(free_tab_tab(res), data);
+	return (free_tab_tab(res), data);
 }
