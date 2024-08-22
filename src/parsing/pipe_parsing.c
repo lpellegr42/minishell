@@ -46,31 +46,3 @@ int	search_pipe(char *str)
 	}
 	return (-1); //no pipe in the str.
 }
-
-// //WIP
-
-// /**
-//  * Return 1 on error, 0 if it's ok.
-//  */
-// int empty_pipe_check(char *line)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (line[i] != '|')
-// 	{
-// 		if (i > 0 && is_only_whitespace(line, 0, i - 1))
-// 				return (1);
-// 	}
-// 	while(line[i])
-// 	{
-// 		if (line[i] == '|')
-// 		{
-// 			while (line[i] && is_whitespace(line[i]))
-// 				i++;
-// 			if (line[j] == '\0' || line[i] == '\n' || line[j] == '|')
-// 				return (1);
-// 		}
-// 		i++;
-// 	}
-// }
