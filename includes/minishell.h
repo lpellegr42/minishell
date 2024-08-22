@@ -92,6 +92,7 @@ void	ft_free_data(t_data *data);
 
 /* *********************************EXEC************************************* */
 void	ft_exec(t_all *all);
+void	ft_choose_cmd(t_all *all);
 void	ft_docmd(t_all *all);
 void	ft_do_pipes(t_all *all);
 char	*ft_getpath(char *cmd, char **envp);

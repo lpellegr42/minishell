@@ -62,26 +62,6 @@ t_data	*init_node(void)
 	return (new_node);
 }
 
-int	is_builtin(char **res)
-{
-	if (ft_strncmp(res[0], "env", 3) == 0)
-		return (1);
-	else if (ft_strncmp(res[0], "unset", 5) == 0)
-		return (1);
-	else if (ft_strncmp(res[0], "export", 6) == 0)
-		return (1);
-	else if (ft_strncmp(res[0], "echo", 4) == 0)
-		return (1);
-	else if (ft_strncmp(res[0], "pwd", 3) == 0)
-		return (1);
-	else if (ft_strncmp(res[0], "cd", 2) == 0)
-		return (1);
-	else if (ft_strncmp(res[0], "exit", 4) == 0)
-		return (1);
-	else
-		return (0);
-}
-
 t_data	*fill_args(char *line, t_data *data)
 {
 	char **res;
