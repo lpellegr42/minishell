@@ -53,9 +53,7 @@ void	ft_prompt_loop(t_all *all)
 
 	while (1)
 	{
-		blue();
 		line = readline("Minishell > ");
-		reset();
 		add_history(line);
 		ft_check_sig(all);
 		if (line == NULL)
