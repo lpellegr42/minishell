@@ -2,7 +2,6 @@
 #include "../../includes/minishell.h"
 
 //FURTHER COMMENT AND ADD NEXT PARSING STEP
-// Add free b_tree functions in the loop.
 
 /**
  * @brief Main parsing funct
@@ -31,7 +30,7 @@ t_all	*parsing(char *line, t_all *all)
 	node = init_node();
 	root_node = node;
 	node->line = my_strdup(line);
-	parse_pipe(node); // securité si pas de pipe a verif - faire fct de trim de pipe fin et pipe debut.
+	parse_pipe(node); // securité si pas de pipe a ajouter
 	while (node)
 	{
 		node = fill_args(node);

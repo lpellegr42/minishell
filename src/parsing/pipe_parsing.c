@@ -11,7 +11,7 @@ void	parse_pipe(t_data *data)
 	pipe_pos = search_pipe(data->line);
 	if (pipe_pos == -1)
 		return ;
-	else //tester dans cas ou str[0] est un pipe -> should work with split
+	else
 	{
 		parsed_line = shell_split(data->line, '|'); 
 		while(parsed_line[i])
