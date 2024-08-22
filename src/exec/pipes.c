@@ -22,11 +22,11 @@ void	ft_do_pipe(t_all *all)
 		close(fd[0]);
 		dup2(fd[1], all->data->fd_out);
 		close(fd[1]);
-		ft_builtins(all);
+		ft_choose_cmd(all);
 	}
 	else
 	{
-		waitpid(0, &all->err, 0);
+		waitpid(pid, &all->err, 0);
 		ft_handle_fd(all, fd);
 		if (all->data->next == NULL)
 		{

@@ -53,8 +53,8 @@ void	ft_exec(t_all *all)
 	{
 		ft_choose_cmd(all);
 	}
-	// else
-	// 	ft_do_pipe(all);
+	else
+		ft_do_pipe(all);
 	if (all->data->cmd != NULL)
 		ft_free_data(all->data);
 }
