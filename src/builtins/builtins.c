@@ -26,42 +26,42 @@ int	ft_is_builtin(char *cmd)
 */
 void	ft_choose_cmd(t_all *all)
 {
-	if (all->data->here_doc)
-		ft_heredoc(all->data->here_doc);
-	else if (ft_is_builtin(all->data->cmd))
+	// if (all->data->here_doc)
+	// 	ft_heredoc(all->data->here_doc);
+	if (ft_is_builtin(all->data->cmd))
 		ft_builtins(all);
 	else
 		ft_docmd(all);
 }
 
-void	ft_heredoc(char *str)
-{
-	int		fd;
-	char	*line;
+// void	ft_heredoc(char *str)
+// {
+// 	int		fd;
+// 	char	*line;
 
-	ulink(".tmp")
-	fd = open(".tmp", O_RDWR | O_CREAT | O_TRUNC, 0644);
-	while (1)
-	{
-		line = readline(">");
-		if (!line)
-		{
-			printf("here-document delimited by EOF (wanted '%s')\n", str);
-			close(fd);
-			free(line);
-			return ;
-		}
-		if (ft_strncmp(line, str, ft_strlen(str)) == 0)
-		{
-			free(line);
-			close(fd);
-			return ;
-		}
-		write(fd, line, ft_strlen(line));
-		write(fd, "\n", 1);
-		free(line);
-	}
-}
+// 	ulink(".tmp")
+// 	fd = open(".tmp", O_RDWR | O_CREAT | O_TRUNC, 0644);
+// 	while (1)
+// 	{
+// 		line = readline(">");
+// 		if (!line)
+// 		{
+// 			printf("here-document delimited by EOF (wanted '%s')\n", str);
+// 			close(fd);
+// 			free(line);
+// 			return ;
+// 		}
+// 		if (ft_strncmp(line, str, ft_strlen(str)) == 0)
+// 		{
+// 			free(line);
+// 			close(fd);
+// 			return ;
+// 		}
+// 		write(fd, line, ft_strlen(line));
+// 		write(fd, "\n", 1);
+// 		free(line);
+// 	}
+// }
 
 void	ft_builtins(t_all *all)
 {

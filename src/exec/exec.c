@@ -47,7 +47,6 @@ void	ft_exec(t_all *all)
 {
 
 	ft_reset_env(all);
-	// printf("test %p\n", all->data->cmd);
 	if (!all->data->cmd)
 		return ;
 	if (all->data->cmd != NULL && all->data->next == NULL)
@@ -56,10 +55,6 @@ void	ft_exec(t_all *all)
 	}
 	// else
 	// 	ft_do_pipe(all);
-	// printf("test\n");
 	if (all->data->cmd != NULL)
-	{
 		ft_free_data(all->data);
-	}
-
 }
