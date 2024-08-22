@@ -45,6 +45,7 @@ void	ft_docmd(t_all *all)
 
 void	ft_exec(t_all *all)
 {
+	t_data *tmp;
 
 	ft_reset_env(all);
 	if (!all->data->cmd)
@@ -54,7 +55,11 @@ void	ft_exec(t_all *all)
 		ft_choose_cmd(all);
 	}
 	else
+	{
+		tmp = all->data;
 		ft_do_pipe(all);
+		all->data = tmp;
+	}
 	if (all->data->cmd != NULL)
 		ft_free_data(all->data);
 }
