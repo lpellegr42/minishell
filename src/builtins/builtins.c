@@ -32,6 +32,8 @@ void	ft_choose_cmd(t_all *all)
 		ft_builtins(all);
 	else
 		ft_docmd(all);
+	// if (all->data->next)
+	// 	all->data = all->data->next;
 }
 
 // void	ft_heredoc(char *str)
