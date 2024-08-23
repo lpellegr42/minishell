@@ -7,12 +7,6 @@ void	perror_and_exit(char *error_message)
 	exit(EXIT_FAILURE);
 }
 
-void	create_pipe(int pipe_fd[2])
-{
-	if (pipe(pipe_fd) == -1)
-		perror_and_exit("Pipe error");
-}
-
 pid_t	create_child_process(void)
 {
 	pid_t pid;
@@ -23,7 +17,7 @@ pid_t	create_child_process(void)
 	return (pid);
 }
 
-void	execute_child_process(t_all *all, int input_fd, int pipe_fd[2])
+void	child_process(t_all *all, int input_fd, int pipe_fd[2])
 {
 	dup2(input_fd, STDIN_FILENO);
 	if (all->data->next != NULL)
@@ -33,7 +27,7 @@ void	execute_child_process(t_all *all, int input_fd, int pipe_fd[2])
 	exit(all->err);
 }
 
-void	handle_parent_process(t_all *all, int pipe_fd[2], int *input_fd, pid_t pid)
+void	parent_process(t_all *all, int pipe_fd[2], int *input_fd, pid_t pid)
 {
 	int status;
 
@@ -52,10 +46,11 @@ void	ft_do_pipe(t_all *all)
 	input_fd = 0;
 	while (all->data)
 	{
-		create_pipe(pipe_fd);
+		if (pipe(pipe_fd) == -1)
+			perror_and_exit("Pipe error");
 		pid = create_child_process();
 		if (pid == 0)
-			execute_child_process(all, input_fd, pipe_fd);
+			child_process(all, input_fd, pipe_fd);
 		else
 		{
 			handle_parent_process(all, pipe_fd, &input_fd, pid);
