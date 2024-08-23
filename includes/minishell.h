@@ -133,6 +133,10 @@ void	blue(void);
 void	green(void);
 void	red(void);
 
+//	builtins/exit.c
+
+//void	free_single_data_node(t_data *data);
+
 //								Parsing
 
 // parsing/content_checking_utils.c

@@ -12,7 +12,6 @@ void	ft_free_data(t_data *data)
 		return ;
 	while (data)
 	{
-		temp = data->next;
 		if (data->line)
 		{
 			free(data->line);
@@ -30,11 +29,35 @@ void	ft_free_data(t_data *data)
 			free(data->here_doc);
 			data->here_doc = NULL;
 		}
+		temp = data->next;
 		free(data);
 		data = NULL;
 		data = temp;
 	}
 }
+
+// void	free_single_data_node(t_data *data)
+// {
+// 	if (data->line)
+// 		{
+// 			free(data->line);
+// 			data->line = NULL;
+// 		}
+// 		if (data->arg)
+// 			free_tab_tab(data->arg);
+// 		if (data->cmd)
+// 		{
+// 			free(data->cmd);
+// 			data->cmd = NULL;
+// 		}
+// 		if (data->here_doc)
+// 		{
+// 			free(data->here_doc);
+// 			data->here_doc = NULL;
+// 		}
+// 		free(data);
+// 		data = NULL;
+// }
 
 /* @brief Frees environments nodes
  * @return Nothing

@@ -17,7 +17,7 @@ pid_t	create_child_process(void)
 	return (pid);
 }
 
-void	child_process(t_all *all, int input_fd, int pipe_fd[2])
+void	child_process_exec(t_all *all, int input_fd, int pipe_fd[2])
 {
 	dup2(input_fd, STDIN_FILENO);
 	if (all->data->next != NULL)
@@ -50,10 +50,11 @@ void	ft_do_pipe(t_all *all)
 			perror_and_exit("Pipe error");
 		pid = create_child_process();
 		if (pid == 0)
-			child_process(all, input_fd, pipe_fd);
+			child_process_exec(all, input_fd, pipe_fd);
+			//free_funct_there ?
 		else
 		{
-			handle_parent_process(all, pipe_fd, &input_fd, pid);
+			parent_process(all, pipe_fd, &input_fd, pid);
 			if (!all->data->next)
 			{
 				close(pipe_fd[0]);
