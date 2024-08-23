@@ -54,7 +54,6 @@ void	ft_prompt_loop(t_all *all)
 	while (1)
 	{
 		line = readline("Minishell > ");
-		add_history(line);
 		ft_check_sig(all);
 		if (line == NULL)
 		{
@@ -66,6 +65,7 @@ void	ft_prompt_loop(t_all *all)
 		}
 		if (initial_check(line, all))
 		{
+			add_history(line);
 			all = parsing(line, all);
 			if (all->data)
 				ft_exec(all);
