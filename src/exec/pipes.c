@@ -17,11 +17,13 @@ pid_t	create_child_process(void)
 	return (pid);
 }
 
-void	child_process_exec(t_all *all, int input_fd, int pipe_fd[2])
+void	child_process_exec(t_all *all, int input_fd, int *pipe_fd)
 {
-	dup2(input_fd, STDIN_FILENO);
+
 	if (all->data->next != NULL)
 		dup2(pipe_fd[1], STDOUT_FILENO);
+	close(pipe_fd[1]);
+	dup2(input_fd, STDIN_FILENO);
 	close(pipe_fd[0]);
 	ft_choose_cmd(all);
 	exit(all->err);
