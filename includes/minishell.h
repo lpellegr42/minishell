@@ -56,7 +56,6 @@ typedef struct s_all
 {
 	t_data	*data;
 	t_env	*env;
-	char	**env_cpy;
 	int		err;
 }		t_all;
 
@@ -74,7 +73,7 @@ t_env	*ft_append_env(t_env *env, char **str);
 char	*ft_getenv(char *str, t_env *env);
 void	ft_free_env(t_env *env);
 void	ft_modify_env(char *s1, char *s2, t_env *env);
-void	ft_reset_env(t_all *all);
+char	**ft_reset_env(t_env *env);
 
 /* *******************************BUILTINS*********************************** */
 

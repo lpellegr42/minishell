@@ -101,29 +101,29 @@ char	*ft_getenv(char *str, t_env *env)
 /* @brief Creates and resets an env copy in a char **
  * @return Nothing
 */
-void	ft_reset_env(t_all *all)
+char	**ft_reset_env(t_env *env)
 {
 	int		i;
+	char	**res;
 	t_env	*tmp;
 
-	if (all->env_cpy)
-		ft_free_tab(all->env_cpy);
-	all->env_cpy = malloc(sizeof(char *) * (ft_lstsize(all->env) + 1));
+	res = malloc(sizeof(char *) * (ft_lstsize(env) + 1));
 	i = 0;
-	tmp = all->env;
+	tmp = env;
 	while (tmp)
 	{
 		if (tmp->set == 1)
 		{
-			all->env_cpy[i] = ft_strdup(tmp->key);
+			res[i] = ft_strdup(tmp->key);
 			if (tmp->val)
 			{
-				all->env_cpy[i] = ft_join(all->env_cpy[i], "=");
-				all->env_cpy[i] = ft_join(all->env_cpy[i], tmp->val);
+				res[i] = ft_join(res[i], "=");
+				res[i] = ft_join(res[i], tmp->val);
 			}
 			i++;
 		}
 		tmp = tmp->next;
 	}
-	all->env_cpy[i] = NULL;
+	res[i] = NULL;
+	return (res);
 }

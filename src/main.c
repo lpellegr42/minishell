@@ -58,7 +58,6 @@ void	ft_prompt_loop(t_all *all)
 		if (line == NULL)
 		{
 			ft_free_env(all->env);
-			ft_free_tab(all->env_cpy);
 			clear_history();
 			printf("exit\n");
 			return ;
@@ -89,9 +88,7 @@ int	main(int argc, char **argv, char **envp)
 	all.err = 0;
 	all.data = NULL;
 	all.env = NULL;
-	all.env_cpy = NULL;
 	all.env = ft_copy_env(all.env, envp);
-	ft_reset_env(&all);
 	init_sig(SIGINT, &ft_handler);
 	signal(SIGQUIT, SIG_IGN);
 	ft_prompt_loop(&all);

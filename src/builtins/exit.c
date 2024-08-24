@@ -98,8 +98,6 @@ void	ft_exit(t_all *all)
 	}
 	if (all->env)
 		ft_free_env(all->env);
-	if (all->env_cpy)
-		ft_free_tab(all->env_cpy);
 	rl_clear_history();
 	printf("exit\n");
 	exit(all->err);
