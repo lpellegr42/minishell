@@ -145,7 +145,6 @@ int		is_digit(char c);
 int		is_only_digit(char *str);
 int		is_whitespace(char c);
 int		is_only_whitespace(char *str, int i, int len);
-int		empty_line_check(char *line);
 int		is_redir(char c);
 
 // 	parsing/init_parsing.c
@@ -154,6 +153,13 @@ int		initial_check(char *line, t_all *all);
 t_all	*parsing(char *line, t_all *all);
 t_data	*init_node(void);
 t_data	*fill_args(t_data *data);
+
+//	parsing/initial_check.c
+
+int	empty_line_check(char *line);
+int	empty_pipe_check(char *line);
+int is_unclosed_quotes(char *str);
+
 
 //	parsing/parsing_utils.c
 
@@ -169,6 +175,10 @@ int		arg_tab_len(char **tab);
 
 void	parse_pipe(t_data *node);
 int		search_pipe(char *str);
+int		check_start_pipe(char *line);
+int		check_middle_pipes(char *line);
+int		check_end_pipe(char *line);
+
 
 //	parsing/split_minishell.c
 

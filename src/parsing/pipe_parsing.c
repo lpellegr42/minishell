@@ -44,5 +44,53 @@ int	search_pipe(char *str)
 			return (i);
 		i++;
 	}
-	return (-1); //no pipe in the str.
+	return	(-1); //no pipe in the str.
+}
+
+int check_start_pipe(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && is_whitespace(line[i]))
+		i++;
+	if (line[i] == '|')
+		return (1);
+	return (0);
+}
+
+int check_middle_pipes(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] == '|')
+		{
+			int j = i - 1;
+			while (j >= 0 && is_whitespace(line[j]))
+				j--;
+			if (j < 0 || line[j] == '|')
+				return (1);
+			j = i + 1;
+			while (is_whitespace(line[j]))
+				j++;
+			if (line[j] == '|' || line[j] == '\0')
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+int check_end_pipe(char *line)
+{
+    int i = ft_strlen(line) - 1;
+
+    while (i >= 0 && is_whitespace(line[i]))
+        i--;
+    if (line[i] == '|')
+        return (1);
+    return (0);
 }

@@ -83,27 +83,3 @@ int	is_in_quote(char *str, int pos, int flag)
 	return (0);
 }
 
-/**
- * @brief This function checks if the string contains any unclosed quotes.
- * @param str The string to check.
- * @return Returns 1 if the string contains unclosed quotes, otherwise 0.
- */
-int is_unclosed_quotes(char *str)
-{
-    int i;
-    int s_quote;
-    int d_quote;
-
-    i = 0;
-    s_quote = 0;
-    d_quote = 0;
-
-    while (str && str[i])
-    {
-        quote_checker(str, i, &s_quote, &d_quote);
-        i++;
-    }
-    if (s_quote || d_quote)
-        return 1;
-    return 0;
-}

@@ -14,10 +14,11 @@ int	initial_check(char *line, t_all *all)
 		return (0);
 	if (is_unclosed_quotes(line) == 1)
 	{
-		ft_display_err("minishell: unclosed quote error\n", all, 0);		
+		ft_display_err ("minishell: unclosed quote error\n", all, 0);
 		return (0);
 	}
-	// if (/* VERIF PIPE FIN PIPE DEBUT*/)
+	if (empty_pipe_check(line) == 1)
+		ft_display_err("minishell: syntax error near unexpected token `|'\n", all, 2);
 	// if (/* VERIF REDIR VIDE */)
 	return (1);
 }
@@ -40,7 +41,6 @@ t_all	*parsing(char *line, t_all *all)
 	return (all);
 }
 
-
 /**
  * @brief Create a new node with default value.
  */
@@ -48,14 +48,13 @@ t_data	*init_node(void)
 {
 	t_data	*new_node;
 
-	new_node =  malloc(sizeof(t_data));
+	new_node = malloc(sizeof(t_data));
 	if (!new_node)
 		return (NULL);
 	new_node->line = NULL;
 	new_node->type = DEFAULT;
 	new_node->cmd = NULL; //char *
 	new_node->arg = NULL; //char **
-	
 	new_node->fd_in = 0; //voir pour fd val par defaut
 	new_node->fd_out = 1;
 	new_node->flag_out = 0; //-1 before
@@ -66,9 +65,9 @@ t_data	*init_node(void)
 
 t_data	*fill_args(t_data *data)
 {
-	char **res;
-	int i;
-	int	j;
+	char	**res;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
