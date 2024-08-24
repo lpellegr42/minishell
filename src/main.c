@@ -62,9 +62,10 @@ void	ft_prompt_loop(t_all *all)
 			printf("exit\n");
 			return ;
 		}
+		if (empty_line_check(line) == 0)
+			add_history(line);
 		if (initial_check(line, all))
 		{
-			add_history(line);
 			all = parsing(line, all);
 			if (all->data)
 				ft_exec(all);
