@@ -18,7 +18,10 @@ int	initial_check(char *line, t_all *all)
 		return (0);
 	}
 	if (empty_pipe_check(line) == 1)
+	{
 		ft_display_err("minishell: syntax error near unexpected token `|'\n", all, 2);
+		return (0);
+	}
 	// if (/* VERIF REDIR VIDE */)
 	return (1);
 }
