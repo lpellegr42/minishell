@@ -55,7 +55,6 @@ t_data	*init_node(void)
 	if (!new_node)
 		return (NULL);
 	new_node->line = NULL;
-	new_node->type = DEFAULT;
 	new_node->cmd = NULL; //char *
 	new_node->arg = NULL; //char **
 	
@@ -66,7 +65,7 @@ t_data	*init_node(void)
 	new_node->delim = NULL;
 	new_node->redir_in = NULL;
 	new_node->redir_out = NULL;
-	
+
 	new_node->next = NULL;
 	return (new_node);
 }
