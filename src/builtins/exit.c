@@ -17,18 +17,30 @@ void	ft_free_data(t_data *data)
 			free(data->line);
 			data->line = NULL;
 		}
-		if (data->arg)
-			free_tab_tab(data->arg);
 		if (data->cmd)
 		{
 			free(data->cmd);
 			data->cmd = NULL;
 		}
-		if (data->here_doc)
+		if (data->arg)
+			free_tab_tab(data->arg);
+		if (data->delim)
 		{
-			free(data->here_doc);
-			data->here_doc = NULL;
+			free(data->delim);
+			data->delim = NULL;
 		}
+		if (data->redir_in)
+		{
+			free(data->redir_in);
+			data->redir_in = NULL;
+		}
+		if (data->redir_out)
+		{
+			free(data->redir_out);
+			data->redir_out = NULL;
+		}
+		close(data->fd_in);
+		close(data->fd_out);
 		temp = data->next;
 		free(data);
 		data = NULL;
@@ -50,10 +62,10 @@ void	ft_free_data(t_data *data)
 // 			free(data->cmd);
 // 			data->cmd = NULL;
 // 		}
-// 		if (data->here_doc)
+// 		if (data->delim)
 // 		{
-// 			free(data->here_doc);
-// 			data->here_doc = NULL;
+// 			free(data->delim);
+// 			data->delim = NULL;
 // 		}
 // 		free(data);
 // 		data = NULL;

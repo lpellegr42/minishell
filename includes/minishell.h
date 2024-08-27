@@ -8,6 +8,7 @@
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <fcntl.h>
 # include <signal.h>
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -28,27 +29,20 @@ typedef struct s_env
 
 typedef struct s_data
 {
-	int				type; //useless, gérer autrement.
 	char			*line;
 	char			*cmd;
 	char			**arg;
-	int				fd_out;
+	
 	int				fd_in;
-	int				flag_out; //simple ou double redir; > O_CREATE ou >> O_APPEND
-	char			*here_doc; //change for int fd
+	int				fd_out; //keep for now ?
+	
+	int				flag_out; // 0 si pas de redir; 1 - simple > O_CREATE; 2 double >> O_APPEND. ONLY FOR OUT REDIR.
+	char			*delim; //Delimiter of the here_doc;
+	char			*redir_in; //Nom du fichier de redir
+	char			*redir_out;	// LIV ET LEO LES GOSSBEAU
+
 	struct s_data	*next;
 }		t_data;
-
-// my enum
-typedef enum s_tokentype //useless ?
-{
-	BUILT_IN,
-	PIPE,
-	IN_REDIR,
-	OUT_REDIR,
-	HERE_DOC,
-	DEFAULT
-}			t_tokentype;
 
 // End parsing struct.
 
@@ -103,6 +97,8 @@ char	*ft_getenv_tab(char *name, char **envp);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 char	**ft_get_args(char *path, char **args);
 int		ft_tab_len(char **tab);
+void	ft_heredoc(char *delim);
+
 
 /* ******************************UTILS_LIBFT********************************* */
 
