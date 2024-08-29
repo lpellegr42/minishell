@@ -3,19 +3,19 @@
 
 int	ft_is_builtin(char *cmd)
 {
-	if (ft_strncmp(cmd, "env", 3) == 0)
+	if (ft_strcmp(cmd, "env") == 0)
 		return (1);
-	else if (ft_strncmp(cmd, "unset", 5) == 0)
+	else if (ft_strcmp(cmd, "unset") == 0)
 		return (1);
-	else if (ft_strncmp(cmd, "export", 6) == 0)
+	else if (ft_strcmp(cmd, "export") == 0)
 		return (1);
-	else if (ft_strncmp(cmd, "echo", 4) == 0)
+	else if (ft_strcmp(cmd, "echo") == 0)
 		return (1);
-	else if (ft_strncmp(cmd, "pwd", 3) == 0)
+	else if (ft_strcmp(cmd, "pwd") == 0)
 		return (1);
-	else if (ft_strncmp(cmd, "cd", 2) == 0)
+	else if (ft_strcmp(cmd, "cd") == 0)
 		return (1);
-	else if (ft_strncmp(cmd, "exit", 4) == 0)
+	else if (ft_strcmp(cmd, "exit") == 0)
 		return (1);
 	else
 		return (0);
