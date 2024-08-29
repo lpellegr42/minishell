@@ -184,6 +184,12 @@ int		is_in_quote(char *str, int pos, int flag);
 int		is_unclosed_quotes(char *str);
 char	*clean_adjacent_quotes(char *line);
 
+// TEMP-CLEAN ARG
+
+int		delchar(char **str, int pos, char c);
+void	apply_all_clean(char **str, int *i);
+char	*clean_arg(char *str);
+
 // 								Temp
 
 // temp/ft_split.c

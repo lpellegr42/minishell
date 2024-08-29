@@ -58,6 +58,7 @@ void	ft_free_data(t_data *data)
 	}
 }
 
+//useless for now - if used need to redirect next and prev pointer.
 // void	free_single_data_node(t_data *data)
 // {
 // 	if (data->line)
