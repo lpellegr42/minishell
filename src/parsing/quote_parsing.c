@@ -83,3 +83,36 @@ int	is_in_quote(char *str, int pos, int flag)
 	return (0);
 }
 
+char *clean_adjacent_quotes(char *line)
+{
+	int i;
+	int	j;
+	int len;
+	char *new_line;
+
+	i = 0;
+	j = 0;
+	len = ft_strlen(line);
+	new_line = (char *)malloc(sizeof(char) * len + 1);
+	if (!new_line)
+		return (NULL);
+	while (line[i] != '\0')
+	{
+		if ((line[i] == '\'' && line[i + 1] == '\'')
+			|| (line[i] == '"' && line[i + 1] == '"'))
+				i += 2;
+		else
+			new_line[j++] = line[i++];
+	}
+	new_line[j] = '\0';
+
+	return (free(line), new_line);
+}
+
+// /**
+//  * TRIM QUOTE IN ARGS FUNCT
+//  */
+// t_data	*clean_quote_args(t_data *data)
+// {
+
+// }

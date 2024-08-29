@@ -187,6 +187,8 @@ void	quote_checker(char *str, int i, int *s_quote, int *d_quote);
 void	quote_checker_arg(char c, char next_c, int *s_quote, int *d_quote);
 int		is_in_quote(char *str, int pos, int flag);
 int		is_unclosed_quotes(char *str);
+char	*clean_adjacent_quotes(char *line);
+
 
 // 								Temp
 

@@ -34,13 +34,19 @@ t_all	*parsing(char *line, t_all *all)
 	node = init_node();
 	root_node = node;
 	node->line = my_strdup(line);
-	parse_pipe(node); // securité si pas de pipe a ajouter
+	// INITIAL CLEAN FUNCT
+	node->line = clean_adjacent_quotes(node->line);
+	parse_pipe(node);
 	while (node)
 	{
 		node = fill_args(node);
 		node = node->next;
 	}
 	all->data = root_node;
+	// while(node)
+	// {
+	// 	parse_redir(node);
+	// }
 	return (all);
 }
 

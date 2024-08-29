@@ -18,10 +18,10 @@
 
 /**
  * need un split qui se charge des redir selon leur type et donc direction.
- * le split doit garder la redir me semble.
+ * le split doit garder la redir me semble. IS OK
 */
 
-// void	redir_parsing(t_cmdtree *node, char *str)
+// void	parse_redir(t_data *node)
 // {
 // 	int	i;
 
@@ -43,5 +43,5 @@
 
 // int	search_redir(char *str)
 // {
-
 // }
+
