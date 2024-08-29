@@ -42,9 +42,9 @@ int	ft_check_node(char *s1, char *s2)
 
 char	**ft_malloc_tab(int len, char *s, char sep)
 {
-	char **res;
+	char	**res;
 
-	//res = NULL;
+	// res = NULL;
 	if (len > 1)
 		res = malloc(sizeof(char *) * (len + 1));
 	else if (len == 1)

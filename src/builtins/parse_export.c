@@ -45,7 +45,7 @@ char	*ft_key(char *s, char sep)
 
 int	ft_len_val(char *s, int i, char sep)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (s[i] && s[i] != sep)
@@ -97,7 +97,7 @@ char	**ft_split_export(char *s, char sep)
 	if (len > 1)
 		res[++j] = ft_val(s, sep);
 	else if (len == 1 && ft_strchr(s, sep))
-			res[++j] = ft_strdup("");
+		res[++j] = ft_strdup("");
 	if (res[j])
 		res[j + 1] = NULL;
 	return (res);

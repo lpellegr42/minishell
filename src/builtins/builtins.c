@@ -54,7 +54,6 @@ void	ft_choose_cmd(t_all *all)
 	// 	all->data = all->data->next;
 }
 
-
 void	ft_builtins(t_all *all)
 {
 	if (ft_strncmp(all->data->cmd, "env", 3) == 0)

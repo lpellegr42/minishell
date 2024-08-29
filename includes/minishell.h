@@ -32,15 +32,12 @@ typedef struct s_data
 	char			*line;
 	char			*cmd;
 	char			**arg;
-	
 	int				fd_in;
 	int				fd_out; //keep for now ?
-	
 	int				flag_out; // 0 si pas de redir; 1 - simple > O_CREATE; 2 double >> O_APPEND. ONLY FOR OUT REDIR.
 	char			*delim; //Delimiter of the here_doc;
 	char			*redir_in; //Nom du fichier de redir
 	char			*redir_out;	// LIV ET LEO LES GOSSBEAU
-
 	struct s_data	*next;
 }		t_data;
 
@@ -99,7 +96,6 @@ char	**ft_get_args(char *path, char **args);
 int		ft_tab_len(char **tab);
 void	ft_heredoc(char *delim);
 
-
 /* ******************************UTILS_LIBFT********************************* */
 
 int		ft_strlen(char *str);
@@ -152,10 +148,9 @@ t_data	*fill_args(t_data *data);
 
 //	parsing/initial_check.c
 
-int	empty_line_check(char *line);
-int	empty_pipe_check(char *line);
-int is_unclosed_quotes(char *str);
-
+int		empty_line_check(char *line);
+int		empty_pipe_check(char *line);
+int		is_unclosed_quotes(char *str);
 
 //	parsing/parsing_utils.c
 
@@ -175,7 +170,6 @@ int		check_start_pipe(char *line);
 int		check_middle_pipes(char *line);
 int		check_end_pipe(char *line);
 
-
 //	parsing/split_minishell.c
 
 void	split_free(char **res, int count); //6th function in file - add to free folder/files once finished.
@@ -188,7 +182,6 @@ void	quote_checker_arg(char c, char next_c, int *s_quote, int *d_quote);
 int		is_in_quote(char *str, int pos, int flag);
 int		is_unclosed_quotes(char *str);
 char	*clean_adjacent_quotes(char *line);
-
 
 // 								Temp
 

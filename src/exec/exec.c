@@ -48,7 +48,7 @@ void	ft_docmd(t_all *all)
 
 void	ft_exec(t_all *all)
 {
-	t_data *tmp;
+	t_data	*tmp;
 
 	if (!all->data->cmd)
 		return ;

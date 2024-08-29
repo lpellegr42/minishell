@@ -9,7 +9,7 @@ void	perror_and_exit(char *error_message)
 
 pid_t	create_child_process(void)
 {
-	pid_t pid;
+	pid_t	pid;
 
 	pid = fork();
 	if (pid == -1)
@@ -19,7 +19,6 @@ pid_t	create_child_process(void)
 
 void	child_process_exec(t_all *all, int input_fd, int *pipe_fd)
 {
-
 	if (all->data->next != NULL)
 		dup2(pipe_fd[1], STDOUT_FILENO);
 	close(pipe_fd[1]);
@@ -31,7 +30,7 @@ void	child_process_exec(t_all *all, int input_fd, int *pipe_fd)
 
 void	parent_process(t_all *all, int pipe_fd[2], int *input_fd, pid_t pid)
 {
-	int status;
+	int	status;
 
 	waitpid(pid, &status, 0);
 	all->err = (status >> 8);
