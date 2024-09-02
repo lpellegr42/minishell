@@ -109,10 +109,63 @@ char *clean_adjacent_quotes(char *line)
 	return (free(line), new_line);
 }
 
-// /**
-//  * TRIM QUOTE IN ARGS FUNCT
-//  */
-// t_data	*clean_quote_args(t_data *data)
-// {
+int	delchar(char **str, int pos, char c)
+{
+	char	*newstr;
+	int		i;
+	int		j;
 
-// }
+	if (str[0][pos] == c)
+	{
+		newstr = malloc(sizeof(char) * (ft_strlen(str[0])));
+		i = 0;
+		j = 0;
+		while (str[0][i])
+		{
+			if (i != pos)
+				newstr[j++] = str[0][i];
+			i++;
+		}
+		newstr[j] = '\0';
+		free(str[0]);
+		str[0] = newstr;
+		return (1);
+	}
+	return (0);
+}
+
+void	apply_all_clean(char **str, int *i)
+{
+	if ((delchar(str, *i, '\'') != 1) && (delchar(str, *i, '"') != 1)
+		&& (delchar(str, *i, ' ') != 1))
+		(*i)++;
+}
+
+char	*clean_arg(char *str)
+{
+	int		i;
+	int		j;
+	char	*dupstr;
+
+	dupstr = my_strdup(str);
+	i = 0;
+	j = 0;
+	while (dupstr[j])
+	{
+		if (is_in_quote(dupstr, j, 0) == 1)
+		{
+			if (delchar(&str, i, '\'') != 1)
+				i++;
+		}
+		else if (is_in_quote(dupstr, j, 0) == 2)
+		{
+			if (delchar(&str, i, '"') != 1)
+				i++;
+		}
+		else
+			apply_all_clean(&str, &i);
+		j++;
+	}
+	free(dupstr);
+	return (str);
+}
