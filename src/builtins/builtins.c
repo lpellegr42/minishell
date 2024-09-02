@@ -33,15 +33,10 @@ void	ft_choose_cmd(t_all *all)
 	fd_out = -1;
 	if (all->data->delim)
 		ft_heredoc(all->data->delim);
-	// else if (all->data->fd_in != -1)
-	// {
-	// 	fd_in = open(/*fd_in*/, O_RDONLY);
-	// 	dup2(fd_in, 0);
-	// }
-	// else if (all->data->fd_out != -1)
-	// {
-	// 	fd_out = ft_handle_out(all);
-	// }
+	// else if (all->data->redir_in != NULL)
+	// 		fd_in = ft_handle_in(all);
+	// else if (all->data->redir_out != NULL)
+	// 		fd_out = ft_handle_out(all);
 	if (ft_is_builtin(all->data->cmd))
 		ft_builtins(all);
 	else
@@ -50,8 +45,6 @@ void	ft_choose_cmd(t_all *all)
 		close(fd_in);
 	if (fd_out != -1)
 		close(fd_out);
-	// if (all->data->next)
-	// 	all->data = all->data->next;
 }
 
 void	ft_builtins(t_all *all)
