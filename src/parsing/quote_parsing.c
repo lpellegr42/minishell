@@ -98,8 +98,7 @@ char *clean_adjacent_quotes(char *line)
 		return (NULL);
 	while (line[i] != '\0')
 	{
-		if ((line[i] == '\'' && line[i + 1] == '\'')
-			|| (line[i] == '"' && line[i + 1] == '"'))
+		if ((line[i] == '\'' && line[i + 1] == '\'') || (line[i] == '"' && line[i + 1] == '"'))
 				i += 2;
 		else
 			new_line[j++] = line[i++];
@@ -136,8 +135,7 @@ int	delchar(char **str, int pos, char c)
 
 void	apply_all_clean(char **str, int *i)
 {
-	if ((delchar(str, *i, '\'') != 1) && (delchar(str, *i, '"') != 1)
-		&& (delchar(str, *i, ' ') != 1))
+	if ((delchar(str, *i, '\'') != 1) && (delchar(str, *i, '"') != 1) && (delchar(str, *i, ' ') != 1))
 		(*i)++;
 }
 

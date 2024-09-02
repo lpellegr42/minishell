@@ -32,8 +32,11 @@ void apply_on_args(t_data *node)
 
 	i = 0;
 	if (node->cmd)
+	{
 		node->cmd = clean_arg(node->cmd);
-	while(node->arg[i])
+		printf("test_segfault\n");
+	}
+	while (node->arg && node->arg[i])
 	{
 		node->arg[i] = clean_arg(node->arg[i]);
 		i++;
@@ -54,7 +57,7 @@ t_all	*parsing(char *line, t_all *all)
 	while (node)
 	{
 		node = fill_args(node);
-		//apply_on_args(node);
+		apply_on_args(node);
 		node = node->next;
 	}
 	all->data = root_node;
