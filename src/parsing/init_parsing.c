@@ -26,16 +26,13 @@ int	initial_check(char *line, t_all *all)
 	return (1);
 }
 
-void apply_on_args(t_data *node)
+void apply_clean_on_args(t_data *node)
 {
 	int i;
 
 	i = 0;
 	if (node->cmd)
-	{
 		node->cmd = clean_arg(node->cmd);
-		printf("test_segfault\n");
-	}
 	while (node->arg && node->arg[i])
 	{
 		node->arg[i] = clean_arg(node->arg[i]);
@@ -51,20 +48,16 @@ t_all	*parsing(char *line, t_all *all)
 	node = init_node();
 	root_node = node;
 	node->line = my_strdup(line);
-	// INITIAL CLEAN FUNCT
 	node->line = clean_adjacent_quotes(node->line);
 	parse_pipe(node);
 	while (node)
 	{
 		node = fill_args(node);
-		apply_on_args(node);
+		//clean et remplissage des redir ici, puis clean des dernieres quotes.
+		apply_clean_on_args(node);
 		node = node->next;
 	}
 	all->data = root_node;
-	// while(node)
-	// {
-	// 	parse_redir(node);
-	// }
 	return (all);
 }
 

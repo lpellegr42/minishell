@@ -37,7 +37,7 @@ typedef struct s_data
 	int				flag_out; // 0 si pas de redir; 1 - simple > O_CREATE; 2 double >> O_APPEND. ONLY FOR OUT REDIR.
 	char			*delim; //Delimiter of the here_doc;
 	char			*redir_in; //Nom du fichier de redir
-	char			*redir_out;	// LIV ET LEO LES GOSSBEAU
+	char			*redir_out;
 	struct s_data	*next;
 }		t_data;
 
@@ -160,8 +160,13 @@ char	*my_substr(char const *s, unsigned int start, size_t len);
 char	*my_strdup(const char *s);
 size_t	my_strlen(const char *s);
 void	ft_putstr(char *str);
+
+// parsing/parsing_utils2.c
+
 int		tab_len(char **tab);
 int		arg_tab_len(char **tab);
+int		delchar(char **str, int pos, char c);
+void	apply_all_clean(char **str, int *i);
 
 //	parsing/pipe_parsing.c
 

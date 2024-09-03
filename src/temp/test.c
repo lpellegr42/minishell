@@ -1,7 +1,5 @@
 #include "../../includes/minishell.h"
 
-// PRINT PART
-
 void	print_split(char **res)
 {
 	int i;
@@ -72,6 +70,14 @@ void ft_free_tab(char **tab)
 	}
 	free(tab);
 }
+
+// //useless for now - if used need to redirect next and prev pointer.
+// void	free_single_data_node(t_data *data)
+// {
+// 	ft_free1(data);
+// 	ft_free2(data);
+// }
+
 
 // void	quote_checker_verif(char *str)
 // {

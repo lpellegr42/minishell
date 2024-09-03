@@ -58,30 +58,6 @@ void	ft_free_data(t_data *data)
 	}
 }
 
-//useless for now - if used need to redirect next and prev pointer.
-// void	free_single_data_node(t_data *data)
-// {
-// 	if (data->line)
-// 		{
-// 			free(data->line);
-// 			data->line = NULL;
-// 		}
-// 		if (data->arg)
-// 			free_tab_tab(data->arg);
-// 		if (data->cmd)
-// 		{
-// 			free(data->cmd);
-// 			data->cmd = NULL;
-// 		}
-// 		if (data->delim)
-// 		{
-// 			free(data->delim);
-// 			data->delim = NULL;
-// 		}
-// 		free(data);
-// 		data = NULL;
-// }
-
 /* @brief Frees environments nodes
  * @return Nothing
 */
