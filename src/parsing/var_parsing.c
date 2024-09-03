@@ -109,6 +109,16 @@ int	var_len(char *str, int i)
 	return (count);
 }
 
+char	*return_replace_var(char *arg, char *before_var, char *res)
+{
+	char *ret;
+	ret = ft_strdup(res);
+	free(arg);
+	free(res);
+	free(before_var);
+	return(ret);
+}
+
 char*	replace_var(char *arg, t_all *all)
 {	
 	char	*before_var;
@@ -131,7 +141,8 @@ char*	replace_var(char *arg, t_all *all)
 				res = join_var(arg, after_var, i + 1, var_len(arg, i + 1));
 				// printf("res : %s\n", res);
 				i += var_len(arg, i);
-				return (free(arg), free(before_var), res);
+				arg = return_replace_var(arg, before_var, res);
+				//return (free(arg), free(before_var), res);
 			// }
 		}
 		else
@@ -139,3 +150,4 @@ char*	replace_var(char *arg, t_all *all)
 	}
 	return (arg);
 }
+
