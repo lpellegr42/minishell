@@ -36,7 +36,6 @@ t_all	*parsing(char *line, t_all *all)
 	while (node)
 	{
 		node = fill_args(node);
-		node = replace_var(node); //clean et remplissage des redir ici, puis clean des dernieres quotes.
 		apply_clean_on_args(node);
 		node = node->next;
 	}
