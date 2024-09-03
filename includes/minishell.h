@@ -125,20 +125,19 @@ void	blue(void);
 void	green(void);
 void	red(void);
 
-//	builtins/exit.c
-
-//void	free_single_data_node(t_data *data);
-
 //								Parsing
 
 // parsing/content_checking_utils.c
 
 int		is_sep(char c);
 int		is_digit(char c);
-int		is_only_digit(char *str);
 int		is_whitespace(char c);
-int		is_only_whitespace(char *str, int i, int len);
 int		is_redir(char c);
+
+// parsing/content_checking_utils2.c
+
+int		is_only_whitespace(char *str, int i, int len);
+int		is_only_digit(char *str);
 
 // 	parsing/init_parsing.c
 
@@ -167,6 +166,12 @@ int		tab_len(char **tab);
 int		arg_tab_len(char **tab);
 int		delchar(char **str, int pos, char c);
 void	apply_all_clean(char **str, int *i);
+void	apply_clean_on_args(t_data *node);
+
+//	parsing/parsing_utils3.c
+
+void	split_free(char **res, int count);
+char	*clean_arg(char *str);
 
 //	parsing/pipe_parsing.c
 
@@ -178,7 +183,6 @@ int		check_end_pipe(char *line);
 
 //	parsing/split_minishell.c
 
-void	split_free(char **res, int count); //6th function in file - add to free folder/files once finished.
 char	**shell_split(char *s, char sep);
 
 //	parsing/quote_parsing.c
@@ -188,12 +192,6 @@ void	quote_checker_arg(char c, char next_c, int *s_quote, int *d_quote);
 int		is_in_quote(char *str, int pos, int flag);
 int		is_unclosed_quotes(char *str);
 char	*clean_adjacent_quotes(char *line);
-
-// TEMP-CLEAN ARG
-
-int		delchar(char **str, int pos, char c);
-void	apply_all_clean(char **str, int *i);
-char	*clean_arg(char *str);
 
 // 								Temp
 

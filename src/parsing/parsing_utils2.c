@@ -60,7 +60,22 @@ int	delchar(char **str, int pos, char c)
 
 void	apply_all_clean(char **str, int *i)
 {
-	if ((delchar(str, *i, '\'') != 1) && (delchar(str, *i, '"') != 1)
+	if ((delchar(str, *i, '\'') != 1)
+		&& (delchar(str, *i, '"') != 1)
 		&& (delchar(str, *i, ' ') != 1))
 		(*i)++;
+}
+
+void apply_clean_on_args(t_data *node)
+{
+	int i;
+
+	i = 0;
+	if (node->cmd)
+		node->cmd = clean_arg(node->cmd);
+	while (node->arg && node->arg[i])
+	{
+		node->arg[i] = clean_arg(node->arg[i]);
+		i++;
+	}
 }

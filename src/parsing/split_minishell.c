@@ -3,18 +3,6 @@
 // REWORKED SPLIT VERSION FOR MINISHELL PARSING
 
 /**
- * @brief Frees a dynamically allocated array of strings and the array itself.
- * @param res A pointer to the first element of the array of strings to be freed.
- * @param count The number of strings in the array that need to be freed.
- */
-void	split_free(char **res, int count)
-{
-	while (count > 0)
-		free(res[--count]);
-	free(res);
-}
-
-/**
  * @brief Calculate the length of the next part of the given string up to a separator or redirection.
  * This function traverses the string `s` to count characters until it finds the specified separator `sep`
  * unless the character is within quotes or is part of a redirection command.

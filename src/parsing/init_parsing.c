@@ -1,13 +1,6 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
-//FURTHER COMMENT AND ADD NEXT PARSING STEP
-
-/**
- * @brief Main parsing funct
- * TODO further comment and fct rework 
-*/
-
 int	initial_check(char *line, t_all *all)
 {
 	if (empty_line_check(line) == 1)
@@ -26,20 +19,10 @@ int	initial_check(char *line, t_all *all)
 	return (1);
 }
 
-void apply_clean_on_args(t_data *node)
-{
-	int i;
-
-	i = 0;
-	if (node->cmd)
-		node->cmd = clean_arg(node->cmd);
-	while (node->arg && node->arg[i])
-	{
-		node->arg[i] = clean_arg(node->arg[i]);
-		i++;
-	}
-}
-
+/**
+ * @brief Main parsing funct
+ * TODO further comment and fct rework 
+*/
 t_all	*parsing(char *line, t_all *all)
 {
 	t_data	*root_node;
