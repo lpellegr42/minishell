@@ -91,7 +91,7 @@ char	*ft_getenv(char *str, t_env *env)
 	tmp = env;
 	while (tmp)
 	{
-		if (ft_strncmp(str, tmp->key, ft_strlen(str)) == 0)
+		if (ft_strcmp(str, tmp->key) == 0)
 			return (tmp->val);
 		tmp = tmp->next;
 	}

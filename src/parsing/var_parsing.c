@@ -69,10 +69,13 @@ char	*join_var(char *arg, char *var, int i, int var_len)
 	int		k;
 
 	j = i + var_len;
-	k = i + ft_strlen(var);
+	k = i + ft_strlen(var) - 1;
 	res = malloc(sizeof(char) * (i + ft_strlen(var) + ft_len(arg, var_len) + 1));
 	ft_strlcpy(res, arg, i);
-	ft_strlcat(res, var, ft_strlen(var));
+	if (var)
+		ft_strlcat(res, var, ft_strlen(var));
+	else
+		ft_strlcat(res, ft_strdup(""), 0);
 	while (arg[j])
 	{
 		res[k] = arg[j];
@@ -95,7 +98,7 @@ int	var_len(char *str, int i)
 		count++;
 		i++;
 	}
-	printf("var_len = %d\n", count);
+	// printf("var_len = %d\n", count);
 	return (count);
 }
 
@@ -109,15 +112,20 @@ char*	replace_var(char *arg, t_all *all)
 	i = 0;
 	while(arg[i])
 	{
-		if (arg[i] == '$' && is_in_quote(arg, i, 0) != 2)
+		if (arg[i] == '$' && is_in_quote(arg, i, 0) != 2 && !is_whitespace(arg[i + 1]))
 		{
 			before_var = my_substr(arg, i + 1, var_len(arg, i + 1));
 			after_var = ft_getenv(before_var, all->env);
-			printf("before : %s, after : %s\n", before_var, after_var);
-			if (after_var != NULL)		
-				res = join_var(arg, after_var, i, var_len(arg, i));
+			// printf("before : %s, after : %s\n", before_var, after_var);
+			// if (after_var != NULL)
+			// {
+				res = join_var(arg, after_var, i + 1, var_len(arg, i + 1));
+				// printf("res : %s\n", res);
+				i += var_len(arg, i);
+				return (free(arg), free(before_var), res);
+			// }
 		}
 		i++;
 	}
-	return (res);
+	return (arg);
 }

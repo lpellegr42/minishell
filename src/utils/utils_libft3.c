@@ -32,7 +32,7 @@ int	ft_strlcat(char *dest, char *src, int size)
 	while (dest[i])
 		i++;
 	j = 0;
-	while (src[j] && i < size - 1)
+	while (src[j] && i < size)
 	{
 		dest[i] = src[j];
 		i++;

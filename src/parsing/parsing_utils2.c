@@ -73,7 +73,7 @@ void apply_clean_on_args(t_data *node, t_all *all)
 	i = 0;
 	if (node->cmd)
 	{
-		node->cmd = replace_var(node->cmd, all);
+		// node->cmd = replace_var(node->cmd, all);
 		node->cmd = clean_arg(node->cmd);
 	}
 	while (node->arg && node->arg[i])
