@@ -1,3 +1,6 @@
+//#include "minishell.h"
+#include "../../includes/minishell.h"
+
 // char	*get_var(char *line, int i, t_all *all)
 // {
 // 	char	*str;
@@ -118,7 +121,7 @@ char	*return_replace_var(char *arg, char *before_var, char *res)
 	return(ret);
 }
 
-char*	replace_var(char *arg, t_all *all)
+int	replace_var(char **arg, t_all *all)
 {	
 	char	*before_var;
 	char	*after_var;
@@ -126,28 +129,28 @@ char*	replace_var(char *arg, t_all *all)
 	int	i;
 
 	i = 0;
-	while(arg[i])
-	{
-		if (arg[i] == '$' && is_in_quote(arg, i, 0) != 1 && !is_whitespace(arg[i + 1]) && arg[i + 1] != '\0')
-		{
-			//write(1, &arg[i], 1);
+	// while(*arg[i])
+	// {
+	// 	if (*arg[i] == '$' && is_in_quote(*arg, i, 0) != 1 && !is_whitespace(*arg[i + 1]) && *arg[i + 1] != '\0')
+	// 	{
+	// 		//write(1, &arg[i], 1);
 
-			before_var = my_substr(arg, i + 1, var_len(arg, i + 1));
+			before_var = my_substr(*arg, i + 1, var_len(*arg, i + 1));
 			after_var = ft_getenv(before_var, all->env);
 			// printf("before : %s, after : %s\n", before_var, after_var);
 			// if (after_var != NULL)
 			// {
-				res = join_var(arg, after_var, i + 1, var_len(arg, i + 1));
+				res = join_var(*arg, after_var, i + 1, var_len(*arg, i + 1));
 				// printf("res : %s\n", res);
-				i += var_len(arg, i);
-				arg = return_replace_var(arg, before_var, res);
+				i += var_len(*arg, i);
+				*arg = return_replace_var(*arg, before_var, res);
 				//return (free(arg), free(before_var), res);
 			// }
-		}
-		else
-			i++;
-	}
-	return (arg);
+		// }
+		// else
+		// 	i++;
+	// }
+	return (i);
 }
 
 int replace_nothing(char **arg, int i)
@@ -155,7 +158,7 @@ int replace_nothing(char **arg, int i)
     char *temp;
     int len = strlen(*arg);
     (*arg)[i] = '\0';
-    temp = (char *)malloc(strlen(*arg) + strlen(*arg + i + 2) + 1);
+    temp = (char *)malloc(len + strlen(*arg + i + 2) + 1);
 	
     strcpy(temp, *arg);
     strcat(temp, *arg + i + 2);
@@ -164,7 +167,7 @@ int replace_nothing(char **arg, int i)
     return (0);
 }
 
-char	*replace_var(char *arg, t_all *all)
+char	*clean_var(char *arg, t_all *all)
 {
 	int i;
 
@@ -173,8 +176,10 @@ char	*replace_var(char *arg, t_all *all)
 	{
 		if (arg[i] == '$' && is_digit(arg[i + 1]))
 			i += replace_nothing(&arg, i);
+		else if (arg[i] == '$' && is_in_quote(arg, i, 0) != 1 && !is_whitespace(arg[i + 1]) && arg[i + 1] != '\0')
+			i += replace_var(&arg, all);
 		else
-			i+= replace_var(arg, all);
-		
+			i++;	
 	}
+	return (arg);
 }

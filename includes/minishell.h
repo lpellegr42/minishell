@@ -196,7 +196,7 @@ char	*clean_adjacent_quotes(char *line);
 
 // parsing/var_parsing.c
 
-char*	replace_var(char *arg, t_all *all);
+char*	clean_var(char *arg, t_all *all);
 
 // 								Temp
 

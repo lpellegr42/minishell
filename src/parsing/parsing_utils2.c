@@ -78,7 +78,7 @@ void apply_clean_on_args(t_data *node, t_all *all)
 	}
 	while (node->arg && node->arg[i])
 	{
-		node->arg[i] = replace_var(node->arg[i], all);
+		node->arg[i] = clean_var(node->arg[i], all);
 		node->arg[i] = clean_arg(node->arg[i]);
 		i++;
 	}
