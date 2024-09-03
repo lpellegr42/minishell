@@ -1,6 +1,41 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+void	ft_free1(t_data *data)
+{
+	if (data->line)
+	{
+		free(data->line);
+		data->line = NULL;
+	}
+	if (data->cmd)
+	{
+		free(data->cmd);
+		data->cmd = NULL;
+	}
+	if (data->arg)
+		free_tab_tab(data->arg);
+}
+
+void	ft_free2(t_data *data)
+{
+	if (data->delim)
+	{
+		free(data->delim);
+		data->delim = NULL;
+	}
+	if (data->redir_in)
+	{
+		free(data->redir_in);
+		data->redir_in = NULL;
+	}
+	if (data->redir_out)
+	{
+		free(data->redir_out);
+		data->redir_out = NULL;
+	}
+}
+
 /* @brief Frees the data nodes.
  * @return Nothing
 */
@@ -12,52 +47,16 @@ void	ft_free_data(t_data *data)
 		return ;
 	while (data)
 	{
-		if (data->line)
-		{
-			free(data->line);
-			data->line = NULL;
-		}
-		if (data->arg)
-			free_tab_tab(data->arg);
-		if (data->cmd)
-		{
-			free(data->cmd);
-			data->cmd = NULL;
-		}
-		if (data->here_doc)
-		{
-			free(data->here_doc);
-			data->here_doc = NULL;
-		}
+		ft_free1(data);
+		ft_free2(data);
+		close(data->fd_in);
+		close(data->fd_out);
 		temp = data->next;
 		free(data);
 		data = NULL;
 		data = temp;
 	}
 }
-
-// void	free_single_data_node(t_data *data)
-// {
-// 	if (data->line)
-// 		{
-// 			free(data->line);
-// 			data->line = NULL;
-// 		}
-// 		if (data->arg)
-// 			free_tab_tab(data->arg);
-// 		if (data->cmd)
-// 		{
-// 			free(data->cmd);
-// 			data->cmd = NULL;
-// 		}
-// 		if (data->here_doc)
-// 		{
-// 			free(data->here_doc);
-// 			data->here_doc = NULL;
-// 		}
-// 		free(data);
-// 		data = NULL;
-// }
 
 /* @brief Frees environments nodes
  * @return Nothing
@@ -84,7 +83,8 @@ void	ft_free_env(t_env *env)
 */
 void	ft_exit(t_all *all)
 {
-	int ret;
+	int	ret;
+
 	if (all->data)
 	{
 		if (ft_strncmp(all->data->cmd, "exit", 5) == 0 && all->data->arg)

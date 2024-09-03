@@ -67,6 +67,7 @@ void	ft_prompt_loop(t_all *all)
 		if (initial_check(line, all))
 		{
 			all = parsing(line, all);
+			//print_parsing(all);
 			if (all->data)
 				ft_exec(all);
 		}

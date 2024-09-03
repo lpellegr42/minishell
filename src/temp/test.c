@@ -1,7 +1,5 @@
 #include "../../includes/minishell.h"
 
-// PRINT PART
-
 void	print_split(char **res)
 {
 	int i;
@@ -17,20 +15,27 @@ void	print_split(char **res)
 
 void	print_parsing(t_all *all)
 {
+	t_data *temp = all->data;
+
+
 	int i = 0;
-	while (all->data)
+	while (all->data != NULL)
 	{
+		printf("\n //// NEW NODE //// \n\n");
+		printf("\n fd_in:%d, fd_out: %d\n\n", all->data->fd_in, all->data->fd_out);
 		printf("data[%i]:%s\n", i, all->data->line);
 		printf ("	cmd:%s\n", all->data->cmd);
 		int j = 0;
-		while(all->data->arg[j])
+		while (all->data->arg && all->data->arg[j])
 		{
 			printf("		arg[%i]:%s\n", j, all->data->arg[j]);
 			j++;
 		}
+		//j = 0;
 		all->data = all->data->next;
 		i++;
 	}
+	all->data = temp;
 }
 
 // FREE PART
@@ -65,6 +70,14 @@ void ft_free_tab(char **tab)
 	}
 	free(tab);
 }
+
+// //useless for now - if used need to redirect next and prev pointer.
+// void	free_single_data_node(t_data *data)
+// {
+// 	ft_free1(data);
+// 	ft_free2(data);
+// }
+
 
 // void	quote_checker_verif(char *str)
 // {

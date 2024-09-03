@@ -94,36 +94,3 @@ void	ft_putstr(char *str)
 		str++;
 	}
 }
-
-/**
- *  @brief Calculates the length of a string array (array of char pointers).
- *  @return The number of strings in the array (not including the NULL terminator).
- */
-int	tab_len(char **tab)
-{
-	int i;
-
-	i = 0;
-	while(tab[i])
-	{
-		i++;
-	}
-	return(i);
-}
-
-/**
- * @brief Count the number of element in char ** array, skiping the first element.
- * @return The number of element in the array minus 1, 0 if there's is only one or less.
- */
-int arg_tab_len(char **tab)
-{
-    int count = 0;
-
-	tab++;
-	while (*tab != NULL)
-	{
-		count++;
-		tab++;
-    }
-	return (count);
-}

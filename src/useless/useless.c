@@ -1,6 +1,5 @@
 					// main.c
 
-
 // char	*ft_get_prompt(char	*s1, char *s2, int flag)
 // {
 // 	char	*new;

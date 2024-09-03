@@ -75,14 +75,10 @@ char	*ft_getpath(char *cmd, char **envp)
 		cmd_path = ft_strjoin(path_slash, cmd);
 		free(path_slash);
 		if (access(cmd_path, F_OK | X_OK) == 0)
-		{
-			ft_free_tab(path_array);
-			return (cmd_path);
-		}
+			return (ft_free_tab(path_array), cmd_path);
 		free(cmd_path);
 	}
-	ft_free_tab(path_array);
-	return (NULL);
+	return (ft_free_tab(path_array), NULL);
 }
 
 int	ft_tab_len(char **tab)
@@ -116,4 +112,3 @@ char	**ft_get_args(char *path, char **arg)
 	tab[j] = NULL;
 	return (tab);
 }
-

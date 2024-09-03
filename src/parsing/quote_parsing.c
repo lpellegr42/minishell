@@ -83,3 +83,58 @@ int	is_in_quote(char *str, int pos, int flag)
 	return (0);
 }
 
+char *clean_adjacent_quotes(char *line)
+{
+	int i;
+	int	j;
+	int len;
+	char *new_line;
+
+	i = 0;
+	j = 0;
+	len = ft_strlen(line);
+	new_line = (char *)malloc(sizeof(char) * len + 1);
+	if (!new_line)
+		return (NULL);
+	while (line[i] != '\0')
+	{
+		if ((line[i] == '\'' && line[i + 1] == '\'') || (line[i] == '"' && line[i + 1] == '"'))
+				i += 2;
+		else
+			new_line[j++] = line[i++];
+	}
+	new_line[j] = '\0';
+
+	return (free(line), new_line);
+}
+
+char	*clean_arg(char *str)
+{
+	int		i;
+	int		j;
+	char	*dupstr;
+
+	dupstr = my_strdup(str);
+	i = 0;
+	j = 0;
+	while (dupstr[j])
+	{
+		if (is_in_quote(dupstr, j, 0) == 1)
+		{
+			if (delchar(&str, i, '\'') != 1)
+				i++;
+		}
+		else if (is_in_quote(dupstr, j, 0) == 2)
+		{
+			if (delchar(&str, i, '"') != 1)
+				i++;
+		}
+		else
+			apply_all_clean(&str, &i);
+		j++;
+	}
+	free(dupstr);
+	return (str);
+}
+
+

@@ -26,6 +26,20 @@ int	initial_check(char *line, t_all *all)
 	return (1);
 }
 
+void apply_clean_on_args(t_data *node)
+{
+	int i;
+
+	i = 0;
+	if (node->cmd)
+		node->cmd = clean_arg(node->cmd);
+	while (node->arg && node->arg[i])
+	{
+		node->arg[i] = clean_arg(node->arg[i]);
+		i++;
+	}
+}
+
 t_all	*parsing(char *line, t_all *all)
 {
 	t_data	*root_node;
@@ -34,10 +48,13 @@ t_all	*parsing(char *line, t_all *all)
 	node = init_node();
 	root_node = node;
 	node->line = my_strdup(line);
-	parse_pipe(node); // securité si pas de pipe a ajouter
+	node->line = clean_adjacent_quotes(node->line);
+	parse_pipe(node);
 	while (node)
 	{
 		node = fill_args(node);
+		//clean et remplissage des redir ici, puis clean des dernieres quotes.
+		apply_clean_on_args(node);
 		node = node->next;
 	}
 	all->data = root_node;
@@ -55,13 +72,17 @@ t_data	*init_node(void)
 	if (!new_node)
 		return (NULL);
 	new_node->line = NULL;
-	new_node->type = DEFAULT;
 	new_node->cmd = NULL; //char *
 	new_node->arg = NULL; //char **
-	new_node->fd_in = 0; //voir pour fd val par defaut
-	new_node->fd_out = 1;
-	new_node->flag_out = 0; //-1 before
-	new_node->here_doc = NULL;
+	
+	new_node->fd_in = dup(STDIN_FILENO);
+	new_node->fd_out = dup(STDOUT_FILENO);
+	
+	new_node->flag_out = 0;
+	new_node->delim = NULL;
+	new_node->redir_in = NULL;
+	new_node->redir_out = NULL;
+
 	new_node->next = NULL;
 	return (new_node);
 }

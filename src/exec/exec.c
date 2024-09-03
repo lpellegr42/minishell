@@ -37,6 +37,7 @@ void	ft_docmd(t_all *all)
 	{
 		printf("-Minishell: %s: ", all->data->cmd);
 		ft_display_err("Command not found\n", all, 127);
+		ft_free_tab(envp);
 		return ;
 	}
 	args = ft_get_args(path, all->data->arg);
@@ -48,14 +49,12 @@ void	ft_docmd(t_all *all)
 
 void	ft_exec(t_all *all)
 {
-	t_data *tmp;
+	t_data	*tmp;
 
 	if (!all->data->cmd)
 		return ;
 	if (all->data->cmd != NULL && all->data->next == NULL)
-	{
 		ft_choose_cmd(all);
-	}
 	else
 	{
 		tmp = all->data;
