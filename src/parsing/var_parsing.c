@@ -68,14 +68,21 @@ char	*join_var(char *arg, char *var, int i, int var_len)
 	int		j;
 	int		k;
 
+	// printf("ft_len: %d\n",  var_len);
+	int len = i + ft_strlen(var) + ft_len(arg, i + var_len);
 	j = i + var_len;
 	k = i + ft_strlen(var) - 1;
-	res = malloc(sizeof(char) * (i + ft_strlen(var) + ft_len(arg, var_len) + 1));
+	res = malloc(sizeof(char) * (len + 1));
+	// printf("%d\n", len);
 	ft_strlcpy(res, arg, i);
+	// printf("res1:%s\n", res);
 	if (var)
-		ft_strlcat(res, var, ft_strlen(var));
+	{	
+		res = ft_join(res, var);
+		// printf("res2:%s\n", res);
+	}
 	else
-		ft_strlcat(res, ft_strdup(""), 0);
+		ft_strlcat(res, 0, 0);
 	while (arg[j])
 	{
 		res[k] = arg[j];
@@ -93,7 +100,7 @@ int	var_len(char *str, int i)
 	count = 0;
 	if (!str)
 		return (0);
-	while (str[i] && !is_whitespace(str[i]))
+	while (str[i] && !is_whitespace(str[i]) && str[i] != '"' && str[i] != '$')
 	{
 		count++;
 		i++;
@@ -112,8 +119,10 @@ char*	replace_var(char *arg, t_all *all)
 	i = 0;
 	while(arg[i])
 	{
-		if (arg[i] == '$' && is_in_quote(arg, i, 0) != 2 && !is_whitespace(arg[i + 1]))
+		if (arg[i] == '$' && is_in_quote(arg, i, 0) != 1 && !is_whitespace(arg[i + 1]))
 		{
+			//write(1, &arg[i], 1);
+
 			before_var = my_substr(arg, i + 1, var_len(arg, i + 1));
 			after_var = ft_getenv(before_var, all->env);
 			// printf("before : %s, after : %s\n", before_var, after_var);
@@ -125,7 +134,8 @@ char*	replace_var(char *arg, t_all *all)
 				return (free(arg), free(before_var), res);
 			// }
 		}
-		i++;
+		else
+			i++;
 	}
 	return (arg);
 }
