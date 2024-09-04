@@ -129,14 +129,9 @@ int	replace_var(char **arg, int i, t_all *all)
 	before_var = my_substr(*arg, i + 1, j);
 	after_var = ft_getenv(before_var, all->env);
 	// printf("before : %s, after : %s\n", before_var, after_var);
-	if (after_var != NULL)
-	{
-		res = join_var(*arg, after_var, i + 1, j);
-		// i += var_len(*arg, i);
-		*arg = return_replace_var(*arg, before_var, res);
-	}
-	else
-		i++;
+	res = join_var(*arg, after_var, i + 1, j);
+	// i += var_len(*arg, i);
+	*arg = return_replace_var(*arg, before_var, res);
 	return (j - i);
 }
 
