@@ -63,7 +63,7 @@ char	*ft_getpath(char *cmd, char **envp)
 	i = -1;
 	if (!ft_getenv_tab("PATH", envp))
 		return (NULL);
-	if (ft_strncmp(cmd, "./", 2) == 0)
+	if (ft_strncmp(cmd, "./", 2) == 0 || ft_strncmp(cmd, "/", 1) == 0)
 	{
 		cmd_path = ft_strdup(cmd);
 		return (cmd_path);
