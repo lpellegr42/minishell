@@ -98,16 +98,12 @@ char *clean_adjacent_quotes(char *line)
 		return (NULL);
 	while (line[i] != '\0')
 	{
-		if ((line[i] == '\'' && line[i + 1] == '\'') || (line[i] == '"' && line[i + 1] == '"'))
+		if ((line[i] == '\'' && line[i + 1] == '\'') 
+			|| (line[i] == '"' && line[i + 1] == '"'))
 				i += 2;
 		else
 			new_line[j++] = line[i++];
 	}
 	new_line[j] = '\0';
-
 	return (free(line), new_line);
 }
-
-
-
-

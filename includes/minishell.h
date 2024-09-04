@@ -111,6 +111,7 @@ char	*ft_itoa(int n);
 char	*ft_strdup(char *s);
 void	ft_free_tab(char **tab);
 void	ft_display_err(char *s, t_all *all, int err_status);
+int		ft_strlcat(char *dest, char *src, int size);
 
 /* *******************************UTILS_LST********************************** */
 
@@ -166,12 +167,14 @@ int		tab_len(char **tab);
 int		arg_tab_len(char **tab);
 int		delchar(char **str, int pos, char c);
 void	apply_all_clean(char **str, int *i);
-void	apply_clean_on_args(t_data *node);
+void	apply_clean_on_args(t_data *node, t_all *all);
 
 //	parsing/parsing_utils3.c
 
 void	split_free(char **res, int count);
 char	*clean_arg(char *str);
+int		var_len(char *str, int i);
+
 
 //	parsing/pipe_parsing.c
 
@@ -192,6 +195,10 @@ void	quote_checker_arg(char c, char next_c, int *s_quote, int *d_quote);
 int		is_in_quote(char *str, int pos, int flag);
 int		is_unclosed_quotes(char *str);
 char	*clean_adjacent_quotes(char *line);
+
+// parsing/var_parsing.c
+
+char*	clean_var(char *arg, t_all *all);
 
 // 								Temp
 
