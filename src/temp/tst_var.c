@@ -72,14 +72,9 @@ char	*join_var(char *arg, char *var, int i, int var_len)
 	j = i + var_len;
 	k = i + ft_strlen(var) - 1;
 	res = malloc(sizeof(char) * (len + 1));
-	// printf("%d\n", len);
 	ft_strlcpy(res, arg, i);
-	// printf("res1:%s\n", res);
 	if (var)
-	{	
 		res = ft_join(res, var);
-		// printf("res2:%s\n", res);
-	}
 	else
 		ft_strlcat(res, 0, 0);
 	while (arg[j])
@@ -104,7 +99,6 @@ int	var_len(char *str, int i)
 		count++;
 		i++;
 	}
-	// printf("var_len = %d\n", count);
 	return (count);
 }
 
@@ -128,9 +122,7 @@ int	replace_var(char **arg, int i, t_all *all)
 	j = var_len(*arg, i + 1);
 	before_var = my_substr(*arg, i + 1, j);
 	after_var = ft_getenv(before_var, all->env);
-	// printf("before : %s, after : %s\n", before_var, after_var);
 	res = join_var(*arg, after_var, i + 1, j);
-	// i += var_len(*arg, i);
 	*arg = return_replace_var(*arg, before_var, res);
 	return (j - i);
 }
@@ -153,20 +145,19 @@ char	*clean_var(char *arg, t_all *all)
 	i = 0;
 
 	(void)all;
-	while(arg[i])
+	while (arg[i])
 	{
 		if (is_in_quote(arg, i, 0) != 1)
 		{
 			if (arg[i] == '$' && is_digit(arg[i + 1]))
 				i += replace_nothing(&arg, i);
-			// else if (arg[i] == '$' && arg[i + 1] == '?')
-			// 	i += replace_err(&arg, i, all);
 			else if (arg[i] == '$' && arg[i + 1] != '\0')
-				i += replace_var(&arg, i, all);
+				replace_var(&arg, i, all);
 			else
-				i++;	
-
+				i++;
 		}
+		else
+			i++;
 	}
 	return (arg);
 }

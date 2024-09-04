@@ -74,11 +74,13 @@ void apply_clean_on_args(t_data *node, t_all *all)
 	if (node->cmd)
 	{
 		// node->cmd = replace_var(node->cmd, all);
+		//node->cmd = clean_adjacent_quotes(node->cmd);
 		node->cmd = clean_arg(node->cmd);
 	}
 	while (node->arg && node->arg[i])
 	{
 		node->arg[i] = clean_var(node->arg[i], all);
+		//node->arg[i] = clean_adjacent_quotes(node->arg[i]);
 		node->arg[i] = clean_arg(node->arg[i]);
 		i++;
 	}
