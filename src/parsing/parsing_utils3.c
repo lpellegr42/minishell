@@ -40,3 +40,18 @@ char	*clean_arg(char *str)
 	free(dupstr);
 	return (str);
 }
+
+int	var_len(char *str, int i)
+{
+	int	count;
+
+	count = 0;
+	if (!str)
+		return (0);
+	while (str[i] && !is_whitespace(str[i]) && str[i] != '"' && str[i] != '$')
+	{
+		count++;
+		i++;
+	}
+	return (count);
+}

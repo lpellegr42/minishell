@@ -173,6 +173,8 @@ void	apply_clean_on_args(t_data *node, t_all *all);
 
 void	split_free(char **res, int count);
 char	*clean_arg(char *str);
+int		var_len(char *str, int i);
+
 
 //	parsing/pipe_parsing.c
 
@@ -197,7 +199,6 @@ char	*clean_adjacent_quotes(char *line);
 // parsing/var_parsing.c
 
 char*	clean_var(char *arg, t_all *all);
-int		var_len(char *str, int i);
 
 // 								Temp
 
