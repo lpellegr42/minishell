@@ -43,3 +43,21 @@ int	is_unclosed_quotes(char *str)
 		return (1);
 	return (0);
 }
+
+// void	redir_error_check(char *line)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (line[i] && line[i] != '>' && line[i] != '<')
+// 		i++;
+// 	if (line[i] == '>')
+// 	{
+// 		if (line[i + 1] == '>')
+// 	}
+// 		return (1);
+// 	printf("char_looked:%c$\n", line[i]);
+// 	printf("len:%d\n", ft_strlen(line));
+// 	printf("i:%d\n", i);
+// 	return (0);
+// }

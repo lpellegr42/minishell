@@ -152,6 +152,8 @@ t_data	*fill_args(t_data *data);
 int		empty_line_check(char *line);
 int		empty_pipe_check(char *line);
 int		is_unclosed_quotes(char *str);
+void	redir_error_check(char *line);
+
 
 //	parsing/parsing_utils.c
 
@@ -198,7 +200,7 @@ char	*clean_adjacent_quotes(char *line);
 
 // parsing/var_parsing.c
 
-char*	clean_var(char *arg, t_all *all);
+char*	replace_var_on_arg(char *arg, t_all *all); //main_replace_var ?!
 
 // 								Temp
 

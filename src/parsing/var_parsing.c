@@ -58,7 +58,7 @@ int	replace_nothing(char **arg, int i)
 	return (0);
 }
 
-char	*clean_var(char *arg, t_all *all)
+char	*replace_var_on_arg(char *arg, t_all *all)
 {
 	int i;
 
