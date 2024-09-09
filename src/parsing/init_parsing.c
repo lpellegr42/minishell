@@ -23,6 +23,33 @@ int	initial_check(char *line, t_all *all)
 	return (1);
 }
 
+/*
+
+split with '|'
+
+res[0]:echo test 
+res[1]:>>
+res[2]: redir1 
+res[3]:>>
+res[4]: redir 2 
+res[5]: test2 
+res[6]:>
+res[7]: redir 1
+
+
+------   split with ' '
+
+res[0]:echo
+res[1]:test
+res[2]:>
+res[3]:redir1
+res[4]:>>
+res[5]:redir2
+res[6]:>
+res[7]:redir3
+
+*/
+
 /**
  * @brief Main parsing funct
  * TODO further comment and fct rework 
