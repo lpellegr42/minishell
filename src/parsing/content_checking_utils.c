@@ -9,6 +9,11 @@ int	is_sep(char c)
 	return (c == ' ' || c == '|' || c == '<' || c == '>');
 }
 
+int is_token(char c)
+{
+	return (c == '|' || c == '<' || c == '>');
+}
+
 /**
  * @brief check if the given char is an ASCII digit.
  * @return 1 if yes. 0 if not.

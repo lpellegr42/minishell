@@ -15,12 +15,11 @@ int	initial_check(char *line, t_all *all)
 		ft_display_err("minishell: syntax error near unexpected token `|'\n", all, 2);
 		return (0);
 	}
-	//redir_error_check(line);
-	// if (redir_error_check == 1)
-	// {
-	// 	ft_display_err("minishell: syntax error near unexpected token `>'\n", all, 2);
-	// 	return (0);
-	// }
+	if (redir_error_check(line) == 1)
+	{
+		ft_display_err("minishell: syntax error near unexpected token `>'\n", all, 2);
+		return (0);
+	}
 	return (1);
 }
 
@@ -38,6 +37,8 @@ t_all	*parsing(char *line, t_all *all)
 	node->line = my_strdup(line);
 	node->line = clean_adjacent_quotes(node->line);
 	parse_pipe(node);
+	//if (!parse_pipe(node))
+	//	parsing_redir -> flag pas de pipe, sinon appel de parse redir dans parse pipe et donc gestion des deux eventualités.
 	while (node)
 	{
 		node = fill_args(node);

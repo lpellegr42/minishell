@@ -131,6 +131,7 @@ void	red(void);
 // parsing/content_checking_utils.c
 
 int		is_sep(char c);
+int 	is_token(char c);
 int		is_digit(char c);
 int		is_whitespace(char c);
 int		is_redir(char c);
@@ -152,7 +153,7 @@ t_data	*fill_args(t_data *data);
 int		empty_line_check(char *line);
 int		empty_pipe_check(char *line);
 int		is_unclosed_quotes(char *str);
-void	redir_error_check(char *line);
+int		redir_error_check(char *line);
 
 
 //	parsing/parsing_utils.c

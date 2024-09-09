@@ -68,8 +68,8 @@ void	ft_prompt_loop(t_all *all)
 		{
 			all = parsing(line, all);
 			//print_parsing(all);
-			if (all->data)
-				ft_exec(all);
+			// if (all->data)
+			// 	ft_exec(all);
 		}
 		free(line);
 		line = NULL;

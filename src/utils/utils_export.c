@@ -8,6 +8,12 @@ int	ft_isalpha(int c)
 	return (0);
 }
 
+/**
+ * Checks if a character is a digit.
+ * 
+ * @param c The character to check.
+ * @return 1 if the character is a digit, 0 otherwise.
+ */
 int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
@@ -15,6 +21,14 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
+/**
+ * This function checks if a string is a valid environment variable name.
+ * The string must start with a letter or an underscore and can only contain
+ * letters, numbers or underscores.
+ * 
+ * @param str The string to check.
+ * @return 1 if the string is valid, 0 otherwise.
+ */
 int	ft_isvalid(char *str)
 {
 	int	i;

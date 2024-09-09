@@ -11,9 +11,9 @@ void	parse_pipe(t_data *data)
 	pipe_pos = search_pipe(data->line);
 	if (pipe_pos == -1)
 		return ;
-	else
+	else //if (parse pipe)
 	{
-		parsed_line = shell_split(data->line, '|'); 
+		parsed_line = shell_split(data->line, '|');
 		while(parsed_line[i])
 		{
 			free(data->line);
@@ -27,6 +27,8 @@ void	parse_pipe(t_data *data)
 		}
 		free_tab_tab(parsed_line);
 	}
+	//else if (parse_pipe == -1)
+	// parse redir dans cas de pipe.
 }
 
 /**

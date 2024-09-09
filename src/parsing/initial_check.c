@@ -44,20 +44,27 @@ int	is_unclosed_quotes(char *str)
 	return (0);
 }
 
-// void	redir_error_check(char *line)
-// {
-// 	int i;
+int	redir_error_check(char *line)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (line[i] && line[i] != '>' && line[i] != '<')
-// 		i++;
-// 	if (line[i] == '>')
-// 	{
-// 		if (line[i + 1] == '>')
-// 	}
-// 		return (1);
-// 	printf("char_looked:%c$\n", line[i]);
-// 	printf("len:%d\n", ft_strlen(line));
-// 	printf("i:%d\n", i);
-// 	return (0);
-// }
+	i = 0;
+	while (line[i])
+	{
+		if (is_redir(line[i]))
+		{
+			if ((line[i] == '>' && line[i + 1] == '>') ||
+			    (line[i] == '<' && line[i + 1] == '<'))
+				i += 2;
+			else if (line[i] == '>' || line[i] == '<')
+				i++;
+			while (line[i] && is_whitespace(line[i]))
+				i++;
+			if (!line[i] || is_token(line[i]))
+				return (1);
+		}
+		else
+			i++;
+	}
+	return (0);
+}
