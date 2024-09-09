@@ -1,6 +1,7 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+// need to modify parse pipe to handle redir correctly.
 void	parse_pipe(t_data *data)
 {
 	char	**parsed_line;
