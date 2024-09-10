@@ -56,3 +56,46 @@ int	var_len(char *str, int i)
 	}
 	return (count);
 }
+/**
+ * Remove the element at the index i from an array of string.
+ */
+
+char **array_remove_at(char **array, int i)
+{
+	int j;
+	int k;
+	char **res;
+
+	j = 0;
+	k = 0;
+	res = malloc(sizeof(char *) * tab_len(array));
+	if (!res)
+		return (NULL);
+	while (array && array[j])
+	{
+		if (array[j] && j != i)
+		{
+			res[k] = my_strdup(array[j]);
+			if (!res[k])
+				return (free_tab_tab(res), NULL);
+			k++;
+		}
+		j++;
+	}
+	res[k] = NULL;
+	free_tab_tab(array);
+	return (res);
+}
+
+char	*replace_data_line(char *line, int len)
+{
+	char *temp;
+
+	if (!line)
+		return (NULL);
+	temp = strldup(line, len);
+	if (!temp)
+		return (NULL);
+	free(line);
+	return (temp);
+}

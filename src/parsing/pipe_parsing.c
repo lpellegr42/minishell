@@ -1,37 +1,6 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
-// need to modify parse pipe to handle redir correctly.
-void	parse_pipe(t_data *data)
-{
-	char	**parsed_line;
-	int		pipe_pos;
-	int		i;
-
-	i = 0;
-	pipe_pos = search_pipe(data->line);
-	if (pipe_pos == -1)
-		return ;
-	else //if (parse pipe)
-	{
-		parsed_line = shell_split(data->line, '|');
-		while(parsed_line[i])
-		{
-			free(data->line);
-			data->line = my_strdup(parsed_line[i]);
-			i++;
-			if (parsed_line[i] != NULL)
-			{
-				data->next = init_node();
-				data = data->next;
-			}
-		}
-		free_tab_tab(parsed_line);
-	}
-	//else if (parse_pipe == -1)
-	// parse redir dans cas de pipe.
-}
-
 /**
  * @brief Search for the a pipe char '|' in the given string.
  * @return 	Return the position of the first pipe found in the given string. -1 if none is found.
@@ -41,13 +10,15 @@ int	search_pipe(char *str)
 	int i;
 
 	i = 0;
+	if (!str)
+		return (-1);
 	while (str[i])
 	{
 		if (str[i] == '|' && str[i - 1] != '\\' && !is_in_quote(str, i, 1))
 			return (i);
 		i++;
 	}
-	return	(-1); //no pipe in the str.
+	return	(-1);
 }
 
 int check_start_pipe(char *line)
@@ -96,4 +67,21 @@ int check_end_pipe(char *line)
     if (line[i] == '|')
         return (1);
     return (0);
+}
+
+void	parse_pipe(t_data *data)
+{
+	int		pipe_pos;
+
+	pipe_pos = search_pipe(data->line);
+	if (pipe_pos == -1)
+		return ;
+	while (pipe_pos != -1)
+	{
+		data->next = init_node();
+		data->next->line = strldup(&data->line[pipe_pos + 1], ft_strlen(&data->line[pipe_pos + 1]));
+		data->line = replace_data_line(data->line, pipe_pos);
+		data = data->next;
+		pipe_pos = search_pipe(data->line);
+	}
 }

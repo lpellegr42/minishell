@@ -17,38 +17,11 @@ int	initial_check(char *line, t_all *all)
 	}
 	if (redir_error_check(line) == 1 || pipe_follow_redir_check(line) == 1)
 	{
-		ft_display_err("minishell: syntax error near unexpected token `>'\n", all, 2);
+		ft_display_err("minishell: syntax error near redirection token\n", all, 2);
 		return (0);
 	}
 	return (1);
 }
-
-/*
-
-split with '|'
-
-res[0]:echo test 
-res[1]:>>
-res[2]: redir1 
-res[3]:>>
-res[4]: redir 2 
-res[5]: test2 
-res[6]:>
-res[7]: redir 1
-
-
-------   split with ' '
-
-res[0]:echo
-res[1]:test
-res[2]:>
-res[3]:redir1
-res[4]:>>
-res[5]:redir2
-res[6]:>
-res[7]:redir3
-
-*/
 
 /**
  * @brief Main parsing funct
@@ -64,9 +37,7 @@ t_all	*parsing(char *line, t_all *all)
 	root_node = node;
 	node->line = my_strdup(line);
 	node->line = clean_adjacent_quotes(node->line);
-	/*ret = */parse_pipe(node);
-	//if (!parse_pipe(node))
-	//	parsing_redir -> flag pas de pipe, sinon appel de parse redir dans parse pipe et donc gestion des deux eventualités.
+	parse_pipe(node);
 	while (node)
 	{
 		node = fill_args(node);

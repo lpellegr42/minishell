@@ -177,7 +177,8 @@ void	apply_clean_on_args(t_data *node, t_all *all);
 void	split_free(char **res, int count);
 char	*clean_arg(char *str);
 int		var_len(char *str, int i);
-
+char	**array_remove_at(char **array, int i);
+char	*replace_data_line(char *line, int len);
 
 //	parsing/pipe_parsing.c
 
@@ -189,6 +190,7 @@ int		check_end_pipe(char *line);
 
 //	parsing/split_minishell.c
 
+char	*strldup(char *s, int len);
 char	**shell_split(char *s, char sep);
 
 //	parsing/quote_parsing.c
@@ -201,7 +203,7 @@ char	*clean_adjacent_quotes(char *line);
 
 // parsing/var_parsing.c
 
-char*	replace_var_on_arg(char *arg, t_all *all); //main_replace_var ?!
+char*	replace_var_on_arg(char *arg, t_all *all);
 
 // 								Temp
 

@@ -72,7 +72,7 @@ static int	countwords(char *s, char sep)
  * @return A pointer to the newly allocated string which is a duplicate of the substring,
  *         or NULL if the allocation fails.
  */
-static char	*strldup(char *s, int len)
+char	*strldup(char *s, int len)
 {
 	char	*dest;
 	int		i;
@@ -81,7 +81,7 @@ static char	*strldup(char *s, int len)
 	dest = (char *)malloc(sizeof(char) * (len + 1));
 	if (!dest)
 		return (dest);
-	while (s[i] && i < len)
+	while (s&& s[i] && i < len)
 	{
 		dest[i] = s[i];
 		i++;
