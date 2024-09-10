@@ -53,6 +53,9 @@ int	redir_error_check(char *line)
 	{
 		if (is_redir(line[i]))
 		{
+
+			if (is_only_whitespace(line, 0, i) || i == 0)
+				return (1);
 			if ((line[i] == '>' && line[i + 1] == '>') ||
 			    (line[i] == '<' && line[i + 1] == '<'))
 				i += 2;
@@ -65,6 +68,35 @@ int	redir_error_check(char *line)
 		}
 		else
 			i++;
+	}
+	return (0);
+}
+
+int	pipe_follow_redir_check(char *line)
+{
+	int	i;
+	int j;
+	int k;
+
+	i = 0;
+	while (line[i])
+	{
+		while (line[i] && is_whitespace(line[i]))
+			i++;
+		if (is_redir(line[i]))
+		{
+			j = i - 1;
+			while (j >= 0 && is_whitespace(line[j]))
+				j--;
+			if (j >= 0 && line[j] == '|')
+				return (1);
+			k = i + 1;
+			while (line[k] && is_whitespace(line[k]))
+				k++;
+			if (line[k] == '|')
+				return (1);
+		}
+		i++;
 	}
 	return (0);
 }

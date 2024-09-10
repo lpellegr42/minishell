@@ -154,7 +154,7 @@ int		empty_line_check(char *line);
 int		empty_pipe_check(char *line);
 int		is_unclosed_quotes(char *str);
 int		redir_error_check(char *line);
-
+int		pipe_follow_redir_check(char *line);
 
 //	parsing/parsing_utils.c
 
