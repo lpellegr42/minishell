@@ -42,6 +42,7 @@ t_all	*parsing(char *line, t_all *all)
 	{
 		node = fill_args(node);
 		apply_clean_on_args(node, all);
+		parse_redir(node);
 		node = node->next;
 	}
 	all->data = root_node;

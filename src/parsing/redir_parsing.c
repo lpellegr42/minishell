@@ -21,23 +21,66 @@
  * le split doit garder la redir me semble. IS OK
 */
 
-void	handle_redir(void)
+
+
+void	handle_redir_arg(t_data *data, int i)
 {
-	printf("IT'S A REDIR\n");
+		if (data->arg[i][0] == '>')
+		{
+			if (data->arg[i][1])
+				printf("handle_double_redir_out\n");
+			else
+				printf("handle_simple_redir_out\n");
+		}
+		else if(data->arg[i][0] == '<')
+		{
+			if (data->arg[i][1])
+				printf("handle_here_doc\n");
+			else
+				printf("handle_simple_redir_in\n");
+		}
+		data->arg = array_remove_at(data->arg, i + 1);
+		data->arg = array_remove_at(data->arg, i);
 }
 
-void	parse_redir(t_data *node)
+void	parse_redir(t_data *data)
 {
-	while (node)
+	int	i;
+
+	i = 0;
+	while (data->arg && data->arg[i])
 	{
-		if (node->next->cmd[0] == '<' || node->next->cmd[0] == '>')
-			handle_redir();
-		node = node->next;
+		if (is_redir(data->arg[i][0]))
+			handle_redir_arg(data, i);
+		else
+			i++;
 	}
 }
 
-// int	search_redir(char *str)
+// int	parse_redir(t_cmdgrp *node, int i, t_cmdgrp *firstnode)
 // {
+// 	if (node->arg[i][0] == '>')
+// 	{
+// 		if (node->arg[i][1])
+// 			redir_open(node, i, 1);
+// 		else
+// 			redir_open(node, i, 0);
+// 	}
+// 	else if (node->arg[i][0] == '<')
+// 	{
+// 		if (node->arg[i][1])
+// 		{
+// 			node->type = HEREDOC;
+// 			node->fd = heredoc(node->arg[i + 1]);
+// 		}
+// 		else
+// 			redir_open(node, i, 2);
+// 	}
+// 	if (node->fd == -1)
+// 		return (parsing_error(firstnode, 1, node->arg[i][0]), 0);
+// 	node->arg = rm_from_array(node->arg, i + 1);
+// 	node->arg = rm_from_array(node->arg, i);
+// 	return (1);
 // }
 
 

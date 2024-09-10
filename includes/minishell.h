@@ -201,6 +201,10 @@ int		is_in_quote(char *str, int pos, int flag);
 int		is_unclosed_quotes(char *str);
 char	*clean_adjacent_quotes(char *line);
 
+//	parsing/redir_parsing.c
+
+void	parse_redir(t_data *data);
+
 // parsing/var_parsing.c
 
 char*	replace_var_on_arg(char *arg, t_all *all);
