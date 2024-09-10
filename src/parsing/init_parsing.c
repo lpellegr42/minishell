@@ -1,4 +1,3 @@
-//#include "minishell.h"
 #include "../../includes/minishell.h"
 
 int	initial_check(char *line, t_all *all)
@@ -12,12 +11,14 @@ int	initial_check(char *line, t_all *all)
 	}
 	if (empty_pipe_check(line) == 1)
 	{
-		ft_display_err("minishell: syntax error near unexpected token `|'\n", all, 2);
+		printf("minishell: ");
+		ft_display_err("syntax error near unexpected token `|'\n", all, 2);
 		return (0);
 	}
 	if (redir_error_check(line) == 1 || pipe_follow_redir_check(line) == 1)
 	{
-		ft_display_err("minishell: syntax error near redirection token\n", all, 2);
+		printf("minishell: ");
+		ft_display_err("syntax error near redirection token\n", all, 2);
 		return (0);
 	}
 	return (1);
@@ -31,7 +32,6 @@ t_all	*parsing(char *line, t_all *all)
 {
 	t_data	*root_node;
 	t_data	*node;
-	//int		ret; //return to know if there's pipe in the prompt for redir_handling
 
 	node = init_node();
 	root_node = node;
@@ -60,17 +60,14 @@ t_data	*init_node(void)
 	if (!new_node)
 		return (NULL);
 	new_node->line = NULL;
-	new_node->cmd = NULL; //char *
-	new_node->arg = NULL; //char **
-	
+	new_node->cmd = NULL;
+	new_node->arg = NULL;
 	new_node->fd_in = dup(STDIN_FILENO);
 	new_node->fd_out = dup(STDOUT_FILENO);
-	
 	new_node->flag_out = 0;
 	new_node->delim = NULL;
 	new_node->redir_in = NULL;
 	new_node->redir_out = NULL;
-
 	new_node->next = NULL;
 	return (new_node);
 }

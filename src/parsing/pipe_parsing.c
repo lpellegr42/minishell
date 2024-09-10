@@ -1,13 +1,13 @@
-//#include "minishell.h"
 #include "../../includes/minishell.h"
 
 /**
  * @brief Search for the a pipe char '|' in the given string.
- * @return 	Return the position of the first pipe found in the given string. -1 if none is found.
+ * @return 	Return the position of the first pipe found 
+ * in the given string. -1 if none is found.
 */
 int	search_pipe(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)
@@ -18,10 +18,10 @@ int	search_pipe(char *str)
 			return (i);
 		i++;
 	}
-	return	(-1);
+	return (-1);
 }
 
-int check_start_pipe(char *line)
+int	check_start_pipe(char *line)
 {
 	int	i;
 
@@ -33,16 +33,17 @@ int check_start_pipe(char *line)
 	return (0);
 }
 
-int check_middle_pipes(char *line)
+int	check_middle_pipes(char *line)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (line[i] != '\0')
 	{
 		if (line[i] == '|')
 		{
-			int j = i - 1;
+			j = i - 1;
 			while (j >= 0 && is_whitespace(line[j]))
 				j--;
 			if (j < 0 || line[j] == '|')
@@ -58,15 +59,16 @@ int check_middle_pipes(char *line)
 	return (0);
 }
 
-int check_end_pipe(char *line)
+int	check_end_pipe(char *line)
 {
-    int i = ft_strlen(line) - 1;
+	int	i;
 
-    while (i >= 0 && is_whitespace(line[i]))
-        i--;
-    if (line[i] == '|')
-        return (1);
-    return (0);
+	i = ft_strlen(line) - 1;
+	while (i >= 0 && is_whitespace(line[i]))
+		i--;
+	if (line[i] == '|')
+		return (1);
+	return (0);
 }
 
 void	parse_pipe(t_data *data)
@@ -79,7 +81,8 @@ void	parse_pipe(t_data *data)
 	while (pipe_pos != -1)
 	{
 		data->next = init_node();
-		data->next->line = strldup(&data->line[pipe_pos + 1], ft_strlen(&data->line[pipe_pos + 1]));
+		data->next->line = strldup(&data->line[pipe_pos + 1],
+				ft_strlen(&data->line[pipe_pos + 1]));
 		data->line = replace_data_line(data->line, pipe_pos);
 		data = data->next;
 		pipe_pos = search_pipe(data->line);

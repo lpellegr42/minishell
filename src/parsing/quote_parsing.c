@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   quote_parsing.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lpellegr <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/05 17:00:50 by lpellegr          #+#    #+#             */
-/*   Updated: 2024/09/05 17:06:16 by lpellegr         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/minishell.h"
 
 /**
@@ -24,12 +12,12 @@ void	quote_checker(char *str, int i, int *s_quote, int *d_quote)
 {
 	if (str[i] == '\'' && !(*d_quote))
 	{
-		if (i == 0 || str[i - 1]  != '\\')
+		if (i == 0 || str[i - 1] != '\\')
 			*s_quote = !(*s_quote);
 	}
 	else if (str[i] == '"' && !(*s_quote))
 	{
-		if (i == 0 || str[i - 1]  != '\\')
+		if (i == 0 || str[i - 1] != '\\')
 			*d_quote = !(*d_quote);
 	}
 }
@@ -114,12 +102,12 @@ int	is_in_quote(char *str, int pos, int flag)
  *	The original input string is freed. 
  *	If memory allocation for the new string fails, returns NULL.
  */
-char *clean_adjacent_quotes(char *line)
+char	*clean_adjacent_quotes(char *line)
 {
-	int i;
-	int	j;
-	int len;
-	char *new_line;
+	int		i;
+	int		j;
+	int		len;
+	char	*new_line;
 
 	i = 0;
 	j = 0;
@@ -129,9 +117,9 @@ char *clean_adjacent_quotes(char *line)
 		return (NULL);
 	while (line[i] != '\0')
 	{
-		if ((line[i] == '\'' && line[i + 1] == '\'') 
+		if ((line[i] == '\'' && line[i + 1] == '\'')
 			|| (line[i] == '"' && line[i + 1] == '"'))
-				i += 2;
+			i += 2;
 		else
 			new_line[j++] = line[i++];
 	}

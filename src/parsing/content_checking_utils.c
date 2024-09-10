@@ -9,7 +9,12 @@ int	is_sep(char c)
 	return (c == ' ' || c == '|' || c == '<' || c == '>');
 }
 
-int is_token(char c)
+/**
+* @brief check if the given char is a specific token (|, <, >).
+		 same as above but without taking the space into account.
+* @return 1 if yes. 0 if not.
+*/
+int	is_token(char c)
 {
 	return (c == '|' || c == '<' || c == '>');
 }
@@ -29,10 +34,13 @@ int	is_digit(char c)
 */
 int	is_whitespace(char c)
 {
-	//some missing ? sufficient i think
 	return (c == ' ' || c == '\t' || c == '\n');
 }
 
+/**
+ * @brief  Check if the given char is a redirection
+ * @return 1 if yes. 0 if not.
+*/
 int	is_redir(char c)
 {
 	return (c == '>' || c == '<');

@@ -24,20 +24,21 @@ char	*join_var(char *arg, char *var, int i, int var_len)
 
 char	*return_replace_var(char *arg, char *before_var, char *res)
 {
-	char *ret;
+	char	*ret;
+
 	ret = ft_strdup(res);
 	free(arg);
 	free(res);
 	free(before_var);
-	return(ret);
+	return (ret);
 }
 
 int	replace_var(char **arg, int i, t_all *all)
-{	
+{
 	char	*before_var;
 	char	*after_var;
 	char	*res;
-	int	j;
+	int		j;
 
 	j = var_len(*arg, i + 1);
 	before_var = my_substr(*arg, i + 1, j);
@@ -60,10 +61,9 @@ int	replace_nothing(char **arg, int i)
 
 char	*replace_var_on_arg(char *arg, t_all *all)
 {
-	int i;
+	int	i;
 
 	i = 0;
-
 	(void)all;
 	while (arg[i])
 	{

@@ -6,7 +6,6 @@
 */
 int	empty_line_check(char *line)
 {
-	// && !line
 	if (*line == '\0' || is_only_whitespace(line, 0, ft_strlen(line)))
 		return (1);
 	return (0);
@@ -53,11 +52,10 @@ int	redir_error_check(char *line)
 	{
 		if (is_redir(line[i]))
 		{
-
 			if (is_only_whitespace(line, 0, i) || i == 0)
 				return (1);
-			if ((line[i] == '>' && line[i + 1] == '>') ||
-			    (line[i] == '<' && line[i + 1] == '<'))
+			if ((line[i] == '>' && line[i + 1] == '>')
+				|| (line[i] == '<' && line[i + 1] == '<'))
 				i += 2;
 			else if (line[i] == '>' || line[i] == '<')
 				i++;
@@ -75,8 +73,8 @@ int	redir_error_check(char *line)
 int	pipe_follow_redir_check(char *line)
 {
 	int	i;
-	int j;
-	int k;
+	int	j;
+	int	k;
 
 	i = 0;
 	while (line[i])

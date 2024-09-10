@@ -56,15 +56,16 @@ int	var_len(char *str, int i)
 	}
 	return (count);
 }
-/**
- * Remove the element at the index i from an array of string.
- */
 
-char **array_remove_at(char **array, int i)
+/**
+ * @brief Remove the element at the index i from an array of string.
+ * @return The cleaned array.
+ */
+char	**array_remove_at(char **array, int i)
 {
-	int j;
-	int k;
-	char **res;
+	int		j;
+	int		k;
+	char	**res;
 
 	j = 0;
 	k = 0;
@@ -87,9 +88,13 @@ char **array_remove_at(char **array, int i)
 	return (res);
 }
 
+/**
+ * @brief Take a string as parameter and return it truncated at the pos len.
+ * @return The cleaned string.
+ */
 char	*replace_data_line(char *line, int len)
 {
-	char *temp;
+	char	*temp;
 
 	if (!line)
 		return (NULL);

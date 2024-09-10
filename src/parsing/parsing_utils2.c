@@ -2,34 +2,38 @@
 
 /**
  *  @brief Calculates the length of a string array (array of char pointers).
- *  @return The number of strings in the array (not including the NULL terminator).
+ *  @return The number of strings in the array (not including the NULL 
+ * 		    terminator).
  */
 int	tab_len(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(tab[i])
+	while (tab[i])
 	{
 		i++;
 	}
-	return(i);
+	return (i);
 }
 
 /**
- * @brief Count the number of element in char ** array, skiping the first element.
- * @return The number of element in the array minus 1, 0 if there's is only one or less.
+ * @brief Count the number of element in char ** array, skiping the 
+ * 		  first element.
+ * @return The number of element in the array minus 1, 0 if there's
+ * 		   is only one or less.
  */
-int arg_tab_len(char **tab)
+int	arg_tab_len(char **tab)
 {
-    int count = 0;
+	int	count;
 
+	count = 0;
 	tab++;
 	while (*tab != NULL)
 	{
 		count++;
 		tab++;
-    }
+	}
 	return (count);
 }
 
@@ -66,9 +70,9 @@ void	apply_all_clean(char **str, int *i)
 		(*i)++;
 }
 
-void apply_clean_on_args(t_data *node, t_all *all)
+void	apply_clean_on_args(t_data *node, t_all *all)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (node->cmd)
@@ -83,4 +87,3 @@ void apply_clean_on_args(t_data *node, t_all *all)
 		i++;
 	}
 }
-
