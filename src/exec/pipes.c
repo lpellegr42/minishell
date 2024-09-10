@@ -32,7 +32,7 @@ void	handle_child_process(t_all *all, int input_fd, int pipe_fd[2])
 		close(input_fd);
 	ft_choose_cmd(all);
 	if (access(all->data->cmd, F_OK | X_OK) == -1)
-		all->err = 127; // Commande introuvable, on sort avec le code 127
+		all->err = 127;
 	exit(all->err);
 }
 
@@ -66,7 +66,6 @@ void	ft_do_pipe(t_all *all)
 	int		pipe_fd[2];
 	pid_t	pid;
 	int		input_fd;
-	// int		status;
 
 	input_fd = 0;
 	while (all->data)
@@ -88,71 +87,3 @@ void	ft_do_pipe(t_all *all)
 	}
 	wait_for_children(all);
 }
-
-// void    close_unused_fds(int *pipe_fd, int input_fd)
-// {
-//     close(pipe_fd[1]);
-//     if (input_fd != 0)
-//         close(input_fd);
-// }
-
-// void    execute_child_process(t_all *all, int *pipe_fd, int input_fd)
-// {
-//     if (all->data->next != NULL)
-//     {
-//         if (dup2(pipe_fd[1], STDOUT_FILENO) == -1)
-//             perror_and_exit("dup2 error");
-//     }
-//     close(pipe_fd[0]);
-//     close(pipe_fd[1]);
-//     if (dup2(input_fd, STDIN_FILENO) == -1)
-//         perror_and_exit("dup2 error");
-//     if (input_fd != 0)
-//         close(input_fd);
-//     ft_choose_cmd(all);
-//     exit(all->err);
-// }
-
-// void    handle_parent_process(int *pipe_fd, int *input_fd)
-// {
-//     close(pipe_fd[1]);
-//     if (*input_fd != 0)
-//         close(*input_fd);
-//     *input_fd = pipe_fd[0];
-// }
-
-// void    wait_for_children(t_all *all)
-// {
-//     int status;
-
-//     while (waitpid(-1, &status, 0) > 0)
-//     {
-//         if (WIFEXITED(status))
-//             all->err = WEXITSTATUS(status);
-//     }
-// }
-
-// void    ft_do_pipe(t_all *all)
-// {
-//     int pipe_fd[2];
-//     pid_t pid;
-//     int input_fd;
-
-// 	input_fd = 0;
-//     while (all->data)
-//     {
-//         if (pipe(pipe_fd) == -1)
-//             perror_and_exit("Pipe error");
-
-//         pid = create_child_process();
-//         if (pid == 0)
-//             execute_child_process(all, pipe_fd, input_fd);
-//         else
-//             handle_parent_process(pipe_fd, &input_fd);
-
-//         if (!all->data->next)
-//             break;
-//         all->data = all->data->next;
-//     }
-//     wait_for_children(all);
-// }
