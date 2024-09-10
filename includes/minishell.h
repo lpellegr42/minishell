@@ -33,7 +33,7 @@ typedef struct s_data
 	char			*cmd;
 	char			**arg;
 	int				fd_in;
-	int				fd_out; //keep for now ?
+	int				fd_out; //BALEK?!
 	int				flag_out; // 0 si pas de redir; 1 - simple > O_CREATE; 2 double >> O_APPEND. ONLY FOR OUT REDIR.
 	char			*delim; //Delimiter of the here_doc;
 	char			*redir_in; //Nom du fichier de redir

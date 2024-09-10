@@ -34,6 +34,8 @@ void	ft_free2(t_data *data)
 		free(data->redir_out);
 		data->redir_out = NULL;
 	}
+	close(data->fd_in);
+	close(data->fd_out);
 }
 
 /* @brief Frees the data nodes.

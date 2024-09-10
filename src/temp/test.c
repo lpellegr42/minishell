@@ -22,7 +22,10 @@ void	print_parsing(t_all *all)
 	while (all->data != NULL)
 	{
 		printf("\n //// NEW NODE //// \n\n");
-		//printf("\n fd_in:%d, fd_out: %d\n\n", all->data->fd_in, all->data->fd_out);
+		printf("\n fd_in:%d,\n\n fd_out: %d\n\n", all->data->fd_in, all->data->fd_out);
+		printf("flag_out :%d\n\n", all->data->flag_out);
+		if (all->data->delim)
+			printf("here_doc_delim:%s\n\n", all->data->delim);
 		//printf("data[%i]:%s\n", i, all->data->line);
 		printf ("	cmd[%i]:%s\n", i, all->data->cmd);
 		int j = 0;
