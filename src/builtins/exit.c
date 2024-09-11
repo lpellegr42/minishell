@@ -29,7 +29,8 @@ void	ft_free_data(t_data *data)
 	while (data)
 	{
 		ft_free(data);
-		close(data->fd);
+		// printf("data->fd:%d\n", data->fd);
+		// close(data->fd);
 		temp = data->next;
 		free(data);
 		data = NULL;

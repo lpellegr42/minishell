@@ -23,6 +23,7 @@ void	print_parsing(t_all *all)
 	{
 		printf("\n //// NEW NODE //// \n\n");
 		printf("\n fd:%d,\n\n", all->data->fd);
+		//printf("STDIN:%d\nSTDOUT:%d\n", STDIN_FILENO, STDOUT_FILENO);
 		printf("flag_redir :%d\n\n", all->data->flag_redir);
 		//printf("data[%i]:%s\n", i, all->data->line);
 		printf ("	cmd[%i]:%s\n", i, all->data->cmd);

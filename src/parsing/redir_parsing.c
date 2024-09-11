@@ -10,7 +10,6 @@ void	open_fd(t_data *data, char *file, int type, int flag)
 		data->fd = open(file, type, 0777);
 	else if (flag == 2)
 		data->fd = open(file, type, 0777);
-	//VOIR POUR LE HERE_DOC
 }
 
 /**
@@ -65,6 +64,7 @@ void	handle_redir_arg(t_data *data, int i)
 		else
 			handle_redir(data, i, 2);
 	}
+
 	data->arg = array_remove_at(data->arg, i + 1);
 	data->arg = array_remove_at(data->arg, i);
 }

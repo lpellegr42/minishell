@@ -30,7 +30,15 @@ void	handle_child_process(t_all *all, int input_fd, int pipe_fd[2])
 		perror_and_exit("dup2 error");
 	if (input_fd != 0)
 		close(input_fd);
-	ft_choose_cmd(all);
+	if (all->data->fd != -1 && all->data->flag_redir != -1)
+	{
+		if (all->data->flag_redir == 0)
+			ft_handle_in(all);
+		else if (all->data->flag_redir == 1)
+			ft_handle_out(all);
+	}
+	else
+		ft_choose_cmd(all);
 	if (access(all->data->cmd, F_OK | X_OK) == -1)
 		all->err = 127;
 	exit(all->err);

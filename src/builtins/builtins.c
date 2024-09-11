@@ -26,13 +26,6 @@ int	ft_is_builtin(char *cmd)
 */
 void	ft_choose_cmd(t_all *all)
 {
-	// if (all->data->fd != -1 && all->data->flag_redir != -1)
-	// {
-	// 	if (all->data->flag_redir == 0)
-	// 		ft_handle_in(all);
-	// 	else if (all->data->flag_redir == 1)
-	// 		ft_handle_out(all);
-	// }
 	if (ft_is_builtin(all->data->cmd))
 		ft_builtins(all);
 	else
