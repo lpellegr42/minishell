@@ -176,6 +176,10 @@ int		var_len(char *str, int i);
 char	**array_remove_at(char **array, int i);
 char	*replace_data_line(char *line, int len);
 
+//	parsing/parsing_utils4.c
+
+void	replace_err(char **arg, int i, t_all *all);
+
 //	parsing/pipe_parsing.c
 
 void	parse_pipe(t_data *node);
@@ -204,6 +208,8 @@ void	parse_redir(t_data *data);
 // parsing/var_parsing.c
 
 char*	replace_var_on_arg(char *arg, t_all *all);
+char	*return_replace_var(char *arg, char *before_var, char *res);
+char	*join_var(char *arg, char *var, int i, int var_len);
 
 // 								Temp
 
