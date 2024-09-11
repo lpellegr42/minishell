@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpellegr <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/11 20:46:45 by lpellegr          #+#    #+#             */
+/*   Updated: 2024/09/11 20:46:55 by lpellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 int	g_signum = 0;
@@ -67,7 +79,6 @@ void	ft_prompt_loop(t_all *all)
 		if (initial_check(line, all))
 		{
 			all = parsing(line, all);
-			//print_parsing(all);
 			if (all->data)
 				ft_exec(all);
 		}

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpellegr <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:30:06 by livsauze          #+#    #+#             */
-/*   Updated: 2024/09/11 19:30:29 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:49:25 by lpellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
 
 char	*ft_getenv_tab(char *name, char **envp)
 {

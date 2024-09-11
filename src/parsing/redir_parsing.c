@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redir_parsing.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpellegr <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/11 20:48:51 by lpellegr          #+#    #+#             */
+/*   Updated: 2024/09/11 20:50:17 by lpellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 void	open_fd(t_data *data, char *file, int type, int flag)
@@ -64,7 +76,6 @@ void	handle_redir_arg(t_data *data, int i)
 		else
 			handle_redir(data, i, 2);
 	}
-
 	data->arg = array_remove_at(data->arg, i + 1);
 	data->arg = array_remove_at(data->arg, i);
 }

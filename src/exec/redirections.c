@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpellegr <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:29:12 by livsauze          #+#    #+#             */
-/*   Updated: 2024/09/11 19:33:18 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:58:46 by lpellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,11 @@ int	ft_heredoc(char *delim)
 	}
 }
 
-// Reunir ces deux fonctions pour manager les fd.
-// all->data->fd
-
 void	ft_handle_out(t_all *all)
 {
 	int	stdout_cpy;
 
 	stdout_cpy = dup(STDOUT_FILENO);
-
 	if (all->data->fd != -1)
 		dup2(all->data->fd, STDOUT_FILENO);
 	ft_choose_cmd(all);
@@ -63,7 +59,6 @@ void	ft_handle_out(t_all *all)
 
 void	ft_handle_in(t_all *all)
 {
-
 	int	stdin_cpy;
 
 	stdin_cpy = dup(STDIN_FILENO);

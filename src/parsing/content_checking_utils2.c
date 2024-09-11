@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   content_checking_utils2.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpellegr <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/11 20:48:19 by lpellegr          #+#    #+#             */
+/*   Updated: 2024/09/11 20:50:05 by lpellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 /**
@@ -31,7 +43,7 @@ int	is_only_digit(char *str)
 	return (0);
 }
 
-int is_quote(char c)
+int	is_quote(char c)
 {
 	return (c == '"' || c == '\'');
 }

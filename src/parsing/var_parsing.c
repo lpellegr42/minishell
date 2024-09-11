@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   var_parsing.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpellegr <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/11 20:48:59 by lpellegr          #+#    #+#             */
+/*   Updated: 2024/09/11 20:53:23 by lpellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 char	*join_var(char *arg, char *var, int i, int var_len)
@@ -69,7 +81,8 @@ char	*replace_var_on_arg(char *arg, t_all *all)
 	{
 		if (is_in_quote(arg, i, 0) != 1)
 		{
-			if (arg[i] == '$' && (is_whitespace(arg [i + 1]) || is_quote(arg[i + 1])))
+			if (arg[i] == '$' && (is_whitespace(arg [i + 1])
+					|| is_quote(arg[i + 1])))
 				i++;
 			if (arg[i] == '$' && arg[i + 1] == '?')
 				replace_err(&arg, i, all);

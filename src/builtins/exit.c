@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpellegr <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:27:20 by livsauze          #+#    #+#             */
-/*   Updated: 2024/09/11 19:27:23 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:54:38 by lpellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	ft_free_data(t_data *data)
 	while (data)
 	{
 		ft_free(data);
-		// printf("data->fd:%d\n", data->fd);
-		// close(data->fd);
 		temp = data->next;
 		free(data);
 		data = NULL;

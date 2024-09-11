@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_export.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpellegr <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:30:02 by livsauze          #+#    #+#             */
-/*   Updated: 2024/09/11 19:30:03 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:49:36 by lpellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char	**ft_malloc_tab(int len, char *s, char sep)
 {
 	char	**res;
 
-	// res = NULL;
 	if (len > 1)
 		res = malloc(sizeof(char *) * (len + 1));
 	else if (len == 1)
