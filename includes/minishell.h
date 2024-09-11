@@ -6,7 +6,7 @@
 /*   By: lpellegr <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 20:40:23 by lpellegr          #+#    #+#             */
-/*   Updated: 2024/09/11 20:41:02 by lpellegr         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:13:51 by lpellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,10 @@ int		ft_tab_len(char **tab);
 int		ft_heredoc(char *delim);
 void	ft_handle_out(t_all *all);
 void	ft_handle_in(t_all *all);
+pid_t	create_child_process(void);
+void	handle_child_process(t_all *all, int input_fd, int pipe_fd[2]);
+void	perror_and_exit(char *error_message);
+
 
 /* ******************************UTILS_LIBFT********************************* */
 
