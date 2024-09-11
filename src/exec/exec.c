@@ -48,15 +48,43 @@ void	ft_docmd(t_all *all)
 	all->err = 0;
 }
 
+// void	ft_exec(t_all *all)
+// {
+// 	t_data	*tmp;
+
+// 	if (!all->data->cmd)
+// 		return ;
+// 	tmp = all->data;
+// 	ft_do_pipe(all);
+// 	all->data = tmp;
+// 	if (all->data->cmd != NULL)
+// 		ft_free_data(all->data);
+// }
+
 void	ft_exec(t_all *all)
 {
 	t_data	*tmp;
 
 	if (!all->data->cmd)
 		return ;
-	tmp = all->data;
-	ft_do_pipe(all);
-	all->data = tmp;
+	if (all->data->cmd != NULL && all->data->next == NULL)
+	{
+		if (all->data->fd != -1 && all->data->flag_redir != -1)
+		{
+			if (all->data->flag_redir == 0)
+				ft_handle_in(all);
+			else if (all->data->flag_redir == 1)
+				ft_handle_out(all);
+		}
+		else
+			ft_choose_cmd(all);
+	}
+	else
+	{
+		tmp = all->data;
+		ft_do_pipe(all);
+		all->data = tmp;
+	}
 	if (all->data->cmd != NULL)
 		ft_free_data(all->data);
 }

@@ -25,7 +25,7 @@ void	ft_print_echo(t_all *all)
 	int	i;
 
 	i = 0;
-	while (ft_check_echo(all->data->arg[i]))
+	while (all->data->arg && (all->data->arg[i]))
 		i++;
 	while (all->data->arg[i])
 	{
