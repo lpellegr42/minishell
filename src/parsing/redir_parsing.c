@@ -1,15 +1,27 @@
 #include "../../includes/minishell.h"
 
-void	open_fd(t_data *data, char *file, int type, int flag)
+void	open_fd(t_data *data, char *file, int flag)
 {
+	int		type;
+
 	if (flag == 0)
 	{
+		data->flag_out = 2;
+		type = O_RDWR | O_CREAT | O_TRUNC;
 		data->fd_out = open(file, type, 0777);
 	}
 	if (flag == 1)
+	{
+		data->flag_out = 1;
 		data->fd_in = open(file, type, 0777);
+		type = O_RDWR | O_CREAT | O_APPEND;
+
+	}
 	else if (flag == 2)
+	{
+		type = O_RDONLY;
 		data->fd_in = open(file, type, 0777);
+	}
 }
 
 /**
@@ -19,27 +31,14 @@ void	open_fd(t_data *data, char *file, int type, int flag)
  */
 void	handle_redir(t_data	*data, int i, int flag)
 {
+
 	char	*file;
-	int		type;
 
 	if (data->arg[i + 1])
+	{
 		file = data->arg[i + 1];
-	if (flag == 0)
-	{
-		data->flag_out = 2;
-		type = O_RDWR | O_CREAT | O_TRUNC;
+		open_fd(data, file, flag);
 	}
-	if (flag == 1)
-	{
-		data->flag_out = 1;
-		type = O_RDWR | O_CREAT | O_APPEND;
-	}
-	else if (type == 2)
-		type = O_RDONLY;
-	// if (data->fd_in > 2 || data->fd_out > 2) //pas bon car va close les 2 fd.
-	// 	close(node->fd)
-	if (data->arg[i + 1])
-		open_fd(data, file, type, flag);
 }
 
 void	handle_redir_arg(t_data *data, int i)
@@ -63,7 +62,7 @@ void	handle_redir_arg(t_data *data, int i)
 		{
 			data->delim = my_strdup(data->arg[i + 1]);
 			printf("handle_here_doc\n");
-			//handle here_doc_funct
+			//handle here_doc_funct to add
 		}
 		else
 		{

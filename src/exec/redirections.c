@@ -1,6 +1,12 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
+void	free_and_close(char *line, int fd)
+{
+	close(fd);
+	free(line);
+}
+
 void	ft_heredoc(char *delim)
 {
 	int		fd;
@@ -14,14 +20,12 @@ void	ft_heredoc(char *delim)
 		if (!line)
 		{
 			printf("here-document delimited by EOF (wanted '%s')\n", delim);
-			close(fd);
-			free(line);
+			free_and_close(line, fd);
 			return ;
 		}
 		if (ft_strncmp(line, delim, ft_strlen(delim)) == 0)
 		{
-			free(line);
-			close(fd);
+			free_and_close(line, fd);
 			return ;
 		}
 		write(fd, line, ft_strlen(line));
@@ -30,25 +34,27 @@ void	ft_heredoc(char *delim)
 	}
 }
 
-int	ft_handle_out(t_all *all)
-{
-	int	fd;
+// Reunir ces deux fonctions pour manager les fd.
 
-	fd = -1;
-	if (all->data->flag_out == 1)
-		fd = open(all->data->redir_out, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	else if (all->data->flag_out == 2)
-		fd = open(all->data->redir_out, O_WRONLY | O_CREAT| O_APPEND, 0777);
-	if (fd != -1)
-		dup2(fd, 1);
-	return (fd);
-}
+// all->data->fd
 
-int	ft_handle_in(t_all *all)
-{
-	int	fd;
+// int	ft_handle_out(t_all *all)
+// {
+// 	int	fd;
 
-	fd = open(all->data->redir_in, O_RDONLY);
-	dup2(fd, 0);
-	return (fd);
-}
+// 	fd = -1;
+
+// 	//add fd management to the exec part
+// 	if (fd != -1)
+// 		dup2(fd, 1);
+// 	return (fd);
+// }
+
+// int	ft_handle_in(t_all *all)
+// {
+// 	int	fd;
+
+// 	fd = open(all->data->redir_in, O_RDONLY);
+// 	dup2(fd, 0);
+// 	return (fd);
+// }
