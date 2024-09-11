@@ -45,6 +45,7 @@ void	ft_docmd(t_all *all)
 	free(path);
 	ft_free_tab(args);
 	ft_free_tab(envp);
+	all->err = 0;
 }
 
 void	ft_exec(t_all *all)

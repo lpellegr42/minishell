@@ -29,12 +29,6 @@ void	ft_print_echo(t_all *all)
 		i++;
 	while (all->data->arg[i])
 	{
-		if (ft_strncmp(all->data->arg[i], "$?", 2) == 0)
-		{
-			printf("%d\n", all->err);
-			all->err = 0;
-			return ;
-		}
 		printf("%s", all->data->arg[i]);
 		i++;
 		if (all->data->arg[i])

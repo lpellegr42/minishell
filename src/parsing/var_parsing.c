@@ -67,9 +67,16 @@ char	*replace_var_on_arg(char *arg, t_all *all)
 	(void)all;
 	while (arg[i])
 	{
+		if (ft_strcmp(arg, "\"$\"") == 0)
+			return (arg);
 		if (is_in_quote(arg, i, 0) != 1)
 		{
-			if (arg[i] == '$' && is_digit(arg[i + 1]))
+			if (ft_strcmp("$?", arg) == 0)
+			{
+				free(arg);
+				arg = ft_itoa(all->err);
+			}
+			else if (arg[i] == '$' && is_digit(arg[i + 1]))
 				i += replace_nothing(&arg, i);
 			else if (arg[i] == '$' && arg[i + 1] != '\0')
 				replace_var(&arg, i, all);

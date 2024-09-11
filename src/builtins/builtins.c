@@ -48,6 +48,7 @@ void	ft_builtins(t_all *all)
 		ft_cd(all);
 	else if (ft_strncmp(all->data->cmd, "exit", 4) == 0)
 		ft_exit(all);
+	all->err = 0;
 }
 
 // free de la struct avant execve.

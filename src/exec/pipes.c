@@ -39,8 +39,6 @@ void	handle_child_process(t_all *all, int input_fd, int pipe_fd[2])
 	}
 	else
 		ft_choose_cmd(all);
-	if (access(all->data->cmd, F_OK | X_OK) == -1)
-		all->err = 127;
 	exit(all->err);
 }
 
