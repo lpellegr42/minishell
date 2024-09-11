@@ -31,8 +31,8 @@ void	ft_choose_cmd(t_all *all)
 
 	fd_in = -1;
 	fd_out = -1;
-	if (all->data->delim)
-		ft_heredoc(all->data->delim);
+	// if (all->data->delim)
+	// 	ft_heredoc(all->data->delim);
 	// else if (all->data->redir_in != NULL)
 	// 		fd_in = ft_handle_in(all);
 	// else if (all->data->redir_out != NULL)
@@ -45,6 +45,8 @@ void	ft_choose_cmd(t_all *all)
 		close(fd_in);
 	if (fd_out != -1)
 		close(fd_out);
+	unlink(".tmp");
+
 }
 
 void	ft_builtins(t_all *all)
@@ -64,3 +66,6 @@ void	ft_builtins(t_all *all)
 	else if (ft_strncmp(all->data->cmd, "exit", 4) == 0)
 		ft_exit(all);
 }
+
+// free de la struct avant execve.
+// copie des data needed dans un malloc. 

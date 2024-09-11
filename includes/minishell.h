@@ -32,12 +32,8 @@ typedef struct s_data
 	char			*line;
 	char			*cmd;
 	char			**arg;
-	int				fd_in;
-	int				fd_out; //BALEK?!
-	int				flag_out; // 0 si pas de redir; 1 - simple > O_CREATE; 2 double >> O_APPEND. ONLY FOR OUT REDIR.
-	char			*delim; //Delimiter of the here_doc;
-	char			*redir_in; //Nom du fichier de redir
-	char			*redir_out;
+	int				fd;
+	int				flag_redir; // -1 si pas de redir, 0 redir_in, 1 redir_out
 	struct s_data	*next;
 }		t_data;
 
@@ -94,7 +90,10 @@ char	*ft_getenv_tab(char *name, char **envp);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 char	**ft_get_args(char *path, char **args);
 int		ft_tab_len(char **tab);
-void	ft_heredoc(char *delim);
+int		ft_heredoc(char *delim);
+void	ft_handle_out(t_all *all);
+void	ft_handle_in(t_all *all);
+
 
 /* ******************************UTILS_LIBFT********************************* */
 
@@ -120,11 +119,6 @@ int		ft_isvalid(char *str);
 int		ft_lstsize(t_env *lst);
 void	ft_print_env(t_all *all);
 void	ft_print_data(t_data *lst);
-
-void	reset(void);
-void	blue(void);
-void	green(void);
-void	red(void);
 
 //								Parsing
 

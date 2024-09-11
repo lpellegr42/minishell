@@ -1,7 +1,7 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
-void	ft_free1(t_data *data)
+void	ft_free(t_data *data)
 {
 	if (data->line)
 	{
@@ -17,27 +17,6 @@ void	ft_free1(t_data *data)
 		free_tab_tab(data->arg);
 }
 
-void	ft_free2(t_data *data)
-{
-	if (data->delim)
-	{
-		free(data->delim);
-		data->delim = NULL;
-	}
-	if (data->redir_in)
-	{
-		free(data->redir_in);
-		data->redir_in = NULL;
-	}
-	if (data->redir_out)
-	{
-		free(data->redir_out);
-		data->redir_out = NULL;
-	}
-	close(data->fd_in);
-	close(data->fd_out);
-}
-
 /* @brief Frees the data nodes.
  * @return Nothing
 */
@@ -49,10 +28,8 @@ void	ft_free_data(t_data *data)
 		return ;
 	while (data)
 	{
-		ft_free1(data);
-		ft_free2(data);
-		close(data->fd_in);
-		close(data->fd_out);
+		ft_free(data);
+		close(data->fd);
 		temp = data->next;
 		free(data);
 		data = NULL;

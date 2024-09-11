@@ -1,18 +1,20 @@
 //#include "minishell.h"
 #include "../../includes/minishell.h"
 
-void	free_and_close(char *line, int fd)
+int	free_and_close(char *line, int fd)
 {
 	close(fd);
+	fd = open(".tmp", O_RDONLY, 0777);
+	unlink(".tmp");
 	free(line);
+	return (fd);
 }
 
-void	ft_heredoc(char *delim)
+int	ft_heredoc(char *delim)
 {
 	int		fd;
 	char	*line;
 
-	unlink(".tmp");
 	fd = open(".tmp", O_RDWR | O_CREAT | O_TRUNC, 0777);
 	while (1)
 	{
@@ -20,13 +22,11 @@ void	ft_heredoc(char *delim)
 		if (!line)
 		{
 			printf("here-document delimited by EOF (wanted '%s')\n", delim);
-			free_and_close(line, fd);
-			return ;
+			return (free_and_close(line, fd));
 		}
-		if (ft_strncmp(line, delim, ft_strlen(delim)) == 0)
+		if (ft_strcmp(line, delim) == 0)
 		{
-			free_and_close(line, fd);
-			return ;
+			return (free_and_close(line, fd));
 		}
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
@@ -35,26 +35,31 @@ void	ft_heredoc(char *delim)
 }
 
 // Reunir ces deux fonctions pour manager les fd.
-
 // all->data->fd
 
-// int	ft_handle_out(t_all *all)
-// {
-// 	int	fd;
+void	ft_handle_out(t_all *all)
+{
 
-// 	fd = -1;
+	int	stdout_cpy;
 
-// 	//add fd management to the exec part
-// 	if (fd != -1)
-// 		dup2(fd, 1);
-// 	return (fd);
-// }
+	stdout_cpy = dup(STDOUT_FILENO);
 
-// int	ft_handle_in(t_all *all)
-// {
-// 	int	fd;
+	if (all->data->fd != -1)
+		dup2(all->data->fd, STDOUT_FILENO);
+	ft_choose_cmd(all);
+	dup2(stdout_cpy, STDOUT_FILENO);
+	close(stdout_cpy);
+}
 
-// 	fd = open(all->data->redir_in, O_RDONLY);
-// 	dup2(fd, 0);
-// 	return (fd);
-// }
+void	ft_handle_in(t_all *all)
+{
+
+	int	stdin_cpy;
+
+	stdin_cpy = dup(STDIN_FILENO);
+	if (all->data->fd != -1)
+		dup2(all->data->fd, STDIN_FILENO);
+	ft_choose_cmd(all);
+	dup2(stdin_cpy, STDIN_FILENO);
+	close(stdin_cpy);
+}

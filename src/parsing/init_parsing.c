@@ -62,12 +62,8 @@ t_data	*init_node(void)
 	new_node->line = NULL;
 	new_node->cmd = NULL;
 	new_node->arg = NULL;
-	new_node->fd_in = dup(STDIN_FILENO);
-	new_node->fd_out = dup(STDOUT_FILENO);
-	new_node->flag_out = 0;
-	new_node->delim = NULL;
-	new_node->redir_in = NULL;
-	new_node->redir_out = NULL;
+	new_node->fd = -1;
+	new_node->flag_redir = -1;
 	new_node->next = NULL;
 	return (new_node);
 }

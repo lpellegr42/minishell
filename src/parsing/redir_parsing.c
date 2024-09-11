@@ -1,27 +1,16 @@
 #include "../../includes/minishell.h"
 
-void	open_fd(t_data *data, char *file, int flag)
+void	open_fd(t_data *data, char *file, int type, int flag)
 {
-	int		type;
-
 	if (flag == 0)
 	{
-		data->flag_out = 2;
-		type = O_RDWR | O_CREAT | O_TRUNC;
-		data->fd_out = open(file, type, 0777);
+		data->fd = open(file, type, 0777);
 	}
-	if (flag == 1)
-	{
-		data->flag_out = 1;
-		data->fd_in = open(file, type, 0777);
-		type = O_RDWR | O_CREAT | O_APPEND;
-
-	}
+	else if (flag == 1)
+		data->fd = open(file, type, 0777);
 	else if (flag == 2)
-	{
-		type = O_RDONLY;
-		data->fd_in = open(file, type, 0777);
-	}
+		data->fd = open(file, type, 0777);
+	//VOIR POUR LE HERE_DOC
 }
 
 /**
@@ -31,14 +20,30 @@ void	open_fd(t_data *data, char *file, int flag)
  */
 void	handle_redir(t_data	*data, int i, int flag)
 {
-
 	char	*file;
+	int		type;
 
 	if (data->arg[i + 1])
-	{
 		file = data->arg[i + 1];
-		open_fd(data, file, flag);
+	if (flag == 0)
+	{
+		data->flag_redir = 1;
+		type = O_RDWR | O_CREAT | O_TRUNC;
 	}
+	else if (flag == 1)
+	{
+		data->flag_redir = 1;
+		type = O_RDWR | O_CREAT | O_APPEND;
+	}
+	else if (flag == 2)
+	{
+		data->flag_redir = 2;
+		type = O_RDONLY;
+	}
+	if (data->fd > 2)
+		close(data->fd);
+	if (data->arg[i + 1])
+		open_fd(data, file, type, flag); //VOIR POUR LE HERE DOC
 }
 
 void	handle_redir_arg(t_data *data, int i)
@@ -60,9 +65,8 @@ void	handle_redir_arg(t_data *data, int i)
 	{
 		if (data->arg[i][1])
 		{
-			data->delim = my_strdup(data->arg[i + 1]);
+			ft_heredoc(data->arg[i + 1]);
 			printf("handle_here_doc\n");
-			//handle here_doc_funct to add
 		}
 		else
 		{
