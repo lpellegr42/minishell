@@ -72,7 +72,7 @@ char	*replace_var_on_arg(char *arg, t_all *all)
 			if (arg[i] == '$' && (is_whitespace(arg [i + 1]) || is_quote(arg[i + 1])))
 				i++;
 			if (arg[i] == '$' && arg[i + 1] == '?')
-				replace_err(&arg,i, all);
+				replace_err(&arg, i, all);
 			else if (arg[i] == '$' && is_digit(arg[i + 1]))
 				i += replace_nothing(&arg, i);
 			else if (arg[i] == '$' && arg[i + 1] != '\0')

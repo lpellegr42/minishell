@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:27:02 by livsauze          #+#    #+#             */
-/*   Updated: 2024/09/11 19:27:05 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:43:29 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_print_echo(t_all *all)
 	int	i;
 
 	i = 0;
-	while (all->data->arg && (all->data->arg[i]))
+	while (ft_check_echo(all->data->arg[i]))
 		i++;
 	while (all->data->arg[i])
 	{
