@@ -1,4 +1,15 @@
-//#include "minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirections.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/11 19:29:12 by livsauze          #+#    #+#             */
+/*   Updated: 2024/09/11 19:33:18 by livsauze         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 int	free_and_close(char *line, int fd)
@@ -39,7 +50,6 @@ int	ft_heredoc(char *delim)
 
 void	ft_handle_out(t_all *all)
 {
-
 	int	stdout_cpy;
 
 	stdout_cpy = dup(STDOUT_FILENO);
