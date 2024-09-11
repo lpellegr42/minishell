@@ -26,27 +26,17 @@ int	ft_is_builtin(char *cmd)
 */
 void	ft_choose_cmd(t_all *all)
 {
-	int	fd_in;
-	int	fd_out;
-
-	fd_in = -1;
-	fd_out = -1;
-	// if (all->data->delim)
-	// 	ft_heredoc(all->data->delim);
-	// else if (all->data->redir_in != NULL)
-	// 		fd_in = ft_handle_in(all);
-	// else if (all->data->redir_out != NULL)
-	// 		fd_out = ft_handle_out(all);
+	// if (all->data->fd != -1 && all->data->flag_redir != -1)
+	// {
+	// 	if (all->data->flag_redir == 0)
+	// 		ft_handle_in(all);
+	// 	else if (all->data->flag_redir == 1)
+	// 		ft_handle_out(all);
+	// }
 	if (ft_is_builtin(all->data->cmd))
 		ft_builtins(all);
 	else
 		ft_docmd(all);
-	if (fd_in != -1)
-		close(fd_in);
-	if (fd_out != -1)
-		close(fd_out);
-	unlink(".tmp");
-
 }
 
 void	ft_builtins(t_all *all)

@@ -53,14 +53,9 @@ void	ft_exec(t_all *all)
 
 	if (!all->data->cmd)
 		return ;
-	if (all->data->cmd != NULL && all->data->next == NULL)
-		ft_choose_cmd(all);
-	else
-	{
-		tmp = all->data;
-		ft_do_pipe(all);
-		all->data = tmp;
-	}
+	tmp = all->data;
+	ft_do_pipe(all);
+	all->data = tmp;
 	if (all->data->cmd != NULL)
 		ft_free_data(all->data);
 }
