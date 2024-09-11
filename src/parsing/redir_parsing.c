@@ -37,7 +37,7 @@ void	handle_redir(t_data	*data, int i, int flag)
 	}
 	else if (flag == 2)
 	{
-		data->flag_redir = 2;
+		data->flag_redir = 0;
 		type = O_RDONLY;
 	}
 	if (data->fd > 2)
@@ -51,26 +51,23 @@ void	handle_redir_arg(t_data *data, int i)
 	if (data->arg[i][0] == '>')
 	{
 		if (data->arg[i][1])
-		{
-			printf("handle_double_redir_out\n");
+		{//printf("handle_double_redir_out\n");
 			handle_redir(data, i, 0);
 		}
 		else
-		{
-			printf("handle_simple_redir_out\n");
+		{//printf("handle_simple_redir_out\n");
 			handle_redir(data, i, 1);
 		}
 	}
 	else if (data->arg[i][0] == '<')
 	{
 		if (data->arg[i][1])
-		{
-			ft_heredoc(data->arg[i + 1]);
-			printf("handle_here_doc\n");
+		{//printf("handle_here_doc\n");
+			data->flag_redir = 0;
+			data->fd = ft_heredoc(data->arg[i + 1]);
 		}
 		else
-		{
-			printf("handle_simple_redir_in\n");
+		{//printf("handle_simple_redir_in\n");
 			handle_redir(data, i, 2);
 		}
 	}
