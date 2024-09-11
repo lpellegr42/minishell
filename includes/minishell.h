@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpellegr <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/11 20:40:23 by lpellegr          #+#    #+#             */
+/*   Updated: 2024/09/11 20:41:02 by lpellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -94,7 +106,6 @@ int		ft_heredoc(char *delim);
 void	ft_handle_out(t_all *all);
 void	ft_handle_in(t_all *all);
 
-
 /* ******************************UTILS_LIBFT********************************* */
 
 int		ft_strlen(char *str);
@@ -125,7 +136,7 @@ void	ft_print_data(t_data *lst);
 // parsing/content_checking_utils.c
 
 int		is_sep(char c);
-int 	is_token(char c);
+int		is_token(char c);
 int		is_digit(char c);
 int		is_whitespace(char c);
 int		is_redir(char c);
@@ -207,7 +218,7 @@ void	parse_redir(t_data *data);
 
 // parsing/var_parsing.c
 
-char*	replace_var_on_arg(char *arg, t_all *all);
+char	*replace_var_on_arg(char *arg, t_all *all);
 char	*return_replace_var(char *arg, char *before_var, char *res);
 char	*join_var(char *arg, char *var, int i, int var_len);
 
