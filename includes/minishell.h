@@ -6,7 +6,7 @@
 /*   By: lpellegr <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 20:40:23 by lpellegr          #+#    #+#             */
-/*   Updated: 2024/09/11 21:16:47 by lpellegr         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:27:14 by lpellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@
 
 typedef struct s_env
 {
-	char			*key; // name of the variable (ex : USER, PATH, SHLVL...)
-	char			*val; // value of the variable
-	int				set; // flag to set or unset the variable (for unset)
-	int				pos; // final position in ascii order (for export)
+	char			*key;
+	char			*val;
+	int				set;
+	int				pos;
 	int				init;
-	struct s_env	*next; // pointer to the next node
+	struct s_env	*next;
 }	t_env;
-
-// Parsing struct
 
 typedef struct s_data
 {
@@ -45,11 +43,9 @@ typedef struct s_data
 	char			*cmd;
 	char			**arg;
 	int				fd;
-	int				flag_redir; // -1 si pas de redir, 0 redir_in, 1 redir_out
+	int				flag_redir;
 	struct s_data	*next;
 }		t_data;
-
-// End parsing struct.
 
 typedef struct s_all
 {
@@ -236,8 +232,5 @@ char	**ft_split(char const *s, char sep);
 void	free_tab_tab(char **tab);
 void	print_split(char **res);
 void	print_parsing(t_all *all);
-
-//void	quote_checker_verif(char *str);
-//void	test_parsing(char *line);
 
 #endif
