@@ -1,0 +1,26 @@
+
+GROUP TODO : 
+
+Il nous manque :
+
+- variables env : "$USER"
+- return value : $? + $?
+
+- simples et doubles quotes clean de mes arg
+
+- redirections - need to parse and exec
+
+- 'cat | cat | ls'
+
+// Livane specific roadmap
+
+
+// Léo specific roadmap
+
+- Remplir redir et here_doc de la structure au parsing et delete les nodes correspondant 
+- Clean des arguments quote et quote vide de la line de base.
+- 
+
+//
+
+PRAISE THE SUN !
