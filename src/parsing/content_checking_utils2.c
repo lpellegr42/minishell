@@ -25,9 +25,7 @@ int	is_only_digit(char *str)
 
 	i = 0;
 	while (str[i] && is_digit(str[i]))
-	{
 		i++;
-	}
 	if (i == ft_strlen(str))
 		return (1);
 	return (0);
@@ -36,4 +34,16 @@ int	is_only_digit(char *str)
 int is_quote(char c)
 {
 	return (c == '"' || c == '\'');
+}
+
+int	is_only_quote(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && (is_quote(str[i]) || is_whitespace(str[i])))
+		i++;
+	if (i == ft_strlen(str))
+		return (1);
+	return (0);
 }

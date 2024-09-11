@@ -21,6 +21,11 @@ int	initial_check(char *line, t_all *all)
 		ft_display_err("syntax error near redirection token\n", all, 2);
 		return (0);
 	}
+	if (is_only_quote(line) == 1)
+	{
+		ft_display_err ("minishell: syntax error\n", all, 0);
+		return (0);
+	}
 	return (1);
 }
 
