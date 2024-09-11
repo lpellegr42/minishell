@@ -67,10 +67,12 @@ char	*replace_var_on_arg(char *arg, t_all *all)
 	(void)all;
 	while (arg[i])
 	{
-		if (ft_strcmp(arg, "\"$\"") == 0)
-			return (arg);
+		// if (arg[i] == '$' && (is_whitespace(arg[i + 1])/* || !arg[i + 1])*/))
+		// 	i++;
 		if (is_in_quote(arg, i, 0) != 1)
 		{
+			if (arg[i] == '$' && (is_whitespace(arg [i + 1]) || is_quote(arg[i + 1])))
+				i++;
 			if (ft_strcmp("$?", arg) == 0)
 			{
 				free(arg);

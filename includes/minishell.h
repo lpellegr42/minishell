@@ -134,6 +134,8 @@ int		is_redir(char c);
 
 int		is_only_whitespace(char *str, int i, int len);
 int		is_only_digit(char *str);
+int		is_quote(char c);
+
 
 // 	parsing/init_parsing.c
 

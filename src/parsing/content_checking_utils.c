@@ -45,3 +45,4 @@ int	is_redir(char c)
 {
 	return (c == '>' || c == '<');
 }
+

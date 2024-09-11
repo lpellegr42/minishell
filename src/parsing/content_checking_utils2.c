@@ -32,3 +32,8 @@ int	is_only_digit(char *str)
 		return (1);
 	return (0);
 }
+
+int is_quote(char c)
+{
+	return (c == '"' || c == '\'');
+}
